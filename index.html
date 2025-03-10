@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis Gaming Admin Commands</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="button-group">
+        <button class="button">Creature Data</button>
+        <button class="button" disabled>Item Data</button>
+        <button class="button" disabled>Admin Commands</button>
+    </div>
+
+    <div class="navbar">
+        <h2>Oasis Gaming Admin Commands</h2>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'creatureSpawn')">Creature Spawn</button>
+        <button class="tab-button" onclick="openTab(event, 'itemSpawns')">Item Spawns</button>
+        <button class="tab-button" onclick="openTab(event, 'adminCommands')">Admin Commands</button>
+        <button class="tab-button" onclick="openTab(event, 'showOrder')">Show Order</button>
+    </div>
+
+    <div id="creatureSpawn" class="tab-content active">
+        <input type="text" class="search-creature-box" id="searchCreature" placeholder="Type to search for creatures..." list="creatureList">
+        <datalist id="creatureList"></datalist>
+
+        <div class="input-group">
+            <input type="text" class="input-box" id="dinoCode" placeholder="Dino Code" readonly>
+            <button class="copy-btn" onclick="copyText('dinoCode')">Copy Command</button>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="input-box" id="saddleCode" placeholder="Saddle Code" readonly>
+            <button class="copy-btn" onclick="copyText('saddleCode')">Copy Saddle</button>
+        </div>
+
+        <div class="highlight-box">
+            <label>
+                <input type="checkbox" id="spawnTamedCheckbox" checked> Spawn as Tamed
+            </label>
+        </div>
+
+        <div class="highlight-box">
+            <label>Level:
+                <input type="number" id="level" value="60">
+            </label>
+        </div>
+
+        <div class="highlight-box">
+            <label>Spawn Distance:</label>
+            <div class="spawn-distance-group">
+                <label>X: <input type="number" id="spawnX" value="500"></label>
+                <label>Y: <input type="number" id="spawnY" value="0"></label>
+                <label>Z: <input type="number" id="spawnZ" value="0"></label>
+            </div>
+        </div>
+
+        <button class="order-btn">Add To Order</button>
+    </div>
+
+    <div id="itemSpawns" class="tab-content">
+        <h3>Item Spawns</h3>
+        <p>Item spawn configuration goes here.</p>
+    </div>
+
+    <div id="adminCommands" class="tab-content">
+        <h3>Admin Commands</h3>
+        <p>Admin command settings go here.</p>
+    </div>
+
+    <div id="showOrder" class="tab-content">
+        <h3>Show Order</h3>
+        <p>Orders will be displayed here.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
