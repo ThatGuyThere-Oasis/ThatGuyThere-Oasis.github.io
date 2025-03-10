@@ -137,16 +137,17 @@
             padding: 5px;
             font-size: 12px;
         }
+
+        /* Increased dropdown size */
+        #saddleType {
+            height: 25px;
+			width: 130px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-
-    <div class="button-group">
-        <button class="button">Creature Data</button>
-        <button class="button" disabled>Item Data</button>
-        <button class="button" disabled>Admin Commands</button>
-    </div>
-
+   
     <div class="navbar">
         <h2>Oasis Gaming Admin Commands</h2>
     </div>
@@ -176,9 +177,9 @@
 
         <!-- Spawn as Tamed checkbox -->
         <div class="highlight-box">
-            <label>
-                <input type="checkbox" id="spawnTamedCheckbox" checked> Spawn as Tamed
-            </label>
+            <label>Tamed:
+                <input type="checkbox" id="spawnTamedCheckbox" checked>
+           </label>
         </div>
 
         <!-- Level section -->
@@ -196,6 +197,23 @@
                 <label>Y: <input type="number" id="spawnY" value="0"></label>
                 <label>Z: <input type="number" id="spawnZ" value="0"></label>
             </div>
+        </div>
+
+        <!-- Saddle Section -->
+        <div class="highlight-box">
+            <label>Saddle:</label>
+            <select id="saddleType">
+                <option value="none">None</option>
+                <option value="saddle">Saddle</option>
+                <option value="platformSaddle">Platform Saddle</option>
+                <option value="tekSaddle">Tek Saddle</option>
+            </select>
+            <label>Quantity:
+                <input type="number" id="saddleQuantity" value="1" min="1">
+            </label>
+            <label>Quality (0-100):
+                <input type="number" id="saddleQuality" value="0" min="0" max="100">
+            </label>
         </div>
 
         <!-- Button to add to order -->
