@@ -133,21 +133,23 @@
 
         .search-creature-box {
             width: 80%;
-            max-width: 240px;
+            max-width: 345px;
             padding: 5px;
             font-size: 12px;
         }
 
         /* Increased dropdown size */
         #saddleType {
-            height: 25px;
-			width: 130px;
+            height: 30px;
+			Width: 130px;
             font-size: 14px;
         }
     </style>
 </head>
 <body>
-   
+
+    </div>
+
     <div class="navbar">
         <h2>Oasis Gaming Admin Commands</h2>
     </div>
@@ -166,26 +168,26 @@
         <datalist id="creatureList"></datalist>
 
         <div class="input-group">
-            <input type="text" class="input-box" id="dinoCode" placeholder="Dino Code" readonly>
+            <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
             <button class="copy-btn" onclick="copyText('dinoCode')">Copy Creature Code</button>
         </div>
 
         <div class="input-group">
-            <input type="text" class="input-box" id="saddleCode" placeholder="Saddle Code" readonly>
-            <button class="copy-btn" onclick="copyText('saddleCode')">Copy Saddle Code</button>
+            <input type="text" class="input-box" id="saddleCode" placeholder="Creature Code With Saddle" readonly>
+            <button class="copy-btn" onclick="copyText('saddleCode')">Copy Creature Code With Saddle</button>
         </div>
 
         <!-- Spawn as Tamed checkbox -->
         <div class="highlight-box">
-            <label>Tamed:
-                <input type="checkbox" id="spawnTamedCheckbox" checked>
-           </label>
+            <label>Tamed:</label>
+                <input type="checkbox" id="spawnTamedCheckbox" checked >
+            </label>
         </div>
 
         <!-- Level section -->
         <div class="highlight-box">
             <label>Level:
-                <input type="number" id="level" value="60">
+                <input type="number" id="level" value="300">
             </label>
         </div>
 
