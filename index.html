@@ -177,7 +177,9 @@
 			<button class="copy-btn" onclick="copyText('saddleCode')">Copy Saddle Code</button>
 		</div>
         <div class="input-group">
-            <input type="text" class="input-box" id="saddleCode" placeholder="Creature Code With Saddle" readonly>
+            <label for="creatureCodeWithSaddle">Creature Code with Saddle:</label>
+			<input type="text" id="creatureCodeWithSaddle" readonly>
+
             <button class="copy-btn" onclick="copyText('saddleCode')">Copy Creature Code With Saddle</button>
         </div>
 
@@ -247,6 +249,10 @@
 document.getElementById('saddleType').addEventListener('change', updateSaddleCode);
 document.getElementById('saddleQuantity').addEventListener('input', updateSaddleCode);
 document.getElementById('saddleQuality').addEventListener('input', updateSaddleCode);
+
+// Update combined creature code when creature or saddle code changes
+document.getElementById('creatureCode').addEventListener('input', updateCreatureCodeWithSaddle);
+document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
 
 // Creature data (JSON)
 let creaturesData = { creatures: [] };
@@ -535,6 +541,14 @@ function updateSaddleOptions(creatureName) {
         // Trigger saddle code update when creature changes
         updateSaddleCode();
     }
+}
+
+function updateCreatureCodeWithSaddle() {
+    const creatureCode = document.getElementById('creatureCode').value.trim();
+    const saddleCode = document.getElementById('saddleCode').value.trim();
+    const combinedCode = creatureCode && saddleCode ? `${creatureCode}|${saddleCode}` : creatureCode || saddleCode;
+    
+    document.getElementById('creatureCodeWithSaddle').value = combinedCode;
 }
 
 </script>
