@@ -1,18 +1,1813 @@
 {
     "creatures": [
         {
-            "name": "Achatina",
-            "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Achatina/Achatina_Character_BP.Achatina_Character_BP'\"",
-            "tameSummon": "cheat gmsummon \"Achatina_Character_BP_C\"",
-            "saddle": "NA",
-            "platformSaddle": "NA"
-        },
-        {
-            "name": "Rex",
-            "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rex/Rex_Character_BP.Rex_Character_BP'\"",
-            "tameSummon": "cheat gmsummon \"Rex_Character_BP_C\"",
-            "saddle": "NA",
-            "platformSaddle": "NA"
-        }
+        "name": "Achatina",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Achatina/Achatina_Character_BP.Achatina_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Achatina_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Achatina (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Achatina/Achatina_Character_BP_Aberrant.Achatina_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Achatina_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Allosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Allosaurus/Allo_Character_BP.Allo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Allo_Character_BP_C\"",
+        "saddle": "cheat gfi AlloSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Anglerfish",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Angler/Angler_Character_BP.Angler_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Angler_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Anglerfish (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Angler/Angler_Character_BP_Aberrant.Angler_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Angler_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ankylosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Ankylo/Ankylo_Character_BP.Ankylo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Ankylo_Character_BP_C\"",
+        "saddle": "cheat gfi AnkyloSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ankylosaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Ankylo/Ankylo_Character_BP_Aberrant.Ankylo_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Ankylo_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi AnkyloSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Araneo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Spider/SpiderS_Character_BP.SpiderS_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"SpiderS_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Araneo (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Spider/SpiderS_Character_BP_Aberrant.SpiderS_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"SpiderS_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Archaeopteryx",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Archaeopteryx/Archa_Character_BP.Archa_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Archa_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Archelon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Mods/Archelon/Archelon_Character_BP.Archelon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Archelon_Character_BP_C\"",
+        "saddle": "cheat gfi ArchelonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Argentavis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Argentavis/Argent_Character_BP.Argent_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Argent_Character_BP_C\"",
+        "saddle": "cheat gfi ArgentavisSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Armadoggo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Mods/Armadoggo/Armadoggo_Character_BP.Armadoggo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Armadoggo_Character_BP_C\"",
+        "saddle": "cheat gfi ArmadoggoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Arthropluera",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Arthropluera/Arthro_Character_BP.Arthro_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Arthro_Character_BP_C\"",
+        "saddle": "cheat gfi ArthroplueraSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Arthropluera (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Arthropluera/Arthro_Character_BP_Aberrant.Arthro_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Arthro_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi ArthroplueraSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Baryonyx",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Baryonyx/Baryonyx_Character_BP.Baryonyx_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Baryonyx_Character_BP_C\"",
+        "saddle": "cheat gfi BaryonyxSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Baryonyx (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Baryonyx/Baryonyx_Character_BP_Aberrant.Baryonyx_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Baryonyx_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi BaryonyxSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Basilisk",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Basilisk/Basilisk_Character_BP.Basilisk_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Basilisk_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Basilosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Basilosaurus/Basilosaurus_Character_BP.Basilosaurus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Basilosaurus_Character_BP_C\"",
+        "saddle": "cheat gfi BasilosaurusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Beelzebufo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Toad/Toad_Character_BP.Toad_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Toad_Character_BP_C\"",
+        "saddle": "cheat gfi BeelzebufoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Brontosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Bronto/Bronto_Character_BP.Bronto_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Bronto_Character_BP_C\"",
+        "saddle": "cheat gfi BrontoSaddle 1 1 0",
+        "platformSaddle": "cheat gfi BrontoPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Bulbdog",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Bulbdog/Bulbdog_Character_BP.Bulbdog_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Bulbdog_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Carbonemys",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Turtle/Turtle_Character_BP.Turtle_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Turtle_Character_BP_C\"",
+        "saddle": "cheat gfi TurtleSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Carbonemys (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Turtle/Turtle_Character_BP_Aberrant.Turtle_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Turtle_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi TurtleSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Carcharodontosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Carcharodontosaurus/Carcha_Character_BP.Carcha_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Carcha_Character_BP_C\"",
+        "saddle": "cheat gfi CarchaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Carnotaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Carnotaurus/Carnotaurus_Character_BP.Carnotaurus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Carnotaurus_Character_BP_C\"",
+        "saddle": "cheat gfi CarnoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Carnotaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Carnotaurus/Carnotaurus_Character_BP_Aberrant.Carnotaurus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Carnotaurus_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi CarnoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Castoroides",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Beaver/Beaver_Character_BP.Beaver_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Beaver_Character_BP_C\"",
+        "saddle": "cheat gfi BeaverSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ceratosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Mods/Ceratosaurus/Cerato_Character_BP.Cerato_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Cerato_Character_BP_C\"",
+        "saddle": "cheat gfi CeratoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Chalicotherium",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Chalicotherium/Chali_Character_BP.Chali_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Chali_Character_BP_C\"",
+        "saddle": "cheat gfi ChalicotheriumSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Chalk Golem",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/RockGolem/ChalkGolem_Character_BP.ChalkGolem_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"ChalkGolem_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Compy",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Compy/Compy_Character_BP.Compy_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Compy_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Cosmo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Mods/Cosmo/Cosmo_Character_BP.Cosmo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Cosmo_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Daeodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Daeodon/Daeodon_Character_BP.Daeodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Daeodon_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Deinosuchus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Mods/Deinosuchus/Deinosuchus_Character_BP.Deinosuchus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Deinosuchus_Character_BP_C\"",
+        "saddle": "cheat gfi DeinosuchusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Desert Titan",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/DesertTitan/DesertTitan_Character_BP.DesertTitan_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"DesertTitan_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Desert Titan Flock",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/DesertTitan/DesertTitanFlock_Character_BP.DesertTitanFlock_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"DesertTitanFlock_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dilophosaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dilo/Dilo_Character_BP.Dilo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Dilo_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dimetrodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dimetrodon/Dimetrodon_Character_BP.Dimetrodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Dimetrodon_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dimetrodon (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Dimetrodon/Dimetrodon_Character_BP_Aberrant.Dimetrodon_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Dimetrodon_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Dimorphodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dimorphodon/Dimorph_Character_BP.Dimorph_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Dimorph_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dimorphodon (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Dimorphodon/Dimorph_Character_BP_Aberrant.Dimorph_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Dimorph_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Diplocaulus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Diplocaulus/Diplocaulus_Character_BP.Diplocaulus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Diplocaulus_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Diplocaulus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Diplocaulus/Diplocaulus_Character_BP_Aberrant.Diplocaulus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Diplocaulus_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Diplodocus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Diplodocus/Diplodocus_Character_BP.Diplodocus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Diplodocus_Character_BP_C\"",
+        "saddle": "cheat gfi DiplodocusSaddle 1 1 0",
+        "platformSaddle": "cheat gfi DiplodocusPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Diplodocus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Diplodocus/Diplodocus_Character_BP_Aberrant.Diplodocus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Diplodocus_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi DiplodocusSaddle 1 1 0",
+        "platformSaddle": "cheat gfi DiplodocusPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "DireBear",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/DireBear/Direbear_Character_BP.Direbear_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Direbear_Character_BP_C\"",
+        "saddle": "cheat gfi DirebearSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "DireBear (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/DireBear/Direbear_Character_BP_Aberrant.Direbear_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Direbear_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi DirebearSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Direwolf",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Direwolf/Direwolf_Character_BP.Direwolf_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Direwolf_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Direwolf (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Direwolf/Direwolf_Character_BP_Aberrant.Direwolf_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Direwolf_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dodo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dodo/Dodo_Character_BP.Dodo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Dodo_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Doedicurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Doedicurus/Doed_Character_BP.Doed_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Doed_Character_BP_C\"",
+        "saddle": "cheat gfi DoedSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Doedicurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Doedicurus/Doed_Character_BP_Aberrant.Doed_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Doed_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi DoedSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dragon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dragon/Dragon_Character_BP_Boss.Dragon_Character_BP_Boss'\"",
+        "tameSummon": "cheat gmsummon \"Dragon_Character_BP_Boss_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dung Beetle",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/DungBeetle/DungBeetle_Character_BP.DungBeetle_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"DungBeetle_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dunkleosteus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dunkleosteus/Dunkle_Character_BP.Dunkle_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Dunkle_Character_BP_C\"",
+        "saddle": "cheat gfi DunkleosteusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Dunkleosteus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Dunkleosteus/Dunkle_Character_BP_Aberrant.Dunkle_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Dunkle_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi DunkleosteusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Electrophorus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Eel/Eel_Character_BP.Eel_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Eel_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Electrophorus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Eel/Eel_Character_BP_Aberrant.Eel_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Eel_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Enforcer",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Enforcer/Enforcer_Character_BP.Enforcer_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Enforcer_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Equus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Equus/Equus_Character_BP.Equus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Equus_Character_BP_C\"",
+        "saddle": "cheat gfi EquusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Equus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Equus/Equus_Character_BP_Aberrant.Equus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Equus_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi EquusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Fasolasuchus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ARK/Fasolasuchus/Fasolasuchus_Character_BP.Fasolasuchus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Fasolasuchus_Character_BP_C\"",
+        "saddle": "cheat gfi FasolasuchusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Fasolasuchus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Fasolasuchus/Fasolasuchus_Character_BP_Aberrant.Fasolasuchus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Fasolasuchus_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi FasolasuchusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Featherlight",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Featherlight/Featherlight_Character_BP.Featherlight_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Featherlight_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Forest Titan",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/ForestKaiju/ForestKaiju_Character_BP.ForestKaiju_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"ForestKaiju_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Forest Wyvern",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/ForestWyvern/ForestWyvern_Character_BP.ForestWyvern_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"ForestWyvern_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gacha",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Gacha/Gacha_Character_BP.Gacha_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Gacha_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gallimimus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Gallimimus/Galli_Character_BP.Galli_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Galli_Character_BP_C\"",
+        "saddle": "cheat gfi GallimimusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gasbags",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Gasbags/Gasbags_Character_BP.Gasbags_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Gasbags_Character_BP_C\"",
+        "saddle": "cheat gfi GasBagsSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Giant Bee",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Bee/Bee_Character_BP.Bee_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Bee_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Giant Queen Bee",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Bee/Bee_Queen_Character_BP.Bee_Queen_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Bee_Queen_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Giganotosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Giganotosaurus/Gigant_Character_BP.Gigant_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Gigant_Character_BP_C\"",
+        "saddle": "cheat gfi GigaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "cheat gfi GigaTekSaddle 1 1 0",
+        "maxLevel": 300
+    },
+	{
+        "name": "Giganotosaurus (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Genesis2/Dinos/BiomeVariants/Gigant_Character_BP_Tek.Gigant_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Gigant_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi GigaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "cheat gfi GigaTekSaddle 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gigantopithecus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Gigantopithecus/Gigant_Character_BP.Gigant_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Gigant_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gigantopithecus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Gigantopithecus/Gigant_Character_BP_Aberrant.Gigant_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Gigant_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gigantoraptor",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ARK/Gigantoraptor/Gigantoraptor_Character_BP.Gigantoraptor_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Gigantoraptor_Character_BP_C\"",
+        "saddle": "cheat gfi GigantoraptorSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Gigantoraptor (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Gigantoraptor/Gigantoraptor_Character_BP_Aberrant.Gigantoraptor_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Gigantoraptor_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi GigantoraptorSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Glowtail",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Glowtail/Glowtail_Character_BP.Glowtail_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Glowtail_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Hesperornis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Hesperornis/Hesperornis_Character_BP.Hesperornis_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Hesperornis_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Hyaenodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Hyaenodon/Hyaenodon_Character_BP.Hyaenodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Hyaenodon_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ice Titan",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/IceKaiju/IceKaiju_Character_BP.IceKaiju_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"IceKaiju_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ichthyornis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Ichthyornis/Ichthyornis_Character_BP.Ichthyornis_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Ichthyornis_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ichthyosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Ichthyosaurus/Ichthy_Character_BP.Ichthy_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Ichthy_Character_BP_C\"",
+        "saddle": "cheat gfi IchthyosaurusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Iguanodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Iguanodon/Iguanodon_Character_BP.Iguanodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Iguanodon_Character_BP_C\"",
+        "saddle": "cheat gfi IguanodonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	 {
+        "name": "Iguanodon (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Iguanodon/Iguanodon_Character_BP_Aberrant.Iguanodon_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Iguanodon_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi IguanodonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Jerboa",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/Jerboa/Jerboa_Character_BP.Jerboa_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Jerboa_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Kairuku",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Kairuku/Kairuku_Character_BP.Kairuku_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Kairuku_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Kaprosuchus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Kaprosuchus/Kaprosuchus_Character_BP.Kaprosuchus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Kaprosuchus_Character_BP_C\"",
+        "saddle": "cheat gfi KaprosuchusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Karkinos",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Crab/Crab_Character_BP.Crab_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Crab_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Kentrosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Kentrosaurus/Kentrosaurus_Character_BP.Kentrosaurus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Kentrosaurus_Character_BP_C\"",
+        "saddle": "cheat gfi KentroSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Liopleurodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Liopleurodon/Liopleurodon_Character_BP.Liopleurodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Liopleurodon_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Lymantria",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/Moth/Moth_Character_BP.Moth_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Moth_Character_BP_C\"",
+        "saddle": "cheat gfi MothSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Lystrosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Lystrosaurus/Lystro_Character_BP.Lystro_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Lystro_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Lystrosaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Lystrosaurus/Lystro_Character_BP_Aberrant.Lystro_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Lystro_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Maeguana",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ARK/Maeguana/Maeguana_Character_BP.Maeguana_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Maeguana_Character_BP_C\"",
+        "saddle": "cheat gfi MaeguanaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Mammoth",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Mammoth/Mammoth_Character_BP.Mammoth_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Mammoth_Character_BP_C\"",
+        "saddle": "cheat gfi MammothSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Managarmr",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Managarmr/Managarmr_Character_BP.Managarmr_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Managarmr_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Manta",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Manta/Manta_Character_BP.Manta_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Manta_Character_BP_C\"",
+        "saddle": "cheat gfi MantaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Manta (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Manta/Manta_Character_BP_Aberrant.Manta_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Manta_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi MantaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Mantis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/Mantis/Mantis_Character_BP.Mantis_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Mantis_Character_BP_C\"",
+        "saddle": "cheat gfi MantisSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megalania",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Megalania/Megalania_Character_BP.Megalania_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Megalania_Character_BP_C\"",
+        "saddle": "cheat gfi MegalaniaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megalania (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Megalania/Megalania_Character_BP_Aberrant.Megalania_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Megalania_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi MegalaniaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megaloceros",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Megaloceros/Megaloceros_Character_BP.Megaloceros_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Megaloceros_Character_BP_C\"",
+        "saddle": "cheat gfi MegalocerosSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megalodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Megalodon/Megalodon_Character_BP.Megalodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Megalodon_Character_BP_C\"",
+        "saddle": "cheat gfi MegalodonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megalosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Megalosaurus/Megalosaurus_Character_BP.Megalosaurus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Megalosaurus_Character_BP_C\"",
+        "saddle": "cheat gfi MegalosaurusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megalosaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Megalosaurus/Megalosaurus_Character_BP_Aberrant.Megalosaurus_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Megalosaurus_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi MegalosaurusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Megatherium",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Megatherium/Megatherium_Character_BP.Megatherium_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Megatherium_Character_BP_C\"",
+        "saddle": "cheat gfi MegatheriumSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Mek",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Mek/Mek_Character_BP.Mek_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Mek_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Mesopithecus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Mesopithecus/Mesopithecus_Character_BP.Mesopithecus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Mesopithecus_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Microraptor",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Microraptor/Microraptor_Character_BP.Microraptor_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Microraptor_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Morellatops",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/CamelCow/CamelCow_Character_BP.CamelCow_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"CamelCow_Character_BP_C\"",
+        "saddle": "cheat gfi MorellatopsSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Mosasaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Mosasaurus/Mosa_Character_BP.Mosa_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Mosa_Character_BP_C\"",
+        "saddle": "cheat gfi MosaSaddle 1 1 0",
+        "platformSaddle": "cheat gfi MosaPlatformSaddle 1 1 0",
+        "tekSaddle": "cheat gfi MosaSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Mosasaurus (Cavern)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Mosasaurus/Mosa_Character_BP_Caverns.Mosa_Character_BP_Caverns'\"",
+        "tameSummon": "cheat gmsummon \"Mosa_Character_BP_Caverns_C\"",
+        "saddle": "cheat gfi MosaSaddle 1 1 0",
+        "platformSaddle": "cheat gfi MosaPlatformSaddle 1 1 0",
+        "tekSaddle": "cheat gfi MosaSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Moschops",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Moschops/Moschops_Character_BP.Moschops_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Moschops_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Moschops (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Moschops/Moschops_Character_BP_Aberrant.Moschops_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Moschops_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Oasisaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Custom/Oasisaur/Oasisaur_Character_BP.Oasisaur_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Oasisaur_Character_BP_C\"",
+        "saddle": "cheat gfi OasisaurSaddle 1 1 0",
+        "platformSaddle": "cheat gfi OasisaurPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Onyc",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Onyc/Onyc_Character_BP.Onyc_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Onyc_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Otter",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Otter/Otter_Character_BP.Otter_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Otter_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Otter (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Otter/Otter_Character_BP_Aberrant.Otter_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Otter_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Overseer (Alpha)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Endboss/Overseer/Overseer_Character_BP_Alpha.Overseer_Character_BP_Alpha'\"",
+        "tameSummon": "cheat gmsummon \"Overseer_Character_BP_Alpha_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Overseer (Beta)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Endboss/Overseer/Overseer_Character_BP_Beta.Overseer_Character_BP_Beta'\"",
+        "tameSummon": "cheat gmsummon \"Overseer_Character_BP_Beta_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Overseer (Gamma)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Endboss/Overseer/Overseer_Character_BP_Gamma.Overseer_Character_BP_Gamma'\"",
+        "tameSummon": "cheat gmsummon \"Overseer_Character_BP_Gamma_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Oviraptor",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Oviraptor/Oviraptor_Character_BP.Oviraptor_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Oviraptor_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Oviraptor (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Oviraptor/Oviraptor_Character_BP_Aberrant.Oviraptor_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Oviraptor_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ovis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Sheep/Sheep_Character_BP.Sheep_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Sheep_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ovis (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Sheep/Sheep_Character_BP_Aberrant.Sheep_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Sheep_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pachy",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Pachy/Pachy_Character_BP.Pachy_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Pachy_Character_BP_C\"",
+        "saddle": "cheat gfi PachySaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pachyrhinosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Pachyrhinosaurus/Pachyrhinosaurus_Character_BP.Pachyrhinosaurus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Pachyrhinosaurus_Character_BP_C\"",
+        "saddle": "cheat gfi PachyrhinoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Paraceratherium",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Paraceratherium/Paracer_Character_BP.Paracer_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Paracer_Character_BP_C\"",
+        "saddle": "cheat gfi ParacerSaddle 1 1 0",
+        "platformSaddle": "cheat gfi ParacerPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Paraceratherium (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Paraceratherium/Paracer_Character_BP_Aberrant.Paracer_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Paracer_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi ParacerSaddle 1 1 0",
+        "platformSaddle": "cheat gfi ParacerPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Parasaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Parasaur/Para_Character_BP.Para_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Para_Character_BP_C\"",
+        "saddle": "cheat gfi ParaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Parasaur (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Parasaur/Para_Character_BP_Aberrant.Para_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Para_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi ParaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Parasaur (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Parasaur/Para_Character_BP_Tek.Para_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Para_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi ParaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pegomastax",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Pegomastax/Pegomastax_Character_BP.Pegomastax_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Pegomastax_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pelagornis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Pelagornis/Pela_Character_BP.Pela_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Pela_Character_BP_C\"",
+        "saddle": "cheat gfi PelaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Phiomia",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Phiomia/Phiomia_Character_BP.Phiomia_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Phiomia_Character_BP_C\"",
+        "saddle": "cheat gfi PhiomiaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Phoenix",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/Phoenix/Phoenix_Character_BP.Phoenix_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Phoenix_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Plesiosaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Plesiosaur/Plesiosaur_Character_BP.Plesiosaur_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Plesiosaur_Character_BP_C\"",
+        "saddle": "cheat gfi PlesiosaurSaddle 1 1 0",
+        "platformSaddle": "cheat gfi PlesioPlatformSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Procoptodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Procoptodon/Procoptodon_Character_BP.Procoptodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Procoptodon_Character_BP_C\"",
+        "saddle": "cheat gfi ProcoptodonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pteranodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Ptero/Ptero_Character_BP.Ptero_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Ptero_Character_BP_C\"",
+        "saddle": "cheat gfi PteroSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pulmonoscorpius",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Scorpion/Scorpion_Character_BP.Scorpion_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Scorpion_Character_BP_C\"",
+        "saddle": "cheat gfi ScorpionSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Pulmonoscorpius (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Scorpion/Scorpion_Character_BP_Aberrant.Scorpion_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Scorpion_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi ScorpionSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Purlovia",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Purlovia/Purlovia_Character_BP.Purlovia_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Purlovia_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Purlovia (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Purlovia/Purlovia_Character_BP_Aberrant.Purlovia_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Purlovia_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Pyromane",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Pyromane/Pyromane_Character_BP.Pyromane_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Pyromane_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Quetzal",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Quetzalcoatlus/Quetz_Character_BP.Quetz_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Quetz_Character_BP_C\"",
+        "saddle": "cheat gfi QuetzSaddle 1 1 0",
+        "platformSaddle": "cheat gfi QuetzSaddle_Platform 1 1 0",
+        "tekSaddle": "cheat gfi QuetzSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Quetzal (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Quetzalcoatlus/Quetz_Character_BP_Tek.Quetz_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Quetz_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi QuetzSaddle 1 1 0",
+        "platformSaddle": "cheat gfi QuetzSaddle_Platform 1 1 0",
+        "tekSaddle": "cheat gfi QuetzSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Raptor",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Raptor/Raptor_Character_BP.Raptor_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Raptor_Character_BP_C\"",
+        "saddle": "cheat gfi RaptorSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Raptor (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Raptor/Raptor_Character_BP_Aberrant.Raptor_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Raptor_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi RaptorSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Raptor (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Raptor/Raptor_Character_BP_Tek.Raptor_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Raptor_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi RaptorSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Ravager",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Ravager/Ravager_Character_BP.Ravager_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Ravager_Character_BP_C\"",
+        "saddle": "cheat gfi RavagerSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Reaper King",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Reaper/Reaper_Character_BP.Reaper_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Reaper_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Reaper King (Subterranean)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Reaper/Reaper_Character_BP_Subterranean.Reaper_Character_BP_Subterranean'\"",
+        "tameSummon": "cheat gmsummon \"Reaper_Character_BP_Subterranean_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Reaper King (Surface)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Reaper/Reaper_Character_BP_Surface.Reaper_Character_BP_Surface'\"",
+        "tameSummon": "cheat gmsummon \"Reaper_Character_BP_Surface_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Reaper Queen",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Reaper/Reaper_Character_BP_Queen.Reaper_Character_BP_Queen'\"",
+        "tameSummon": "cheat gmsummon \"Reaper_Character_BP_Queen_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Rex",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rex/Rex_Character_BP.Rex_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Rex_Character_BP_C\"",
+        "saddle": "cheat gfi RexSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Rex (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rex/Rex_Character_BP_Tek.Rex_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Rex_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi RexSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "cheat gfi RexSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Rhyniognatha",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Rhyniognatha/Rhynio_Character_BP.Rhynio_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Rhynio_Character_BP_C\"",
+        "saddle": "cheat gfi RhynioSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Rock Drake",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/RockDrake/RockDrake_Character_BP.RockDrake_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"RockDrake_Character_BP_C\"",
+        "saddle": "cheat gfi RockDrakeSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Rock Golem",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/RockGolem/RockGolem_Character_BP.RockGolem_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"RockGolem_Character_BP_C\"",
+        "saddle": "cheat gfi GolemSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Roll Rat",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/RollRat/RollRat_Character_BP.RollRat_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"RollRat_Character_BP_C\"",
+        "saddle": "cheat gfi RollRatSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Sabertooth",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Saber/Saber_Character_BP.Saber_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Saber_Character_BP_C\"",
+        "saddle": "cheat gfi SaberSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Sarcosuchus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Sarco/Sarco_Character_BP.Sarco_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Sarco_Character_BP_C\"",
+        "saddle": "cheat gfi SarcoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Sarcosuchus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Sarco/Sarco_Character_BP_Aberrant.Sarco_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Sarco_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi SarcoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Shastasaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Shastasaurus/Shasta_Character_BP.Shasta_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Shasta_Character_BP_C\"",
+        "saddle": "cheat gfi ShastaSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Shinehorn",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/LanternGoat/LanternGoat_Character_BP.LanternGoat_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"LanternGoat_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Sir-5rM8",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Sir-5rM8/Sir5rM8_Character_BP.Sir5rM8_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Sir5rM8_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Snow Owl",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/SnowOwl/SnowOwl_Character_BP.SnowOwl_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"SnowOwl_Character_BP_C\"",
+        "saddle": "cheat gfi SnowOwlSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Spinosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Spino/Spino_Character_BP.Spino_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Spino_Character_BP_C\"",
+        "saddle": "cheat gfi SpinoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Spinosaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Spino/Spino_Character_BP_Aberrant.Spino_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Spino_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi SpinoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Stegosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Stego/Stego_Character_BP.Stego_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Stego_Character_BP_C\"",
+        "saddle": "cheat gfi StegoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Stegosaurus (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Stego/Stego_Character_BP_Aberrant.Stego_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Stego_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi StegoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Stegosaurus (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Stego/Stego_Character_BP_Tek.Stego_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Stego_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi StegoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "cheat gfi StegoSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Tapejara",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Tapejara/Tapejara_Character_BP.Tapejara_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Tapejara_Character_BP_C\"",
+        "saddle": "cheat gfi TapejaraSaddle 1 1 0",
+        "platformSaddle": "cheat gfi TapejaraSaddle_Platform 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Terror Bird",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/TerrorBird/TerrorBird_Character_BP.TerrorBird_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"TerrorBird_Character_BP_C\"",
+        "saddle": "cheat gfi TerrorBirdSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Therizinosaurus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Therizinosaurus/Therizino_Character_BP.Therizino_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Therizino_Character_BP_C\"",
+        "saddle": "cheat gfi TherizinoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Thorny Dragon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/ThornyDragon/ThornyDragon_Character_BP.ThornyDragon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"ThornyDragon_Character_BP_C\"",
+        "saddle": "cheat gfi ThornyDragonSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Thylacoleo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Thylacoleo/Thylacoleo_Character_BP.Thylacoleo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Thylacoleo_Character_BP_C\"",
+        "saddle": "cheat gfi ThylacoleoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Titanoboa",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Titanoboa/Titanoboa_Character_BP.Titanoboa_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Titanoboa_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Titanoboa (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Titanoboa/Titanoboa_Character_BP_Aberrant.Titanoboa_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Titanoboa_Character_BP_Aberrant_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	{
+        "name": "Titanosaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Titanosaur/Titanosaur_Character_BP.Titanosaur_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Titanosaur_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "cheat gfi TitanSaddle 1 1 0",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Triceratops",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Trike/Trike_Character_BP.Trike_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Trike_Character_BP_C\"",
+        "saddle": "cheat gfi TrikeSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Triceratops (Aberrant)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Aberration/Dinos/Trike/Trike_Character_BP_Aberrant.Trike_Character_BP_Aberrant'\"",
+        "tameSummon": "cheat gmsummon \"Trike_Character_BP_Aberrant_C\"",
+        "saddle": "cheat gfi TrikeSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Triceratops (Tek)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Trike/Trike_Character_BP_Tek.Trike_Character_BP_Tek'\"",
+        "tameSummon": "cheat gmsummon \"Trike_Character_BP_Tek_C\"",
+        "saddle": "cheat gfi TrikeSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "cheat gfi TrikeSaddle_Tek 1 1 0",
+        "maxLevel": 300
+    },
+    {
+        "name": "Troodon",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Troodon/Troodon_Character_BP.Troodon_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Troodon_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Tusoteuthis",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Tusoteuthis/Tusoteuthis_Character_BP.Tusoteuthis_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Tusoteuthis_Character_BP_C\"",
+        "saddle": "cheat gfi TusoteuthisSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Unicorn",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Equus/Equus_Character_BP_Unicorn.Equus_Character_BP_Unicorn'\"",
+        "tameSummon": "cheat gmsummon \"Equus_Character_BP_Unicorn_C\"",
+        "saddle": "cheat gfi EquusSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Velonasaur",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/Extinction/Dinos/Velonasaur/Velonasaur_Character_BP.Velonasaur_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Velonasaur_Character_BP_C\"",
+        "saddle": "cheat gfi VelonasaurSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Vulture",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/ScorchedEarth/Dinos/Vulture/Vulture_Character_BP.Vulture_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Vulture_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Woolly Rhino",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rhino/Rhino_Character_BP.Rhino_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Rhino_Character_BP_C\"",
+        "saddle": "cheat gfi RhinoSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Wyvern (Fire)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/Wyvern_Character_BP_Fire.Wyvern_Character_BP_Fire'\"",
+        "tameSummon": "cheat gmsummon \"Wyvern_Character_BP_Fire_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Wyvern (Lightning)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/Wyvern_Character_BP_Lightning.Wyvern_Character_BP_Lightning'\"",
+        "tameSummon": "cheat gmsummon \"Wyvern_Character_BP_Lightning_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+	 {
+        "name": "Wyvern (Poison)",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/Wyvern_Character_BP_Poison.Wyvern_Character_BP_Poison'\"",
+        "tameSummon": "cheat gmsummon \"Wyvern_Character_BP_Poison_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Xiphactinus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Xiphactinus/Xiphactinus_Character_BP.Xiphactinus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Xiphactinus_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Yi Ling",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/YiLing/YiLing_Character_BP.YiLing_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"YiLing_Character_BP_C\"",
+        "saddle": "cheat gfi YiLingSaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Yutyrannus",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Yutyrannus/Yutyrannus_Character_BP.Yutyrannus_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"Yutyrannus_Character_BP_C\"",
+        "saddle": "cheat gfi YutySaddle 1 1 0",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Zombie Fire Wyvern",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/ZombieWyvern_Character_BP_Fire.ZombieWyvern_Character_BP_Fire'\"",
+        "tameSummon": "cheat gmsummon \"ZombieWyvern_Character_BP_Fire_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Zombie Lightning Wyvern",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/ZombieWyvern_Character_BP_Lightning.ZombieWyvern_Character_BP_Lightning'\"",
+        "tameSummon": "cheat gmsummon \"ZombieWyvern_Character_BP_Lightning_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Zombie Poison Wyvern",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Wyvern/ZombieWyvern_Character_BP_Poison.ZombieWyvern_Character_BP_Poison'\"",
+        "tameSummon": "cheat gmsummon \"ZombieWyvern_Character_BP_Poison_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    },
+    {
+        "name": "Zomdodo",
+        "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Dodo/ZomDodo_Character_BP.ZomDodo_Character_BP'\"",
+        "tameSummon": "cheat gmsummon \"ZomDodo_Character_BP_C\"",
+        "saddle": "NA",
+        "platformSaddle": "NA",
+        "tekSaddle": "NA",
+        "maxLevel": 300
+    }
     ]
 }
