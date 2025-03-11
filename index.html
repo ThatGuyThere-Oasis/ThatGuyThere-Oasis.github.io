@@ -171,7 +171,11 @@
             <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
             <button class="copy-btn" onclick="copyText('dinoCode')">Copy Creature Code</button>
         </div>
-
+		<!-- Saddle Code Section (duplicate of Creature Code) -->
+		<div class="input-group">
+			<input type="text" class="input-box" id="saddleCode" placeholder="Saddle Code" readonly>
+			<button class="copy-btn" onclick="copyText('saddleCode')">Copy Saddle Code</button>
+		</div>
         <div class="input-group">
             <input type="text" class="input-box" id="saddleCode" placeholder="Creature Code With Saddle" readonly>
             <button class="copy-btn" onclick="copyText('saddleCode')">Copy Creature Code With Saddle</button>
@@ -179,8 +183,9 @@
 
         <!-- Spawn as Tamed checkbox -->
         <div class="highlight-box">
-            <label>Tamed:</label>
-                <input type="checkbox" id="spawnTamedCheckbox" checked >
+            <label for="spawnTamedCheckbox" style="display: flex; align-items: center;">
+				<span style="margin-right: 0px; white-space: nowrap;">Tamed:</span>
+				<input type="checkbox" id="spawnTamedCheckbox" style="margin-left: -15px;">
             </label>
         </div>
 
@@ -192,7 +197,7 @@
         </div>
 
         <!-- Spawn Distance section -->
-        <div class="highlight-box">
+        <div class="highlight-box" id="spawnDistanceSection">
             <label>Spawn Distance:</label>
             <div class="spawn-distance-group">
                 <label>X: <input type="number" id="spawnX" value="500"></label>
@@ -246,20 +251,43 @@ const creaturesData = {
             "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Achatina/Achatina_Character_BP.Achatina_Character_BP'\"",
             "tameSummon": "cheat gmsummon \"Achatina_Character_BP_C\"",
             "saddle": "NA",
-            "platformSaddle": "NA"
+            "platformSaddle": "NA",
+			"tekSaddle": "Tek Saddle Blueprint",
+			"maxLevel": 400 // Added maxLevel
         },
         {
             "name": "Rex",
             "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rex/Rex_Character_BP.Rex_Character_BP'\"",
             "tameSummon": "cheat gmsummon \"Rex_Character_BP_C\"",
-            "saddle": "NA",
-            "platformSaddle": "NA"
+            "saddle": "Yes",
+            "platformSaddle": "NA",
+			"tekSaddle": "Tek Saddle Blueprint",
+			"maxLevel": 450 // Added maxLevel
         }
     ]
 };
 
 // Event listener for the "Spawn as Tamed" checkbox
-document.getElementById('spawnTamedCheckbox').addEventListener('change', updateCheatCommand);
+document.getElementById('spawnTamedCheckbox').addEventListener('change', function() {
+    const spawnDistanceSection = document.getElementById('spawnDistanceSection');
+    const spawnTamedCheckbox = document.getElementById('spawnTamedCheckbox');
+    
+    if (spawnTamedCheckbox.checked) {
+        // Disable and gray out the spawn distance inputs
+        spawnDistanceSection.style.opacity = 0.5;
+        spawnDistanceSection.querySelectorAll('input').forEach(input => {
+            input.disabled = true;
+        });
+    } else {
+        // Enable the spawn distance inputs
+        spawnDistanceSection.style.opacity = 1;
+        spawnDistanceSection.querySelectorAll('input').forEach(input => {
+            input.disabled = false;
+        });
+    }
+    updateCheatCommand(); // Update the cheat command
+});
+
 
 // Function to update the cheat command based on the selection and input values
 function updateCheatCommand() {
@@ -267,7 +295,7 @@ function updateCheatCommand() {
     const spawnX = document.getElementById('spawnX').value;
     const spawnY = document.getElementById('spawnY').value;
     const spawnZ = document.getElementById('spawnZ').value;
-    const level = document.getElementById('level').value;
+    let level = document.getElementById('level').value;  // Get current level input value
     const spawnAsTamed = document.getElementById('spawnTamedCheckbox').checked;
 
     // Find the selected creature
@@ -275,6 +303,13 @@ function updateCheatCommand() {
 
     if (creature) {
         let cheatCommand = '';
+        
+        // If the creature has a maxLevel defined, override the level input
+        if (creature.maxLevel && level > creature.maxLevel) {
+            level = creature.maxLevel;  // If the user enters a level greater than maxLevel, set to maxLevel
+        }
+
+        // Generate the cheat command
         if (spawnAsTamed) {
             cheatCommand = creature.tameSummon + ' ' + level;
         } else {
@@ -282,8 +317,14 @@ function updateCheatCommand() {
         }
 
         document.getElementById('dinoCode').value = cheatCommand; // Display in Dino Code box
+
+        // Automatically update the level input to reflect maxLevel if it's set
+        if (creature.maxLevel) {
+            document.getElementById('level').value = creature.maxLevel;
+        }
     }
 }
+
 
 // Creature search functionality
 document.getElementById('searchCreature').addEventListener('input', function() {
@@ -332,6 +373,89 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
 }
+// Your existing code...
+
+// Check the "Tamed" checkbox on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const spawnTamedCheckbox = document.getElementById('spawnTamedCheckbox');
+    const spawnDistanceSection = document.getElementById('spawnDistanceSection');
+    
+    // Set "Tamed" checkbox to checked by default
+    spawnTamedCheckbox.checked = true;
+    
+    // If "Tamed" is checked, gray out spawn distance on page load
+    if (spawnTamedCheckbox.checked) {
+        spawnDistanceSection.style.opacity = 0.5;
+        spawnDistanceSection.querySelectorAll('input').forEach(input => {
+            input.disabled = true;
+        });
+    } else {
+        spawnDistanceSection.style.opacity = 1;
+        spawnDistanceSection.querySelectorAll('input').forEach(input => {
+            input.disabled = false;
+        });
+    }
+
+    updateCheatCommand(); // Update the cheat command immediately with the Tamed option checked
+});
+// Creature search functionality (input event)
+document.getElementById('searchCreature').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const filteredCreatures = creaturesData.creatures.filter(creature =>
+        creature.name.toLowerCase().includes(query)
+    );
+    const options = filteredCreatures.map(creature => `<option value="${creature.name}">${creature.name}</option>`);
+    const datalist = document.getElementById('creatureList');
+    datalist.innerHTML = options.join('');
+});
+
+// Update cheat command when a creature is selected from the list
+document.getElementById('searchCreature').addEventListener('change', function() {
+    updateCheatCommand(); // Generate the code immediately after selecting a creature
+});
+// Function to update the available saddles based on the selected creature
+function updateSaddleOptions(creatureName) {
+    const saddleDropdown = document.getElementById('saddleType');
+    
+    // Find the selected creature
+    const creature = creaturesData.creatures.find(creature => creature.name.toLowerCase() === creatureName.toLowerCase());
+    
+    // If creature is found
+    if (creature) {
+        // Clear previous options
+        saddleDropdown.innerHTML = '';
+        
+        // Create options for available saddles
+        if (creature.saddle !== 'NA') {
+            const saddleOption = document.createElement('option');
+            saddleOption.value = 'saddle';
+            saddleOption.textContent = 'Saddle';
+            saddleDropdown.appendChild(saddleOption);
+        }
+        
+        if (creature.platformSaddle !== 'NA') {
+            const platformSaddleOption = document.createElement('option');
+            platformSaddleOption.value = 'platformSaddle';
+            platformSaddleOption.textContent = 'Platform Saddle';
+            saddleDropdown.appendChild(platformSaddleOption);
+        }
+        
+        if (creature.tekSaddle !== 'NA') {
+            const tekSaddleOption = document.createElement('option');
+            tekSaddleOption.value = 'tekSaddle';
+            tekSaddleOption.textContent = 'Tek Saddle';
+            saddleDropdown.appendChild(tekSaddleOption);
+        }
+    }
+}
+
+// Call this function whenever a creature is selected
+document.getElementById('searchCreature').addEventListener('change', function() {
+    const creatureName = this.value;
+    updateSaddleOptions(creatureName);  // Update saddle options based on the selected creature
+    updateCheatCommand(); // Update the cheat code immediately
+});
+
 
 </script>
 
