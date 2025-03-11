@@ -244,28 +244,35 @@
 
 <script>
 // Creature data (JSON)
-const creaturesData = {
-    "creatures": [
-        {
-            "name": "Achatina",
-            "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Achatina/Achatina_Character_BP.Achatina_Character_BP'\"",
-            "tameSummon": "cheat gmsummon \"Achatina_Character_BP_C\"",
-            "saddle": "NA",
-            "platformSaddle": "NA",
-			"tekSaddle": "Tek Saddle Blueprint",
-			"maxLevel": 400 // Added maxLevel
-        },
-        {
-            "name": "Rex",
-            "wildSummon": "cheat SpawnDino \"Blueprint'/Game/PrimalEarth/Dinos/Rex/Rex_Character_BP.Rex_Character_BP'\"",
-            "tameSummon": "cheat gmsummon \"Rex_Character_BP_C\"",
-            "saddle": "Yes",
-            "platformSaddle": "NA",
-			"tekSaddle": "Tek Saddle Blueprint",
-			"maxLevel": 450 // Added maxLevel
-        }
-    ]
-};
+let creaturesData = { creatures: [] };
+
+// Function to fetch creature data from Creature.json
+async function loadCreatureData() {
+    try {
+        const response = await fetch('Creature.json');
+        creaturesData = await response.json();
+        console.log("Creature data loaded:", creaturesData);
+
+        // Populate the searchable dropdown after data is loaded
+        populateCreatureList();
+    } catch (error) {
+        console.error("Error loading creature data:", error);
+    }
+}
+
+// Function to populate the searchable creature dropdown
+function populateCreatureList() {
+    const datalist = document.getElementById('creatureList');
+    if (!datalist) return;
+
+    datalist.innerHTML = creaturesData.creatures
+        .map(creature => `<option value="${creature.name}">${creature.name}</option>`)
+        .join('');
+}
+
+// Load the creature data when the page is loaded
+document.addEventListener('DOMContentLoaded', loadCreatureData);
+
 
 // Event listener for the "Spawn as Tamed" checkbox
 document.getElementById('spawnTamedCheckbox').addEventListener('change', function() {
