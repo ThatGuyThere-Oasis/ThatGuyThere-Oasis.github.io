@@ -243,6 +243,11 @@
     </div>
 
 <script>
+// Update saddle code when saddle dropdown, quantity, or quality changes
+document.getElementById('saddleType').addEventListener('change', updateSaddleCode);
+document.getElementById('saddleQuantity').addEventListener('input', updateSaddleCode);
+document.getElementById('saddleQuality').addEventListener('input', updateSaddleCode);
+
 // Creature data (JSON)
 let creaturesData = { creatures: [] };
 
@@ -418,7 +423,8 @@ document.getElementById('searchCreature').addEventListener('input', function() {
 
 // Update cheat command when a creature is selected from the list
 document.getElementById('searchCreature').addEventListener('change', function() {
-    updateCheatCommand(); // Generate the code immediately after selecting a creature
+    updateCheatCommand(); // Update creature command
+    updateSaddleOptions(this.value); // Update saddle dropdown based on creature
 });
 // Function to update the available saddles based on the selected creature
 function updateSaddleOptions(creatureName) {
@@ -463,6 +469,73 @@ document.getElementById('searchCreature').addEventListener('change', function() 
     updateCheatCommand(); // Update the cheat code immediately
 });
 
+// Function to update the Saddle Code box
+function updateSaddleCode() {
+    const creatureName = document.getElementById('searchCreature').value;
+    const selectedSaddle = document.getElementById('saddleType').value;
+    const quantity = document.getElementById('saddleQuantity').value;
+    const quality = document.getElementById('saddleQuality').value;
+    
+    // Find the selected creature in JSON data
+    const creature = creaturesData.creatures.find(creature => creature.name.toLowerCase() === creatureName.toLowerCase());
+
+    if (creature) {
+        let saddleCommand = '';
+
+        // Match selected saddle type with the JSON file keys
+        if (selectedSaddle === 'saddle' && creature.saddle !== 'NA') {
+            saddleCommand = creature.saddle;
+        } else if (selectedSaddle === 'platformSaddle' && creature.platformSaddle !== 'NA') {
+            saddleCommand = creature.platformSaddle;
+        } else if (selectedSaddle === 'tekSaddle' && creature.tekSaddle !== 'NA') {
+            saddleCommand = creature.tekSaddle;
+        }
+
+        // If a saddle command exists, format it with quantity and quality
+        if (saddleCommand) {
+            document.getElementById('saddleCode').value = `${saddleCommand} ${quantity} ${quality}`;
+        } else {
+            document.getElementById('saddleCode').value = ''; // Clear if no valid saddle
+        }
+    }
+}
+
+function updateSaddleOptions(creatureName) {
+    const saddleDropdown = document.getElementById('saddleType');
+    
+    // Find the selected creature
+    const creature = creaturesData.creatures.find(creature => creature.name.toLowerCase() === creatureName.toLowerCase());
+    
+    if (creature) {
+        // Clear previous options
+        saddleDropdown.innerHTML = '';
+
+        // Add available saddle options
+        if (creature.saddle !== 'NA') {
+            const saddleOption = document.createElement('option');
+            saddleOption.value = 'saddle';
+            saddleOption.textContent = 'Saddle';
+            saddleDropdown.appendChild(saddleOption);
+        }
+
+        if (creature.platformSaddle !== 'NA') {
+            const platformSaddleOption = document.createElement('option');
+            platformSaddleOption.value = 'platformSaddle';
+            platformSaddleOption.textContent = 'Platform Saddle';
+            saddleDropdown.appendChild(platformSaddleOption);
+        }
+
+        if (creature.tekSaddle !== 'NA') {
+            const tekSaddleOption = document.createElement('option');
+            tekSaddleOption.value = 'tekSaddle';
+            tekSaddleOption.textContent = 'Tek Saddle';
+            saddleDropdown.appendChild(tekSaddleOption);
+        }
+
+        // Trigger saddle code update when creature changes
+        updateSaddleCode();
+    }
+}
 
 </script>
 
