@@ -555,13 +555,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const maxLevelCheckbox = document.getElementById("maxLevelCheckbox");
     const levelInput = document.getElementById("level");
 
-    // Function to update level based on selected creature
-    function updateLevel() {
-        const creatureName = document.getElementById("searchCreature").value.toLowerCase();
-        const creature = creaturesData.creatures.find(creature => creature.name.toLowerCase() === creatureName);
+    let maxLevel = 100; // ❌ Static value, does not update from Creature.json
 
-        if (maxLevelCheckbox.checked && creature && creature.maxLevel) {
-            levelInput.value = creature.maxLevel; // ✅ Correctly set max level from Creature.json
+    // Function to update level input
+    function updateLevel() {
+        if (maxLevelCheckbox.checked) {
+            levelInput.value = maxLevel; // ❌ Always uses static value
             levelInput.disabled = true;
         } else {
             levelInput.disabled = false;
@@ -569,10 +568,22 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCheatCommand(); // Update cheat code dynamically
     }
 
-    // ✅ Dynamically updates level when a new creature is selected
+    // Load maxLevel from Creature.json (❌ Incorrect implementation)
+    async function fetchMaxLevel() {
+        try {
+            const response = await fetch("Creature.json");
+            const data = await response.json();
+            maxLevel = data.maxLevel || maxLevel; // ❌ Uses global variable, does not check selected creature
+        } catch (error) {
+            console.error("Failed to load maxLevel from Creature.json:", error);
+        }
+    }
+
+    // ❌ fetchMaxLevel is called only once, never updates when selecting a new creature
+    fetchMaxLevel();
     maxLevelCheckbox.addEventListener("change", updateLevel);
-    document.getElementById("searchCreature").addEventListener("change", updateLevel);
 });
+
 
 });
 
