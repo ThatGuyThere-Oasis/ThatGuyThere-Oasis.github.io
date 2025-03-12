@@ -171,14 +171,14 @@
             <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
             <button class="copy-btn" onclick="copyText('dinoCode')">Copy Creature Code</button>
         </div>
-		<!-- Saddle Code Section (duplicate of Creature Code) -->
+	<!-- Saddle Code Section (duplicate of Creature Code) -->
 		<div class="input-group">
 			<input type="text" class="input-box" id="saddleCode" placeholder="Saddle Code" readonly>
 			<button class="copy-btn" onclick="copyText('saddleCode')">Copy Saddle Code</button>
 		</div>
         <div class="input-group">
-            <input type="text" class="input-box" id="saddleCode" placeholder="${creatureCode} | ${saddleCode}" readonly>
-            <button class="copy-btn" onclick="copyText('saddleCodeWithSaddle')">Copy Creature Code With Saddle</button>
+            <input type="text" class="input-box" id="CreatureCodeWithSaddle" placeholder="Creature Code With Saddle" readonly>
+            <button class="copy-btn" onclick="copyText('CreatureCodeWithSaddle')">Copy Creature Code With Saddle</button>
         </div>
 
         <!-- Spawn as Tamed checkbox -->
@@ -545,8 +545,13 @@ function updateCreatureCodeWithSaddle() {
     
     document.getElementById('creatureCodeWithSaddle').value = combinedCode;
 }
+	
+// Listen for changes in both input fields
+document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
+document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
 
 </script>
 
 </body>
 </html>
+
