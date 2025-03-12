@@ -355,8 +355,6 @@ document.getElementById('searchCreature').addEventListener('input', function() {
 
 // Close the datalist when a creature is selected
 document.getElementById('searchCreature').addEventListener('change', function() {
-    const datalist = document.getElementById('creatureList');
-    datalist.innerHTML = ''; // Clear datalist after selection
     updateCheatCommand(); // Generate the code immediately
 });
 
