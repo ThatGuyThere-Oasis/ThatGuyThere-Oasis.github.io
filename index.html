@@ -321,11 +321,6 @@ function updateCheatCommand() {
     if (creature) {
         let cheatCommand = '';
         
-        // If the creature has a maxLevel defined, override the level input
-        if (creature.maxLevel && level > creature.maxLevel) {
-    document.getElementById('level').value = creature.maxLevel; // Set max level in the box, but allow changes
-        }
-
         // Generate the cheat command
         if (spawnAsTamed) {
             cheatCommand = creature.tameSummon + ' ' + level;
