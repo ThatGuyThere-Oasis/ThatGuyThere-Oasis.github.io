@@ -334,7 +334,7 @@ function updateCheatCommand() {
 		updateCreatureCodeWithSaddle(); // Manually trigger update
 
         // Automatically update the level input to reflect maxLevel if it's set
-        if (creature.maxLevel) {
+        if (creature.maxLevel && !document.getElementById('level').dataset.userChanged) {
             document.getElementById('level').value = creature.maxLevel;
         }
     }
@@ -364,6 +364,8 @@ document.getElementById('level').addEventListener('input', updateCheatCommand);
 document.getElementById('spawnX').addEventListener('input', updateCheatCommand);
 document.getElementById('spawnY').addEventListener('input', updateCheatCommand);
 document.getElementById('spawnZ').addEventListener('input', updateCheatCommand);
+document.getElementById('level').addEventListener('input', function() {
+    this.dataset.userChanged = true;
 
 // Function to copy text to clipboard
 function copyText(elementId) {
