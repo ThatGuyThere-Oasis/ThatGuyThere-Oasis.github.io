@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis Gaming Admin Commands</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+</head>
+<body>
+
+    <!-- 🔷 Navigation Bar -->
+    <div class="navbar">
+        <h2>Oasis Gaming Admin Commands</h2>
+    </div>
+
+    <!-- 🏷️ Tab Navigation -->
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'creatureSpawn')">Creature Spawn</button>
+        <button class="tab-button" onclick="openTab(event, 'itemSpawns')">Item Spawns</button>
+        <button class="tab-button" onclick="openTab(event, 'adminCommands')">Admin Commands</button>
+        <button class="tab-button" onclick="openTab(event, 'showOrder')">Show Order</button>
+    </div>
+
+    <!-- 🦖 Creature Spawn Tab -->
+    <div id="creatureSpawn" class="tab-content active">
+        <input type="text" class="search-creature-box" id="searchCreature" placeholder="Search for creatures..." list="creatureList">
+        <datalist id="creatureList"></datalist>
+
+        <div class="input-group">
+            <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
+            <button class="copy-btn" onclick="copyText('dinoCode')">Copy</button>
+        </div>
+
+        <div class="highlight-box">
+            <label>
+                <span>Tamed:</span>
+                <input type="checkbox" id="spawnTamedCheckbox">
+            </label>
+        </div>
+
+        <button class="order-btn">Add To Order</button>
+    </div>
+
+    <!-- 📦 Other Sections -->
+    <div id="itemSpawns" class="tab-content"><h3>Item Spawns</h3></div>
+    <div id="adminCommands" class="tab-content"><h3>Admin Commands</h3></div>
+    <div id="showOrder" class="tab-content"><h3>Show Order</h3></div>
+
+    <script src="script.js"></script> <!-- Link to external JS -->
+</body>
+</html>
