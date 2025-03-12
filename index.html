@@ -103,7 +103,6 @@
         <button class="tab-button" onclick="openTab(event, 'showOrder')">Show Order</button>
     </div>
 
-    <!-- Creature Spawn Tab -->
     <div id="creatureSpawn" class="tab-content active">
         <input type="text" class="input-box" id="searchCreature" placeholder="Search creatures..." list="creatureList">
         <datalist id="creatureList"></datalist>
@@ -111,14 +110,6 @@
         <div class="input-group">
             <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
             <button class="copy-btn" onclick="copyText('dinoCode')">Copy</button>
-        </div>
-        
-        <div class="highlight-box">
-            <label for="spawnTamedCheckbox">Tamed: <input type="checkbox" id="spawnTamedCheckbox"></label>
-        </div>
-        
-        <div class="highlight-box">
-            <label>Level: <input type="number" id="level" value="300"></label>
         </div>
     </div>
 
