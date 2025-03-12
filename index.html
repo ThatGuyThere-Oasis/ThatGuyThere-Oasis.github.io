@@ -315,10 +315,6 @@ function updateCheatCommand() {
     // Find the selected creature
     const creature = creaturesData.creatures.find(creature => creature.name.toLowerCase() === creatureName.toLowerCase());
 
-    if (creature) {
-        let cheatCommand = '';
-        
-        // Generate the cheat command
         if (spawnAsTamed) {
             cheatCommand = creature.tameSummon + ' ' + level;
         } else {
