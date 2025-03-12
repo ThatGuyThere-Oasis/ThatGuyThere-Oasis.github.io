@@ -539,20 +539,19 @@ function updateSaddleOptions(creatureName) {
     }
 }
 
-function updateCreatureCodeWithSaddle() {
-    const creatureCode = document.getElementById('creatureCode').value.trim();
-    const saddleCode = document.getElementById('saddleCode').value.trim();
-    const combinedCode = creatureCode && saddleCode ? `${creatureCode}|${saddleCode}` : creatureCode || saddleCode;
-    
-    document.getElementById('creatureCodeWithSaddle').value = combinedCode;
-}
-	
-// Listen for changes in both input fields
-document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
-document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
+    // Function to update Creature Code With Saddle
+    function updateCreatureCodeWithSaddle() {
+        const creatureCode = document.getElementById('dinoCode').value.trim(); // Correct ID
+        const saddleCode = document.getElementById('saddleCode').value.trim();
+        const combinedCode = creatureCode && saddleCode ? `${creatureCode}|${saddleCode}` : creatureCode || saddleCode;
+        
+        document.getElementById('creatureCodeWithSaddle').value = combinedCode;
+    }
 
+    // Attach event listeners to update the combined code dynamically
+    document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
+    document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
 </script>
 
 </body>
 </html>
-
