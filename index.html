@@ -331,6 +331,7 @@ function updateCheatCommand() {
         }
 
         document.getElementById('dinoCode').value = cheatCommand; // Display in Dino Code box
+		updateCreatureCodeWithSaddle(); // Manually trigger update
 
         // Automatically update the level input to reflect maxLevel if it's set
         if (creature.maxLevel) {
@@ -496,6 +497,7 @@ function updateSaddleCode() {
         // If a saddle command exists, format it with quantity and quality
         if (saddleCommand) {
             document.getElementById('saddleCode').value = `${saddleCommand} ${quantity} ${quality}`;
+			updateCreatureCodeWithSaddle();
         } else {
             document.getElementById('saddleCode').value = ''; // Clear if no valid saddle
         }
@@ -550,7 +552,8 @@ function updateSaddleOptions(creatureName) {
 
     // Attach event listeners to update the combined code dynamically
     document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
-    document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
+	document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
+
 </script>
 
 </body>
