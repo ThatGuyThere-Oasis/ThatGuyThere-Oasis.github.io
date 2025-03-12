@@ -179,8 +179,7 @@
         <div class="input-group">
             <label for="creatureCodeWithSaddle">Creature Code with Saddle:</label>
 			<input type="text" id="creatureCodeWithSaddle" readonly>
-
-            <button class="copy-btn" onclick="copyText('saddleCode')">Copy Creature Code With Saddle</button>
+			<button class="copy-btn" onclick="copyText('saddleCode')">Copy Creature Code With Saddle</button>
         </div>
 
         <!-- Spawn as Tamed checkbox -->
@@ -543,13 +542,21 @@ function updateSaddleOptions(creatureName) {
     }
 }
 
+// Function to update the Creature Code with Saddle field
 function updateCreatureCodeWithSaddle() {
-    const creatureCode = document.getElementById('creatureCode').value.trim();
-    const saddleCode = document.getElementById('saddleCode').value.trim();
-    const combinedCode = creatureCode && saddleCode ? `${creatureCode}|${saddleCode}` : creatureCode || saddleCode;
+    const creatureCode = document.getElementById('dinoCode').value;
+    const saddleCode = document.getElementById('saddleCode').value;
+
+    // Combine both with ' | ' only if both exist
+    const combinedCode = creatureCode && saddleCode ? `${creatureCode} | ${saddleCode}` : creatureCode || saddleCode;
     
     document.getElementById('creatureCodeWithSaddle').value = combinedCode;
 }
+
+// Attach event listeners to update the combined field whenever creature or saddle code changes
+document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
+document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
+
 
 </script>
 
