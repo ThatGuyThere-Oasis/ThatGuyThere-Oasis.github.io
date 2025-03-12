@@ -320,7 +320,7 @@ function updateCheatCommand() {
         
         // If the creature has a maxLevel defined, override the level input
         if (creature.maxLevel && level > creature.maxLevel) {
-			document.getElementById('level').value = creature.maxLevel; // Set max level in the box, but allow changes
+		document.getElementById('level').value = creature.maxLevel; // Set max level, but allow edits
         }
 
         // Generate the cheat command
@@ -331,11 +331,12 @@ function updateCheatCommand() {
         }
 
         document.getElementById('dinoCode').value = cheatCommand; // Display in Dino Code box
-		updateCreatureCodeWithSaddle(); // Manually trigger update
+	updateCreatureCodeWithSaddle(); // Manually trigger update
 
-        // Automatically update the level input to reflect maxLevel if it's set
-        if (creature.maxLevel) {
-            document.getElementById('level').value = creature.maxLevel;
+	if (creature.maxLevel && level > creature.maxLevel) {
+  	  document.getElementById('level').value = creature.maxLevel; // Set max level if too high, but allow changes
+}
+
         }
     }
 }
