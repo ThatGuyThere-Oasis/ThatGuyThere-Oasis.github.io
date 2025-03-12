@@ -191,14 +191,11 @@
         </div>
 
         <!-- Level section -->
-<div class="highlight-box">
-    <label>
-        <input type="checkbox" id="maxLevelCheckbox"> Max Level:
-    </label>
-    <label>Level:
-        <input type="number" id="level" value="300">
-    </label>
-</div>
+        <div class="highlight-box">
+            <label>Level:
+                <input type="number" id="level" value="300">
+            </label>
+        </div>
 
         <!-- Spawn Distance section -->
         <div class="highlight-box" id="spawnDistanceSection">
@@ -321,6 +318,11 @@ function updateCheatCommand() {
     if (creature) {
         let cheatCommand = '';
         
+        // If the creature has a maxLevel defined, override the level input
+        if (creature.maxLevel && level > creature.maxLevel) {
+    document.getElementById('level').value = creature.maxLevel; // Set max level in the box, but allow changes
+        }
+
         // Generate the cheat command
         if (spawnAsTamed) {
             cheatCommand = creature.tameSummon + ' ' + level;
@@ -332,7 +334,7 @@ function updateCheatCommand() {
 		updateCreatureCodeWithSaddle(); // Manually trigger update
 
         // Automatically update the level input to reflect maxLevel if it's set
-        if (creature.maxLevel && !document.getElementById('level').dataset.userChanged) {
+        if (creature.maxLevel) {
             document.getElementById('level').value = creature.maxLevel;
         }
     }
@@ -551,57 +553,6 @@ function updateSaddleOptions(creatureName) {
     // Attach event listeners to update the combined code dynamically
     document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
 	document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
-ddocument.addEventListener("DOMContentLoaded", function () {
-    const maxLevelCheckbox = document.getElementById("maxLevelCheckbox");
-    const levelInput = document.getElementById("level");
-    const searchCreature = document.getElementById("searchCreature");
-
-    let creaturesData = { creatures: [] }; // Store creatures data
-    let currentMaxLevel = 300; // Default max level
-
-    // Function to fetch creature data
-    async function loadCreatureData() {
-        try {
-            const response = await fetch('Creature.json');
-            creaturesData = await response.json();
-            console.log("Creature data loaded:", creaturesData);
-        } catch (error) {
-            console.error("Error loading creature data:", error);
-        }
-    }
-
-    // Function to update max level dynamically
-    function updateMaxLevel() {
-        const selectedCreatureName = searchCreature.value.toLowerCase();
-        const creature = creaturesData.creatures.find(c => c.name.toLowerCase() === selectedCreatureName);
-
-        if (creature) {
-            currentMaxLevel = creature.maxLevel || 300; // Default if not found
-            if (maxLevelCheckbox.checked) {
-                levelInput.value = currentMaxLevel;
-                levelInput.disabled = true;
-            }
-        }
-    }
-
-    // Function to handle checkbox toggle
-    function handleMaxLevelToggle() {
-        if (maxLevelCheckbox.checked) {
-            levelInput.value = currentMaxLevel;
-            levelInput.disabled = true;
-        } else {
-            levelInput.disabled = false;
-        }
-    }
-
-    // Attach event listeners
-    maxLevelCheckbox.addEventListener("change", handleMaxLevelToggle);
-    searchCreature.addEventListener("change", function () {
-        updateMaxLevel(); // Set correct max level based on selected creature
-        handleMaxLevelToggle(); // Ensure level input is enabled/disabled accordingly
-    });
-
-    loadCreatureData(); // Load creatures on page load
 
 </script>
 
