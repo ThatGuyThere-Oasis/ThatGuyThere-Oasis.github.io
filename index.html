@@ -4,31 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oasis Gaming Admin Commands</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2a3b44;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #1c2a30;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tab-button {
+            padding: 8px 12px;
+            background: #3e4e58;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px 4px 0 0;
+            transition: background 0.3s;
+        }
+
+        .tab-button.active {
+            background: #1c2a30;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: #1c2a30;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Input Groups */
+        .input-group, .highlight-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+            padding: 8px;
+            background: #3e4e58;
+            border-radius: 5px;
+        }
+
+        .input-box {
+            width: 60%;
+            max-width: 220px;
+            padding: 6px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .copy-btn {
+            padding: 6px;
+            font-size: 14px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #45a049;
+        }
+
+        .order-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #1976D2;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- 🔷 Navigation Bar -->
     <div class="navbar">
         <h2>Oasis Gaming Admin Commands</h2>
     </div>
 
-    <!-- 🏷️ Tab Navigation -->
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'creatureSpawn')">Creature Spawn</button>
-        <button class="tab-button" onclick="openTab(event, 'itemSpawns')">Item Spawns</button>
-        <button class="tab-button" onclick="openTab(event, 'adminCommands')">Admin Commands</button>
-        <button class="tab-button" onclick="openTab(event, 'showOrder')">Show Order</button>
+        <button class="tab-button active" data-tab="creatureSpawn">Creature Spawn</button>
+        <button class="tab-button" data-tab="itemSpawns">Item Spawns</button>
+        <button class="tab-button" data-tab="adminCommands">Admin Commands</button>
+        <button class="tab-button" data-tab="showOrder">Show Order</button>
     </div>
 
-    <!-- 🦖 Creature Spawn Tab -->
     <div id="creatureSpawn" class="tab-content active">
-        <input type="text" class="search-creature-box" id="searchCreature" placeholder="Search for creatures..." list="creatureList">
+        <input type="text" class="search-creature-box" id="searchCreature" placeholder="Type to search for creatures..." list="creatureList">
         <datalist id="creatureList"></datalist>
 
         <div class="input-group">
             <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
-            <button class="copy-btn" onclick="copyText('dinoCode')">Copy</button>
+            <button class="copy-btn" data-copy="dinoCode">Copy</button>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="input-box" id="saddleCode" placeholder="Saddle Code" readonly>
+            <button class="copy-btn" data-copy="saddleCode">Copy</button>
         </div>
 
         <div class="highlight-box">
@@ -38,14 +143,26 @@
             </label>
         </div>
 
+        <div class="highlight-box">
+            <label>Level: <input type="number" id="level" value="300"></label>
+        </div>
+
+        <div class="highlight-box" id="spawnDistanceSection">
+            <label>Spawn Distance:</label>
+            <div class="spawn-distance-group">
+                <label>X: <input type="number" id="spawnX" value="500"></label>
+                <label>Y: <input type="number" id="spawnY" value="0"></label>
+                <label>Z: <input type="number" id="spawnZ" value="0"></label>
+            </div>
+        </div>
+
         <button class="order-btn">Add To Order</button>
     </div>
 
-    <!-- 📦 Other Sections -->
     <div id="itemSpawns" class="tab-content"><h3>Item Spawns</h3></div>
     <div id="adminCommands" class="tab-content"><h3>Admin Commands</h3></div>
     <div id="showOrder" class="tab-content"><h3>Show Order</h3></div>
 
-    <script src="script.js"></script> <!-- Link to external JS -->
+    <script src="script.js"></script> <!-- External JS -->
 </body>
 </html>
