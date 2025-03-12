@@ -191,11 +191,14 @@
         </div>
 
         <!-- Level section -->
-        <div class="highlight-box">
-            <label>Level:
-                <input type="number" id="level" value="300">
-            </label>
-        </div>
+<div class="highlight-box">
+    <label>
+        <input type="checkbox" id="maxLevelCheckbox"> Max Level:
+    </label>
+    <label>Level:
+        <input type="number" id="level" value="300">
+    </label>
+</div>
 
         <!-- Spawn Distance section -->
         <div class="highlight-box" id="spawnDistanceSection">
@@ -553,6 +556,38 @@ function updateSaddleOptions(creatureName) {
     // Attach event listeners to update the combined code dynamically
     document.getElementById('dinoCode').addEventListener('input', updateCreatureCodeWithSaddle);
 	document.getElementById('saddleCode').addEventListener('input', updateCreatureCodeWithSaddle);
+document.addEventListener("DOMContentLoaded", function () {
+    const maxLevelCheckbox = document.getElementById("maxLevelCheckbox");
+    const levelInput = document.getElementById("level");
+
+    let maxLevel = 100; // Default value if JSON fails to load
+
+    // Function to update level input
+    function updateLevel() {
+        if (maxLevelCheckbox.checked) {
+            levelInput.value = maxLevel;
+            levelInput.disabled = true;
+        } else {
+            levelInput.disabled = false;
+        }
+        updateCheatCommand(); // Update cheat code dynamically
+    }
+
+    // Load maxLevel from Creature.json based on selected creature
+    async function fetchMaxLevel() {
+        try {
+            const response = await fetch("Creature.json");
+            const data = await response.json();
+            maxLevel = data.maxLevel || maxLevel;
+        } catch (error) {
+            console.error("Failed to load maxLevel from Creature.json:", error);
+        }
+    }
+
+    // Fetch max level and attach event listener
+    fetchMaxLevel();
+    maxLevelCheckbox.addEventListener("change", updateLevel);
+});
 
 </script>
 
