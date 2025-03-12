@@ -4,148 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oasis Gaming Admin Commands</title>
+    
     <style>
-        /* Global Styles */
+        /* Global Styling */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #2a3b44;
+            background-color: #1e2a38;
             color: white;
             text-align: center;
+            margin: 0;
+            padding: 20px;
         }
 
-        /* Navigation Bar */
-        .navbar {
-            background-color: #1c2a30;
-            padding: 5px;
-            font-size: 14px;
-        }
-
-        /* Tabs Section */
+        /* Navigation Tabs */
         .tabs {
             display: flex;
-            justify-content: center;
-            gap: 4px;
-            margin-top: 5px;
+            justify-content: space-around;
+            background: #222;
+            padding: 10px;
         }
-        .tab-button {
-            padding: 5px;
-            background: #3e4e58;
-            border: none;
-            color: white;
+        .tab {
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 12px;
-            border-radius: 4px 4px 0 0;
+            color: white;
+            border-bottom: 2px solid transparent;
         }
-        .tab-button.active {
-            background: #1c2a30;
+        .tab.active {
+            border-bottom: 2px solid #4CAF50;
         }
 
+        /* Tab Content Sections */
         .tab-content {
             display: none;
-            background: #1c2a30;
-            padding: 8px;
-            border-radius: 0 0 8px 8px;
-            font-size: 14px;
+            padding: 20px;
+            background: #2c3e50;
+            border-radius: 5px;
+            margin-top: 10px;
         }
         .tab-content.active {
             display: block;
         }
 
-        /* Input and Buttons */
-        .input-group {
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            margin: 5px 0;
+        /* Form Elements */
+        input, select, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
         }
-        .input-box {
-            width: 60%;
-            max-width: 220px;
-            padding: 5px;
-            font-size: 12px;
-        }
-
-        .copy-btn, .order-btn {
-            padding: 6px;
-            font-size: 12px;
-            background: #3e4e58;
-            color: white;
-            border: none;
+        button {
             cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .highlight-box {
-            background: #3e4e58;
-            padding: 5px;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
             border-radius: 5px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <h2>Oasis Gaming Admin Commands</h2>
-    </div>
 
+    <h1>Oasis Gaming Admin Commands</h1>
+
+    <!-- Navigation Tabs -->
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'creatureSpawn')">Creature Spawn</button>
-        <button class="tab-button" onclick="openTab(event, 'itemSpawns')">Item Spawns</button>
-        <button class="tab-button" onclick="openTab(event, 'adminCommands')">Admin Commands</button>
-        <button class="tab-button" onclick="openTab(event, 'showOrder')">Show Order</button>
+        <div class="tab active" onclick="switchTab('creature-spawn')">Creature Spawn</div>
+        <div class="tab" onclick="switchTab('na1')">NA1</div>
+        <div class="tab" onclick="switchTab('na2')">NA2</div>
+        <div class="tab" onclick="switchTab('na3')">NA3</div>
+        <div class="tab" onclick="switchTab('na4')">NA4</div>
     </div>
 
-    <div id="creatureSpawn" class="tab-content active">
-        <input type="text" class="input-box" id="searchCreature" placeholder="Search creatures..." list="creatureList">
-        <datalist id="creatureList"></datalist>
+    <!-- Tab Content: Creature Spawn UI -->
+    <div id="creature-spawn" class="tab-content active">
+        <!-- Search Input -->
+        <input type="text" id="searchCreature" placeholder="Type to search for creatures..." oninput="searchCreature()">
+        
+        <!-- Creature List Dropdown -->
+        <select id="creatureList" size="5" onchange="selectCreature()"></select>
 
-        <div class="input-group">
-            <input type="text" class="input-box" id="dinoCode" placeholder="Creature Code" readonly>
-            <button class="copy-btn" onclick="copyText('dinoCode')">Copy</button>
-        </div>
+        <br>
+
+        <!-- Creature Options -->
+        <label>Tamed: <input type="checkbox" id="tamedCheckbox" onchange="generateCreatureCode()"></label>
+        <br>
+        <label>Level: <input type="number" id="levelInput" value="300" min="1" onchange="generateCreatureCode()"></label>
+
+        <br>
+
+        <!-- Creature Code Display -->
+        <label>Creature Code:</label>
+        <input type="text" id="creatureCode" readonly>
+        <button onclick="copyToClipboard('creatureCode')">Copy Creature Code</button>
+
+        <br>
+
+        <!-- Saddle Selection -->
+        <label>Saddle:</label>
+        <select id="saddleSelect" onchange="generateSaddleCode()"></select>
+        <label>Quantity: <input type="number" id="quantityInput" value="1" min="1" onchange="generateSaddleCode()"></label>
+        <label>Quality: <input type="number" id="qualityInput" value="0" min="0" max="100" onchange="generateSaddleCode()"></label>
+
+        <br>
+
+        <!-- Saddle Code Display -->
+        <label>Saddle Code:</label>
+        <input type="text" id="saddleCode" readonly>
+        <button onclick="copyToClipboard('saddleCode')">Copy Saddle Code</button>
+
+        <br>
+
+        <!-- Final Code Display -->
+        <label>Creature Code With Saddle:</label>
+        <input type="text" id="finalCode" readonly>
+        <button onclick="copyToClipboard('finalCode')">Copy Code</button>
     </div>
+
+    <!-- Placeholder Tabs -->
+    <div id="na1" class="tab-content">NA1</div>
+    <div id="na2" class="tab-content">NA2</div>
+    <div id="na3" class="tab-content">NA3</div>
+    <div id="na4" class="tab-content">NA4</div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCreatureData();
-        });
+        let creatureData = [];
 
+        // Function to load Creature.json externally
         async function loadCreatureData() {
             try {
-                const response = await fetch('Creature.json');
-                const data = await response.json();
-                populateCreatureList(data.creatures);
+                const response = await fetch('Creature.json'); // Fetch external JSON file
+                creatureData = await response.json(); // Parse JSON data
+                console.log("Loaded creature data:", creatureData);
             } catch (error) {
-                console.error("Error loading data:", error);
+                console.error("Error loading Creature.json:", error);
             }
         }
 
-        function populateCreatureList(creatures) {
-            const datalist = document.getElementById('creatureList');
-            datalist.innerHTML = creatures.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+        // Function to switch between tabs
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
         }
 
-        function copyText(id) {
-            const input = document.getElementById(id);
-            input.select();
+        // Function to search and display creatures in the dropdown
+        function searchCreature() {
+            let search = document.getElementById("searchCreature").value.toLowerCase();
+            let list = document.getElementById("creatureList");
+            list.innerHTML = ""; // Clear list before displaying results
+            
+            creatureData.forEach(creature => {
+                if (creature.name.toLowerCase().includes(search)) {
+                    let option = document.createElement("option");
+                    option.text = creature.name;
+                    list.add(option);
+                }
+            });
+        }
+
+        // Function to handle creature selection
+        function selectCreature() {
+            let selected = document.getElementById("creatureList").value;
+            let creature = creatureData.find(c => c.name === selected);
+            let saddleDropdown = document.getElementById("saddleSelect");
+            saddleDropdown.innerHTML = "<option value='None'>None</option>";
+
+            if (creature) {
+                ["saddle", "platformSaddle", "tekSaddle"].forEach(type => {
+                    if (creature[type] !== "NA") {
+                        let option = document.createElement("option");
+                        option.text = creature[type];
+                        saddleDropdown.add(option);
+                    }
+                });
+            }
+            generateCreatureCode();
+        }
+
+        // Function to generate the creature spawn command
+        function generateCreatureCode() {
+            let selected = document.getElementById("creatureList").value;
+            let creature = creatureData.find(c => c.name === selected);
+            let isTamed = document.getElementById("tamedCheckbox").checked;
+            let level = document.getElementById("levelInput").value;
+
+            if (creature) {
+                let code = isTamed ? creature.tameSummon + " " + level : creature.wildSummon + " " + level;
+                document.getElementById("creatureCode").value = code;
+                generateSaddleCode();
+            }
+        }
+
+        // Function to copy text to clipboard
+        function copyToClipboard(id) {
+            let copyText = document.getElementById(id);
+            copyText.select();
             document.execCommand("copy");
-            alert("Copied to clipboard!");
         }
 
-        function openTab(evt, tabName) {
-            document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-            document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
+        // Load creature data when the page loads
+        window.onload = loadCreatureData;
+
     </script>
+
 </body>
 </html>
