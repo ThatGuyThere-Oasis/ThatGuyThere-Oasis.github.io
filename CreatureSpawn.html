@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creature Spawn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f2a30;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #2b3b42;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .input-box, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background: #3a4b52;
+            color: white;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #4caf50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .checkbox label {
+            margin-left: 5px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #3a4b52;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .dropdown-content div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-content div:hover {
+            background: #4a5c63;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dropdown">
+            <input type="text" class="input-box" id="creatureSearch" placeholder="Type to search for creatures..." onkeyup="searchCreature()">
+            <div class="dropdown-content" id="creatureDropdown"></div>
+        </div>
+        
+        <div class="flex-row">
+            <input type="text" class="input-box" placeholder="Creature Code">
+            <button class="button">Copy Creature Code</button>
+        </div>
+        <div class="flex-row">
+            <input type="text" class="input-box" placeholder="Saddle Code">
+            <button class="button">Copy Saddle Code</button>
+        </div>
+        <div class="flex-row">
+            <input type="text" class="input-box" placeholder="Creature Code With Saddle">
+            <button class="button">Copy Creature Code With Saddle</button>
+        </div>
+        
+        <div class="checkbox">
+            <input type="checkbox" id="tamed">
+            <label for="tamed">Tamed:</label>
+        </div>
+        
+        <div class="flex-row">
+            <label>Level:</label>
+            <input type="number" class="input-box" style="max-width: 100px;">
+        </div>
+        
+        <label>Spawn Distance:</label>
+        <div class="flex-row">
+            <input type="number" class="input-box" placeholder="X" style="max-width: 100px;">
+            <input type="number" class="input-box" placeholder="Y" style="max-width: 100px;">
+            <input type="number" class="input-box" placeholder="Z" style="max-width: 100px;">
+        </div>
+        
+        <label>Saddle:</label>
+        <div class="flex-row">
+            <select class="input-box">
+                <option>None</option>
+            </select>
+            <input type="number" class="input-box" placeholder="Quantity" style="max-width: 100px;">
+            <input type="number" class="input-box" placeholder="Quality (0-100)" style="max-width: 100px;">
+        </div>
+        
+        <button class="button">Add To Order</button>
+    </div>
+    
+    <script>
+        let creatures = [];
+        fetch('Creature.json')
+            .then(response => response.json())
+            .then(data => creatures = data);
+        
+        function searchCreature() {
+            let input = document.getElementById("creatureSearch").value.toLowerCase();
+            let dropdown = document.getElementById("creatureDropdown");
+            dropdown.innerHTML = "";
+            
+            if (input.length === 0) {
+                dropdown.style.display = "none";
+                return;
+            }
+            
+            let filtered = creatures.filter(creature => creature.name.toLowerCase().includes(input));
+            
+            filtered.forEach(creature => {
+                let div = document.createElement("div");
+                div.innerText = creature.name;
+                div.onclick = function() {
+                    document.getElementById("creatureSearch").value = creature.name;
+                    dropdown.style.display = "none";
+                };
+                dropdown.appendChild(div);
+            });
+            
+            dropdown.style.display = filtered.length ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
