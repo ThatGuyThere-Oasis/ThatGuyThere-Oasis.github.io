@@ -31,6 +31,29 @@
             background: #3a4b52;
             color: white;
         }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #3a4b52;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+        .dropdown-content div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-content div:hover {
+            background: #556870;
+        }
         .button {
             width: 100%;
             padding: 10px;
@@ -59,35 +82,13 @@
         .checkbox label {
             margin-left: 5px;
         }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: #3a4b52;
-            width: 100%;
-            max-height: 150px;
-            overflow-y: auto;
-            border-radius: 5px;
-            z-index: 1000;
-        }
-        .dropdown-content div {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .dropdown-content div:hover {
-            background: #4a5c63;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="dropdown">
-            <input type="text" class="input-box" id="creatureSearch" placeholder="Type to search for creatures..." onkeyup="searchCreature()">
-            <div class="dropdown-content" id="creatureDropdown"></div>
+            <input type="text" id="searchBox" class="input-box" placeholder="Type to search for creatures..." onkeyup="filterCreatures()">
+            <div id="dropdownList" class="dropdown-content"></div>
         </div>
         
         <div class="flex-row">
@@ -134,33 +135,40 @@
     
     <script>
         let creatures = [];
+        
         fetch('Creature.json')
             .then(response => response.json())
-            .then(data => creatures = data);
+            .then(data => creatures = data.creatures.map(creature => creature.name));
         
-        function searchCreature() {
-            let input = document.getElementById("creatureSearch").value.toLowerCase();
-            let dropdown = document.getElementById("creatureDropdown");
-            dropdown.innerHTML = "";
+        function filterCreatures() {
+            const input = document.getElementById('searchBox');
+            const filter = input.value.toLowerCase();
+            const dropdown = document.getElementById('dropdownList');
+            dropdown.innerHTML = '';
             
-            if (input.length === 0) {
-                dropdown.style.display = "none";
+            if (!filter) {
+                dropdown.style.display = 'none';
                 return;
             }
             
-            let filtered = creatures.filter(creature => creature.name.toLowerCase().includes(input));
+            const filtered = creatures.filter(name => name.toLowerCase().includes(filter));
             
-            filtered.forEach(creature => {
-                let div = document.createElement("div");
-                div.innerText = creature.name;
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                return;
+            }
+            
+            filtered.forEach(name => {
+                const div = document.createElement('div');
+                div.textContent = name;
                 div.onclick = function() {
-                    document.getElementById("creatureSearch").value = creature.name;
-                    dropdown.style.display = "none";
+                    input.value = name;
+                    dropdown.style.display = 'none';
                 };
                 dropdown.appendChild(div);
             });
             
-            dropdown.style.display = filtered.length ? "block" : "none";
+            dropdown.style.display = 'block';
         }
     </script>
 </body>
