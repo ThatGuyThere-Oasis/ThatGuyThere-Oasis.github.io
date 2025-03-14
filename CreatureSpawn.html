@@ -274,7 +274,8 @@
     async function loadCreatures() {
         try {
             const response = await fetch("Creature.json");
-            creatures = await response.json();
+            const data = await response.json();
+            creatures = data.creatures; // Access the creatures array properly
         } catch (error) {
             console.error("Error loading Creature.json:", error);
         }
@@ -303,20 +304,25 @@
         filteredCreatures.forEach(creature => {
             const div = document.createElement("div");
             div.textContent = creature.name;
-            div.onclick = () => selectCreature(creature.name);
+            div.onclick = () => selectCreature(creature);
             resultsContainer.appendChild(div);
         });
     }
 
     // Function to set the selected creature in input box
-    function selectCreature(name) {
-        document.getElementById("searchBox").value = name;
+    function selectCreature(creature) {
+        document.getElementById("searchBox").value = creature.name;
         document.getElementById("searchResults").style.display = "none";
+
+        // Populate relevant fields with creature data
+        document.getElementById("creatureCode").value = creature.tameSummon;
+        document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
     }
 
     // Load creatures when the page loads
     window.onload = loadCreatures;
 </script>
+
 
 </body>
 </html>
