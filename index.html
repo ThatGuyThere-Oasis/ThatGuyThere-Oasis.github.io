@@ -3,181 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creature Spawn</title>
+    <title>Oasis Gaming Admin Commands</title>
     <style>
-        :root {
-            --font-size: 16px;
-            --input-size: 14px;
-            --button-size: 14px;
-            --label-size: 14px;
-            --container-width: 90%;
-            --max-container-width: 600px;
-            --input-padding: 8px;
-            --button-padding: 6px;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            font-size: var(--font-size);
             background-color: #1f2a30;
             color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
-
-        .container {
-            width: var(--container-width);
-            max-width: var(--max-container-width);
-            margin: auto;
-            padding: 15px;
+        .tabs-box {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
             background: #2b3b42;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
-
-        .input-group {
+        .tabs-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            padding: 3px;
         }
-
-        .input-group label {
-            align-self: flex-start;
-            font-size: var(--label-size);
-            margin-bottom: 3px;
-        }
-
-        .input-box, select {
-            width: calc(100% - 20px);
-            padding: var(--input-padding);
-            border: none;
-            border-radius: 5px;
+        .tab {
+            padding: 5px 5px;
             background: #3a4b52;
-            color: white;
-            font-size: var(--input-size);
-        }
-
-        .button {
-            width: 50%;
-            padding: var(--button-padding);
-            background: #4caf50;
             border: none;
             border-radius: 5px;
             color: white;
             cursor: pointer;
-            font-size: var(--button-size);
-            margin-top: 3px;
+            font-size: 16px;
+            transition: background 0.3s ease;
         }
-
-        .button:hover {
-            background: #45a049;
+        .tab.active, .tab:hover {
+            background: #4caf50;
         }
-
-        .flex-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+        .content-container {
+            margin-top: 20px;
+        }
+        iframe {
             width: 100%;
-        }
-
-        .checkbox-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .border-box {
-            padding: 10px;
-            border: 2px solid white;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .left-box {
-            justify-content: flex-start;
-        }
-
-        .center-box {
-            justify-content: center;
+            height: 600px;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="input-group">
-            <label for="searchBox">Search for Creatures</label>
-            <input type="text" id="searchBox" class="input-box" placeholder="Type to search...">
-        </div>
-        
-        <div class="input-group">
-            <label for="creatureCode">Creature Code</label>
-            <div class="flex-row">
-                <input type="text" id="creatureCode" class="input-box">
-                <button class="button">Copy</button>
-            </div>
-        </div>
 
-        <div class="input-group">
-            <label for="saddleCode">Saddle Code</label>
-            <div class="flex-row">
-                <input type="text" id="saddleCode" class="input-box">
-                <button class="button">Copy</button>
-            </div>
+    <h1>Oasis Gaming Admin Commands</h1>
+
+    <!-- Fancy Box for Tabs -->
+    <div class="tabs-box">
+        <div class="tabs-container">
+            <button class="tab" onclick="loadPage('CreatureSpawn.html')">Creature Spawn</button>
+            <button class="tab" onclick="loadPage('ItemSpawns.html')">Item Spawns</button>
+            <button class="tab" onclick="loadPage('AdminCommands.html')">Admin Commands</button>
+            <button class="tab" onclick="loadPage('ShowOrder.html')">Show Order</button>
         </div>
-        
-        <div class="input-group">
-            <label for="creatureWithSaddle">Creature Code With Saddle</label>
-            <div class="flex-row">
-                <input type="text" id="creatureWithSaddle" class="input-box">
-                <button class="button">Copy</button>
-            </div>
+        <div class="tabs-container">
+            <button class="tab" onclick="loadPage('PlayerManagement.html')">Player Management</button>
+            <button class="tab" onclick="loadPage('ServerSettings.html')">Server Settings</button>
+            <button class="tab" onclick="loadPage('Logs.html')">Logs</button>
+            <button class="tab" onclick="loadPage('ModSettings.html')">Mod Settings</button>
         </div>
-        
-        <div class="checkbox-group">
-            <div class="border-box left-box">
-                <label for="cryopod">Add Cryopod:</label>
-                <input type="checkbox" id="cryopod">
-            </div>
-		<div class="border-box center-box">
-                <label for="MaxLevel">Max Level:</label>
-                <input type="checkbox" id="MaxLevel">
-            </div>
-            <div class="border-box right-box">
-                <label for="tamed">Tamed:</label>
-                <input type="checkbox" id="tamed">
-                <label for="level">Level:</label>
-                <input type="number" id="level" class="input-box" placeholder="300" style="max-width: 50px;">
-            </div>
-        </div>
-        
-        <div class="input-group">
-            <label>Spawn Distance</label>
-            <div class="flex-row">
-                <input type="number" class="input-box" placeholder="500" style="max-width: 50px;">
-                <input type="number" class="input-box" placeholder="0" style="max-width: 50px;">
-                <input type="number" class="input-box" placeholder="0" style="max-width: 50px;">
-            </div>
-        </div>
-        
-        <div class="input-group">
-            <label>Saddle</label>
-            <div class="flex-row">
-                <select class="input-box">
-                    <option>None</option>
-                </select>
-                <input type="number" class="input-box" placeholder="Quantity" style="max-width: 50px;">
-                <input type="number" class="input-box" placeholder="Quality (0-100)" style="max-width: 50px;">
-            </div>
-        </div>
-        
-        <button class="button">Add To Order</button>
     </div>
+
+    <!-- Content Display -->
+    <div class="content-container">
+        <iframe id="contentFrame" src="CreatureSpawn.html"></iframe>
+    </div>
+
+    <script>
+        function loadPage(page) {
+            document.getElementById("contentFrame").src = page;
+            let tabs = document.querySelectorAll(".tab");
+            tabs.forEach(tab => tab.classList.remove("active"));
+            event.target.classList.add("active");
+        }
+    </script>
+
 </body>
 </html>
