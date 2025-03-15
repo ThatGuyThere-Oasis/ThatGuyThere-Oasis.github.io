@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creature Spawn</title>
     <style>
-        /* Existing styles from your original code */
         body {
             font-family: Arial, sans-serif;
             background-color: #1f2a30;
@@ -92,7 +91,7 @@
         <!-- Spawn Settings -->
         <div class="input-group">
             <label for="tamed">Tamed:</label>
-            <input type="checkbox" id="tamed">
+            <input type="checkbox" id="tamed" checked>  <!-- ✅ Checkbox starts checked -->
         </div>
 
         <div class="input-group">
@@ -169,8 +168,10 @@
             document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
         }
 
-        // Listen for changes in checkbox and input fields
+        // ✅ Set Tamed checkbox as checked by default and add event listeners
         document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("tamed").checked = true;
+
             document.getElementById("tamed").addEventListener("change", () => {
                 const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
                 if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
