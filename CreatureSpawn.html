@@ -315,10 +315,30 @@
             const z = document.getElementById("zCoord").value || 0;
 
             let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
-            spawnCommand += ` ${x} ${y} ${z}`;
+			
+		// Apply coordinates only if it's wild (not tamed)
+		if (!tamedChecked) {
+			spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
+		}
+	
+		document.getElementById("creatureCode").value = spawnCommand;
 
-            document.getElementById("creatureCode").value = spawnCommand;
-        }
+		// Disable & Gray out X, Y, Z when Tamed is checked
+		[xInput, yInput, zInput].forEach(input => {
+			input.disabled = tamedChecked;
+			input.style.backgroundColor = tamedChecked ? "#555" : "white";
+			input.style.color = tamedChecked ? "#aaa" : "black";
+		});
+		}
+		
+		// ✅ Set up event listeners when DOM loads
+		document.addEventListener("DOMContentLoaded", () => {
+			document.getElementById("tamed").checked = true; // Default checked
+			document.getElementById("tamed").addEventListener("change", () => {
+				const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+				if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+			});
+		});
 
         // Function to select creature and update values
         function selectCreature(creature) {
