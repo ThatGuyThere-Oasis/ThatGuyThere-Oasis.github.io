@@ -308,10 +308,10 @@ function searchCreatures() {
 // Update creature code based on selections
 function updateCreatureCode(creature) {
     const tamedChecked = document.getElementById("tamed").checked;
-	const levelInput = document.getElementById("level"); // Get the level input
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
+	const levelInput = document.getElementById("level"); // Get the level input
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
 
