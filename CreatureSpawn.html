@@ -308,12 +308,17 @@ function searchCreatures() {
 // Update creature code based on selections
 function updateCreatureCode(creature) {
     const tamedChecked = document.getElementById("tamed").checked;
+	const levelInput = document.getElementById("level"); // Get the level input
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
 
+    // Include level if provided
+    const level = levelInput.value || 300;  // Default to 300 if no level is entered
+    spawnCommand += ` Level:${level}`;
+	
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
