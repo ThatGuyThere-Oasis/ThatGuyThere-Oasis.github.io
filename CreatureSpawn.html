@@ -314,15 +314,15 @@ function updateCreatureCode(creature) {
 	const levelInput = document.getElementById("level"); // Get the level input
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
-
-    // Include level if provided
-    const level = levelInput.value || 300;  // Default to 300 if no level is entered
-    spawnCommand += ` ${level}`;
 	
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
     }
+
+	    // Include level if provided
+    const level = levelInput.value || 300;  // Default to 300 if no level is entered
+    spawnCommand += ` ${level}`;
 
     document.getElementById("creatureCode").value = spawnCommand;
 
