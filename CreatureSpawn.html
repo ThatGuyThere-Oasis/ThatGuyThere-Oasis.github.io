@@ -397,12 +397,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
         });
     });
-
-	    // Add event listener for Max Level checkbox
-    maxLevelCheckbox.addEventListener("change", () => {
-        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
-    });
 	
 	// Add event listener for level input change
     levelInput.addEventListener("input", () => {
