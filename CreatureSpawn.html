@@ -342,13 +342,9 @@ function updateCreatureCode(creature) {
 
 // Listen for changes on the cryopod checkbox (checked/unchecked)
 document.getElementById("cryopod").addEventListener("change", () => {
-    console.log('Cryopod checkbox changed!');
     const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-    console.log('Stored Creature:', storedCreature);
-
     if (storedCreature) {
-        // Re-update the creature code immediately on checkbox change
-        updateCreatureCode(JSON.parse(storedCreature)); 
+        updateCreatureCode(JSON.parse(storedCreature)); // Re-update the creature code immediately on checkbox change
     }
 // Function to select creature and update values
 function selectCreature(creature) {
