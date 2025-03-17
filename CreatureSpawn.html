@@ -391,7 +391,12 @@ document.addEventListener("DOMContentLoaded", () => {
             updateCreatureCode(JSON.parse(storedCreature));
         }
     }
-
+	
+levelInput.addEventListener("input", () => {
+    if (parseInt(levelInput.value) < 1 || isNaN(levelInput.value)) {
+        levelInput.value = 1; // Prevent negative values or empty input
+    }
+});
     // Run function on load to apply default state
     toggleCoordinates();
 
