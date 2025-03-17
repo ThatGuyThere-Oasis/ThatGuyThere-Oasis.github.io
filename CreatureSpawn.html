@@ -317,7 +317,7 @@ function updateCreatureCode(creature) {
 
     // Include level if provided
     const level = levelInput.value || 300;  // Default to 300 if no level is entered
-    spawnCommand += ` Level:${level}`;
+    spawnCommand += ` :${level}`;
 	
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
