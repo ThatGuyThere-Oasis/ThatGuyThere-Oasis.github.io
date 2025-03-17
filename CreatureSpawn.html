@@ -343,13 +343,35 @@ function selectCreature(creature) {
 
 // ✅ Set up event listeners when DOM loads
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("tamed").checked = true;
+    document.getElementById("tamed").checked = true; // Default checked
 
-    document.getElementById("tamed").addEventListener("change", () => {
+    const xInput = document.getElementById("xCoord");
+    const yInput = document.getElementById("yCoord");
+    const zInput = document.getElementById("zCoord");
+    const tamedCheckbox = document.getElementById("tamed");
+
+    // Function to enable/disable and gray out X, Y, Z
+    function toggleCoordinates() {
+        const isTamed = tamedCheckbox.checked;
+        
+        [xInput, yInput, zInput].forEach(input => {
+            input.disabled = isTamed;
+            input.style.backgroundColor = isTamed ? "#555" : "white";
+            input.style.color = isTamed ? "#aaa" : "black";
+        });
+
+        // Update the creature code when toggling "Tamed"
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
-    });
+    }
 
+    // Run function on load to apply default state
+    toggleCoordinates();
+
+    // Add event listener for checkbox change
+    tamedCheckbox.addEventListener("change", toggleCoordinates);
+
+    // Add event listeners for coordinate inputs
     ["xCoord", "yCoord", "zCoord"].forEach(id => {
         document.getElementById(id).addEventListener("input", () => {
             const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
