@@ -328,7 +328,7 @@ function updateCreatureCode(creature) {
     // Add cryopod if checked
     if (cryopodChecked) {
         spawnCommand += "|cheat gfi cryopod_mod 1 0 0";
-	    document.getElementById("creatureCode").value = spawnCommand;
+	refreshCreatureCode();
     }
 
     document.getElementById("creatureCode").value = spawnCommand;
