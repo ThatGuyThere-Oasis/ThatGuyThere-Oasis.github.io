@@ -322,6 +322,7 @@ function updateCreatureCode(creature) {
 // Include level if provided
     const level = levelInput.value || 300;  // Default to 300 if no level is entered
     spawnCommand += ` ${level}`;
+	
     document.getElementById("creatureCode").value = spawnCommand;
 
     // Disable & Gray out X, Y, Z when Tamed is checked
@@ -330,6 +331,19 @@ function updateCreatureCode(creature) {
         input.style.backgroundColor = tamedChecked ? "#555" : "white";
         input.style.color = tamedChecked ? "#aaa" : "black";
     });
+
+ // If "Max Level" is checked, set the max level and disable the level input
+    const maxLevelCheckbox = document.getElementById("MaxLevel");
+    if (maxLevelCheckbox.checked) {
+        levelInput.value = creature.maxLevel || 300; // Default to 300 if maxLevel is not defined
+        levelInput.disabled = true; // Disable the level input
+        levelInput.style.backgroundColor = "#555"; // Change the background to indicate it's disabled
+        levelInput.style.color = "#aaa"; // Change text color for disabled state
+    } else {
+        levelInput.disabled = false; // Enable level input if maxLevel is not checked
+        levelInput.style.backgroundColor = "white"; // Reset background color
+        levelInput.style.color = "black"; // Reset text color
+    }
 }
 
 // Function to select creature and update values
