@@ -321,12 +321,16 @@ function updateCreatureCode(creature) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
     }
 	
- // Get the max level from the creature data if Max Level is checked
-    const maxLevel = creature.maxLevel;
-    const level = maxLevelChecked ? maxLevel : (levelInput.value || 300);  // Default to 300 if no level is entered or if Max Level is not checked
-	
+    // Override level input if Max Level is checked
+    if (maxLevelChecked) {
+        levelInput.value = creature.maxLevel; // Set input value to maxLevel
+    }
+
+    const level = maxLevelChecked ? creature.maxLevel : (levelInput.value || 300);
     spawnCommand += ` ${level}`;
+
     document.getElementById("creatureCode").value = spawnCommand;
+}
 	
 // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
@@ -353,12 +357,11 @@ function updateCreatureCode(creature) {
 function selectCreature(creature) {
     document.getElementById("searchBox").value = creature.name;
     document.getElementById("searchResults").style.display = "none";
-
     document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
 
-    updateCreatureCode(creature);
-
     document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
+
+    updateCreatureCode(creature);
 }
 
 // ✅ Set up event listeners when DOM loads
@@ -386,10 +389,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
     }
 
+	
     // Run function on load to apply default state
     toggleCoordinates();
 
-	
+    // ✅ Add this line right below toggleCoordinates():
+    document.getElementById("MaxLevel").addEventListener("change", () => {
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (storedCreature) {
+            updateCreatureCode(JSON.parse(storedCreature));
+        }
+});
+	    
     // Add event listener for checkbox change
     tamedCheckbox.addEventListener("change", toggleCoordinates);
 
