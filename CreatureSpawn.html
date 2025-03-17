@@ -354,6 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
     const tamedCheckbox = document.getElementById("tamed");
+    const maxLevelCheckbox = document.getElementById("MaxLevel");
+    const levelInput = document.getElementById("level");
 
     // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
@@ -370,13 +372,33 @@ document.addEventListener("DOMContentLoaded", () => {
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
     }
 
+    // Function to handle max level selection
+    function toggleMaxLevel() {
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (maxLevelCheckbox.checked && storedCreature) {
+            const creature = JSON.parse(storedCreature);
+            levelInput.value = creature.maxLevel; // Set level to max
+            levelInput.disabled = true; // Disable input
+            levelInput.style.backgroundColor = "#555"; // Gray out
+            levelInput.style.color = "#aaa";
+        } else {
+            levelInput.disabled = false; // Enable input
+            levelInput.style.backgroundColor = "white"; // Restore color
+            levelInput.style.color = "black";
+        }
+
+        if (storedCreature) {
+            updateCreatureCode(JSON.parse(storedCreature));
+        }
+    }
+
     // Run function on load to apply default state
     toggleCoordinates();
 
-    // Add event listener for checkbox change
+    // Add event listeners
     tamedCheckbox.addEventListener("change", toggleCoordinates);
+    maxLevelCheckbox.addEventListener("change", toggleMaxLevel); // Max level toggle
 
-    // Add event listeners for coordinate inputs
     ["xCoord", "yCoord", "zCoord"].forEach(id => {
         document.getElementById(id).addEventListener("input", () => {
             const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
@@ -387,7 +409,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCreatures();
 });
 
-    
 </script>
 
 
