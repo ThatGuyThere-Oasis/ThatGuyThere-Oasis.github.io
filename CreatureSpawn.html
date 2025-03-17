@@ -344,15 +344,6 @@ function selectCreature(creature) {
     document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
 }
 
-// ✅ Set up event listeners when DOM loads
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("tamed").checked = true; // Default checked
-
-    const xInput = document.getElementById("xCoord");
-    const yInput = document.getElementById("yCoord");
-    const zInput = document.getElementById("zCoord");
-    const tamedCheckbox = document.getElementById("tamed");
-	const levelInput = document.getElementById("level");
 
     // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
