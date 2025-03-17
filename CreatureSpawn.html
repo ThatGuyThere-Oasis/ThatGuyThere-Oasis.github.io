@@ -367,8 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const zInput = document.getElementById("zCoord");
     const tamedCheckbox = document.getElementById("tamed");
     const levelInput = document.getElementById("level");
-	
-    const maxLevelCheckbox = document.getElementById("MaxLevel");
 
     // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
@@ -400,7 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-		    // Add event listener for Max Level checkbox
+// Add event listener for Max Level checkbox
     maxLevelCheckbox.addEventListener("change", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
