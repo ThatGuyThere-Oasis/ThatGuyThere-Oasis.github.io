@@ -315,10 +315,6 @@ function updateCreatureCode(creature) {
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
 
-    // Include level if provided
-    const level = levelInput.value || 300;  // Default to 300 if no level is entered
-    spawnCommand += ` Level:${level}`;
-	
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
@@ -373,6 +369,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run function on load to apply default state
     toggleCoordinates();
 
+// Include level if provided
+    const level = levelInput.value || 300;  // Default to 300 if no level is entered
+    spawnCommand += ` ${level}`;
+	
     // Add event listener for checkbox change
     tamedCheckbox.addEventListener("change", toggleCoordinates);
 
