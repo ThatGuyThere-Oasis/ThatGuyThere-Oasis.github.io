@@ -401,16 +401,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 });
 	    
-    // Add event listener for checkbox change
-    tamedCheckbox.addEventListener("change", toggleCoordinates);
-
-    // Add event listeners for coordinate inputs
-    ["xCoord", "yCoord", "zCoord"].forEach(id => {
-        document.getElementById(id).addEventListener("input", () => {
-            const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-            if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
-        });
-    });
+document.getElementById("MaxLevel").addEventListener("change", () => {
+    const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+    if (storedCreature) {
+        updateCreatureCode(JSON.parse(storedCreature));
+    }
+});
 
 	// Add event listener for level input change
     levelInput.addEventListener("input", () => {
