@@ -340,6 +340,12 @@ function updateCreatureCode(creature) {
     });
 }
 
+// Listen for changes on the cryopod checkbox
+document.getElementById("cryopod").addEventListener("change", () => {
+    const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+    if (storedCreature) {
+        updateCreatureCode(JSON.parse(storedCreature)); // Re-update the creature code
+    }
 // Function to select creature and update values
 function selectCreature(creature) {
     document.getElementById("searchBox").value = creature.name;
