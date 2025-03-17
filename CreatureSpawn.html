@@ -333,7 +333,6 @@ function updateCreatureCode(creature) {
 }
 	
 // Function to enable/disable and gray out X, Y, Z
-    function toggleCoordinates() {
     const isTamed = document.getElementById("tamed").checked;
     const maxLevelChecked = document.getElementById("MaxLevel").checked;
     
@@ -391,7 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run function on load to apply default state
     toggleCoordinates();
 
-    // ✅ **Keep Only ONE Event Listener for Max Level Checkbox**
     document.getElementById("MaxLevel").addEventListener("change", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) {
@@ -399,8 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ✅ **Fix: Ensure toggleCoordinates() Closes Correctly**
-    } // <-- **This closing brace was missing before selectCreature()**
+    } 
 
     // Function to select creature and update values
     function selectCreature(creature) {
@@ -412,11 +409,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCreatureCode(creature);
     }
-
     // ✅ Event Listener for Level Input Change
     levelInput.addEventListener("input", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+        if (storedCreature) {
+		updateCreatureCode(JSON.parse(storedCreature));
+	}
     });
 
     loadCreatures();
