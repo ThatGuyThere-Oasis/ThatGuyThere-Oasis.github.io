@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Add event listener for level input change
     levelInput.addEventListener("input", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+        if (storedCreature) {
 	     updateCreatureCode(JSON.parse(storedCreature)); // Update creature code with selected creature
     	}
     });
