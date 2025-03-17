@@ -393,8 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 	
 levelInput.addEventListener("input", () => {
-    if (parseInt(levelInput.value) < 1 || isNaN(levelInput.value)) {
-        levelInput.value = 1; // Prevent negative values or empty input
+    if (levelInput.value === "" || isNaN(levelInput.value) || parseInt(levelInput.value) < 1) {
+        levelInput.value = 1; // Set to minimum allowed value
     }
 });
     // Run function on load to apply default state
