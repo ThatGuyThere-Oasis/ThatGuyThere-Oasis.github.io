@@ -200,12 +200,14 @@
         </div>
 
         <div class="input-group">
-            <label for="saddleCode">Saddle Code</label>
-            <div class="flex-row">
-                <input type="text" id="saddleCode" class="input-box">
-                <button class="button">Copy</button>
-            </div>
-        </div>
+    <label for="creatureCode">Creature Code</label>
+    <div class="flex-row" style="justify-content: flex-start;">
+        <input type="text" id="creatureCode" class="input-box">
+        <input type="number" id="level" class="input-box" placeholder="300" style="max-width: 80px; margin-left: 10px;">
+        <button class="button">Copy</button>
+    </div>
+</div>
+
         
         <div class="input-group">
             <label for="creatureWithSaddle">Creature Code With Saddle</label>
@@ -306,7 +308,6 @@ function searchCreatures() {
 }
 
 // Update creature code based on selections
-// Update creature code based on selections
 function updateCreatureCode(creature) {
     const tamedChecked = document.getElementById("tamed").checked;
     const levelInput = document.getElementById("level").value || 300; // Default level if empty
@@ -333,7 +334,7 @@ function updateCreatureCode(creature) {
         input.style.color = tamedChecked ? "#aaa" : "black";
     });
 }
-}
+
 
 // Function to select creature and update values
 function selectCreature(creature) {
