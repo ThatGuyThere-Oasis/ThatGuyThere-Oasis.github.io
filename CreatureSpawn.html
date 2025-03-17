@@ -308,11 +308,10 @@ function searchCreatures() {
 // Update creature code based on selections
 function updateCreatureCode(creature) {
     const tamedChecked = document.getElementById("tamed").checked;
-    const levelInput = document.getElementById("level"); // Get the level input
+	const levelInput = document.getElementById("level"); // Get the level input
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
-    const maxLevelChecked = document.getElementById("MaxLevel").checked; // Check if Max Level is enabled
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
 
@@ -320,49 +319,32 @@ function updateCreatureCode(creature) {
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
     }
-	
-    // Override level input if Max Level is checked
-    if (maxLevelChecked) {
-        levelInput.value = creature.maxLevel; // Set input value to maxLevel
-    }
-
-    const level = maxLevelChecked ? creature.maxLevel : (levelInput.value || 300);
+// Include level if provided
+    const level = levelInput.value || 300;  // Default to 300 if no level is entered
     spawnCommand += ` ${level}`;
-
     document.getElementById("creatureCode").value = spawnCommand;
-}
-	
-// Function to enable/disable and gray out X, Y, Z
-    const isTamed = document.getElementById("tamed").checked;
-    const maxLevelChecked = document.getElementById("MaxLevel").checked;
-    
-    [xInput, yInput, zInput].forEach(input => {
-        input.disabled = isTamed;
-        input.style.backgroundColor = isTamed ? "#555" : "white";
-        input.style.color = isTamed ? "#aaa" : "black";
-    });
 
-    // If Max Level is checked, ensure the level input is set to maxLevel from the creature
-    const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-    if (storedCreature) {
-        const creature = JSON.parse(storedCreature);
-        if (maxLevelChecked) {
-            document.getElementById("level").value = creature.maxLevel;
-        }
-        updateCreatureCode(creature);
-    }
+    // Disable & Gray out X, Y, Z when Tamed is checked
+    [xInput, yInput, zInput].forEach(input => {
+        input.disabled = tamedChecked;
+        input.style.backgroundColor = tamedChecked ? "#555" : "white";
+        input.style.color = tamedChecked ? "#aaa" : "black";
+    });
+}
 
 // Function to select creature and update values
 function selectCreature(creature) {
     document.getElementById("searchBox").value = creature.name;
     document.getElementById("searchResults").style.display = "none";
+
     document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
 
-    document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
-
     updateCreatureCode(creature);
+
+    document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
 }
 
+// ✅ Set up event listeners when DOM loads
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("tamed").checked = true; // Default checked
 
@@ -370,12 +352,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
     const tamedCheckbox = document.getElementById("tamed");
-    const levelInput = document.getElementById("level");
+	const levelInput = document.getElementById("level");
 
-    // ✅ Function to enable/disable and gray out X, Y, Z
+    // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
         const isTamed = tamedCheckbox.checked;
-
+        
         [xInput, yInput, zInput].forEach(input => {
             input.disabled = isTamed;
             input.style.backgroundColor = isTamed ? "#555" : "white";
@@ -387,19 +369,22 @@ document.addEventListener("DOMContentLoaded", () => {
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
     }
 
-    // ✅ Run function on load to apply default state
+    // Run function on load to apply default state
     toggleCoordinates();
 
-    // ✅ Attach event listeners
+	
+    // Add event listener for checkbox change
     tamedCheckbox.addEventListener("change", toggleCoordinates);
-    document.getElementById("MaxLevel").addEventListener("change", () => {
-        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) {
-            updateCreatureCode(JSON.parse(storedCreature));
-        }
+
+    // Add event listeners for coordinate inputs
+    ["xCoord", "yCoord", "zCoord"].forEach(id => {
+        document.getElementById(id).addEventListener("input", () => {
+            const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+            if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+        });
     });
 
-    // ✅ Event Listener for Level Input Change
+	// Add event listener for level input change
     levelInput.addEventListener("input", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
@@ -408,27 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCreatures();
 });
 
-// ✅ Function to select creature and update values
-function selectCreature(creature) {
-    document.getElementById("searchBox").value = creature.name;
-    document.getElementById("searchResults").style.display = "none";
-    document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
-
-    document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
-
-    updateCreatureCode(creature);
-}
-
-    // ✅ Event Listener for Level Input Change
-    levelInput.addEventListener("input", () => {
-        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) {
-		updateCreatureCode(JSON.parse(storedCreature));
-	}
-    });
-
-    loadCreatures();
-});
+    
 </script>
 
 
