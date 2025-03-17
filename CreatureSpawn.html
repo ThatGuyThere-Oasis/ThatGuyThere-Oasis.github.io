@@ -306,8 +306,10 @@ function searchCreatures() {
 }
 
 // Update creature code based on selections
+// Update creature code based on selections
 function updateCreatureCode(creature) {
     const tamedChecked = document.getElementById("tamed").checked;
+    const levelInput = document.getElementById("level").value || 300; // Default level if empty
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
@@ -319,6 +321,9 @@ function updateCreatureCode(creature) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
     }
 
+    // Append level at the end of the command
+    spawnCommand += ` ${levelInput}`;
+
     document.getElementById("creatureCode").value = spawnCommand;
 
     // Disable & Gray out X, Y, Z when Tamed is checked
@@ -327,6 +332,7 @@ function updateCreatureCode(creature) {
         input.style.backgroundColor = tamedChecked ? "#555" : "white";
         input.style.color = tamedChecked ? "#aaa" : "black";
     });
+}
 }
 
 // Function to select creature and update values
