@@ -325,12 +325,13 @@ function updateCreatureCode(creature) {
     const level = levelInput.value || 300;  // Default to 300 if no level is entered
     spawnCommand += ` ${level}`;
 
-    document.getElementById("creatureCode").value = spawnCommand;
-
-	    // Add cryopod if checked
+      // Add cryopod if checked
     if (cryopodChecked) {
-        spawnCommand += " |cheat gfi cryopod_mod 1 0 0";
+        spawnCommand += "|cheat gfi cryopod_mod 1 0 0";
+	    updateCreatureCode(creature);
     }
+
+document.getElementById("creatureCode").value = spawnCommand;
 
     // Disable & Gray out X, Y, Z when Tamed is checked
     [xInput, yInput, zInput].forEach(input => {
