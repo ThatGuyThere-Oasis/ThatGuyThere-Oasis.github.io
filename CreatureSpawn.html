@@ -409,6 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
 	     updateCreatureCode(JSON.parse(storedCreature)); // Update creature code with selected creature
+    	}
     });
 
     loadCreatures();
