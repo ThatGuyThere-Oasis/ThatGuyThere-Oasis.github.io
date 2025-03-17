@@ -84,7 +84,7 @@
             width: 100%;
 		}
 		
-			.centered-label  {
+		.centered-label  {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -200,15 +200,14 @@
         </div>
 
         <div class="input-group">
-    <label for="creatureCode">Creature Code</label>
-    <div class="flex-row" style="justify-content: flex-start;">
-        <input type="text" id="creatureCode" class="input-box">
-        <input type="number" id="level" class="input-box" placeholder="300" style="max-width: 80px; margin-left: 10px;">
-        <button class="button">Copy</button>
-    </div>
-</div>
+            <label for="creatureLevelCode">Creature Code with Level</label>
+            <div class="flex-row" style="justify-content: flex-start;">
+                <input type="text" id="creatureLevelCode" class="input-box">
+                <input type="number" id="level" class="input-box" placeholder="300" style="max-width: 80px; margin-left: 10px;">
+                <button class="button">Copy</button>
+            </div>
+        </div>
 
-        
         <div class="input-group">
             <label for="creatureWithSaddle">Creature Code With Saddle</label>
             <div class="flex-row">
@@ -244,7 +243,6 @@
 				<input type="number" id="yCoord" class="input-box" placeholder="0" style="max-width: 50px;">
 				<label>Z:</label>
 				<input type="number" id="zCoord" class="input-box" placeholder="0" style="max-width: 50px;">
-
             </div>
         </div>
         
@@ -252,17 +250,17 @@
             <div class="flex-row" style="justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; flex-direction: column;">
                     <label class="label2-left">Saddle</label>
-                    <select class="input-box" style="max-width: 200px; width: 200px; margin-left: 20px;">
+                    <select id="saddleCode" class="input-box" style="max-width: 200px; width: 200px; margin-left: 20px;">
                         <option>None</option>
                     </select>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <label class="label2-left"style="margin-left: 0px; margin-right: 20px;">Quantity</label>
-                    <input type="number" class="input-box" style="max-width: 120px; margin-left: -20px;">
+                    <input type="number" id="saddleQuantity" class="input-box" style="max-width: 120px; margin-left: -20px;">
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <label class="label2-left" style="margin-left: -20px; margin-right: 20px;">Quality (0-100)</label>
-                    <input type="number" class="input-box" style="max-width: 120px; margin-left: -20px; margin-right: 20px;">
+                    <input type="number" id="saddleQuality" class="input-box" style="max-width: 120px; margin-left: -20px; margin-right: 20px;">
                 </div>
             </div>
         </div>
@@ -286,112 +284,45 @@ async function loadCreatures() {
 function searchCreatures() {
     const input = document.getElementById("searchBox").value.toLowerCase();
     const resultsContainer = document.getElementById("searchResults");
-
     resultsContainer.innerHTML = "";
-    resultsContainer.style.display = "none";
 
-    if (!input) return;
-
-    const filteredCreatures = creatures.filter(creature => 
-        creature.name.toLowerCase().includes(input)
-    );
-
-    if (filteredCreatures.length === 0) return;
-
-    resultsContainer.style.display = "block";
-    filteredCreatures.forEach(creature => {
-        const div = document.createElement("div");
-        div.textContent = creature.name;
-        div.onclick = () => selectCreature(creature);
-        resultsContainer.appendChild(div);
+    creatures.forEach(creature => {
+        if (creature.name.toLowerCase().includes(input)) {
+            const div = document.createElement("div");
+            div.textContent = creature.name;
+            div.addEventListener("click", () => {
+                selectCreature(creature);
+            });
+            resultsContainer.appendChild(div);
+        }
     });
-}
 
-// Update creature code based on selections
-function updateCreatureCode(creature) {
-    const tamedChecked = document.getElementById("tamed").checked;
-    const levelInput = document.getElementById("level").value || 300; // Default level if empty
-    const xInput = document.getElementById("xCoord");
-    const yInput = document.getElementById("yCoord");
-    const zInput = document.getElementById("zCoord");
-
-    let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
-
-    // Apply coordinates only if it's wild (not tamed)
-    if (!tamedChecked) {
-        spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
+    if (input === "") {
+        resultsContainer.style.display = "none";
+    } else {
+        resultsContainer.style.display = "block";
     }
-
-    // Append level at the end of the command
-    spawnCommand += ` ${levelInput}`;
-
-    document.getElementById("creatureCode").value = spawnCommand;
-
-    // Disable & Gray out X, Y, Z when Tamed is checked
-    [xInput, yInput, zInput].forEach(input => {
-        input.disabled = tamedChecked;
-        input.style.backgroundColor = tamedChecked ? "#555" : "white";
-        input.style.color = tamedChecked ? "#aaa" : "black";
-    });
 }
 
-
-// Function to select creature and update values
+// Select a creature and display its spawn code
 function selectCreature(creature) {
-    document.getElementById("searchBox").value = creature.name;
-    document.getElementById("searchResults").style.display = "none";
-
-    document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
-
-    updateCreatureCode(creature);
-
-    document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
+    document.getElementById("creatureCode").value = creature.code;
+    document.getElementById("creatureLevelCode").value = `${creature.code} Level 300`;
+    document.getElementById("creatureWithSaddle").value = `${creature.code} with Saddle`;
 }
 
-// ✅ Set up event listeners when DOM loads
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("tamed").checked = true; // Default checked
+// Event listener for creating creature spawn command
+document.querySelector(".button").addEventListener("click", () => {
+    const creature = creatures.find(c => c.code === document.getElementById("creatureCode").value);
+    if (!creature) return;
 
-    const xInput = document.getElementById("xCoord");
-    const yInput = document.getElementById("yCoord");
-    const zInput = document.getElementById("zCoord");
-    const tamedCheckbox = document.getElementById("tamed");
-
-    // Function to enable/disable and gray out X, Y, Z
-    function toggleCoordinates() {
-        const isTamed = tamedCheckbox.checked;
-        
-        [xInput, yInput, zInput].forEach(input => {
-            input.disabled = isTamed;
-            input.style.backgroundColor = isTamed ? "#555" : "white";
-            input.style.color = isTamed ? "#aaa" : "black";
-        });
-
-        // Update the creature code when toggling "Tamed"
-        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-        if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
-    }
-
-    // Run function on load to apply default state
-    toggleCoordinates();
-
-    // Add event listener for checkbox change
-    tamedCheckbox.addEventListener("change", toggleCoordinates);
-
-    // Add event listeners for coordinate inputs
-    ["xCoord", "yCoord", "zCoord"].forEach(id => {
-        document.getElementById(id).addEventListener("input", () => {
-            const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-            if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
-        });
-    });
-
-    loadCreatures();
+    const spawnCommand = creature.wildSummon; 
+    console.log(spawnCommand);
+    alert(`Spawn Command: ${spawnCommand}`);
 });
 
-    
+// Initialize
+loadCreatures();
 </script>
-
-
 </body>
 </html>
