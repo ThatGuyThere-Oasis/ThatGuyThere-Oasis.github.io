@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
     const tamedCheckbox = document.getElementById("tamed");
-	const levelInput = document.getElementById("level");
+    const levelInput = document.getElementById("level");
 
     // Function to enable/disable and gray out X, Y, Z
     function toggleCoordinates() {
@@ -388,6 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     levelInput.addEventListener("input", () => {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+	     updateCreatureCode(JSON.parse(storedCreature)); // Update creature code with selected creature
     });
 
     loadCreatures();
