@@ -356,7 +356,9 @@ function selectCreature(creature) {
 // ✅ Set up event listeners when DOM loads
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("tamed").checked = true; // Default checked
-
+	document.getElementById("cryopod").checked = true; // Default checked
+	document.getElementById("MaxLevel").checked = true; // Default checked
+	
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
