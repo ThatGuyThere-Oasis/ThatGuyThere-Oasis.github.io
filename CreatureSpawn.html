@@ -315,7 +315,19 @@ function updateCreatureCode(creature) {
     const cryopodChecked = document.getElementById("cryopod").checked; // Get the cryopod checkbox
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
-    
+
+    const cryopodCheckbox = document.getElementById("addCryopod");
+
+    // Function to update the creature code when "Add Cryopod" is checked
+    function toggleCryopod() {
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (storedCreature) {
+            updateCreatureCode(JSON.parse(storedCreature)); // Update the creature code
+        }
+    }
+
+    // Listen for checkbox changes
+    cryopodCheckbox.addEventListener("change", toggleCryopod);
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
