@@ -381,6 +381,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
     }
 
+	// Update the creature code when toggling "Cryopod"
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (document.getElementById("cryopod").checked = true) updateCreatureCode(JSON.parse(storedCreature));
+    }
     // Function to handle max level selection
     function toggleMaxLevel() {
         const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
