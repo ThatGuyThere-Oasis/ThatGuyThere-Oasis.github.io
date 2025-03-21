@@ -311,18 +311,24 @@ function updateCreatureCode(creature) {
     const xInput = document.getElementById("xCoord");
     const yInput = document.getElementById("yCoord");
     const zInput = document.getElementById("zCoord");
-	const levelInput = document.getElementById("level"); // Get the level input
+    const levelInput = document.getElementById("level"); // Get the level input
+    const cryopodChecked = document.getElementById("cryopod").checked; // Get the cryopod checkbox
 
     let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
-	
+    
     // Apply coordinates only if it's wild (not tamed)
     if (!tamedChecked) {
         spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
     }
 
-	    // Include level if provided
+    // Include level if provided
     const level = levelInput.value || 300;  // Default to 300 if no level is entered
     spawnCommand += ` ${level}`;
+
+    // Add cryopod if checked
+    if (cryopodChecked) {
+        spawnCommand += "|cheat gfi cryopod_mod 1 0 0";
+    }
 
     document.getElementById("creatureCode").value = spawnCommand;
 
@@ -333,6 +339,7 @@ function updateCreatureCode(creature) {
         input.style.color = tamedChecked ? "#aaa" : "black";
     });
 }
+
 
 // Function to select creature and update values
 function selectCreature(creature) {
