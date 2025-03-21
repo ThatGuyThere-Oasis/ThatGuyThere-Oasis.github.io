@@ -3,98 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creature Code Generator</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Creature Spawn</title>
     <style>
+        :root {
+            --font-size: 12px;
+            --input-size: 14px;
+            --button-size: 14px;
+            --label-size: 14px;
+            --container-width: 90%;
+            --max-container-width: 600px;
+            --input-padding: 8px;
+            --button-padding: 6px;
+        }
+
         body {
-            background-color: #1e2a30;
+            font-family: Arial, sans-serif;
+            font-size: var(--font-size);
+            background-color: #1f2a30;
             color: white;
-            padding: 20px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
+
         .container {
-            background-color: #2c3e44;
-            padding: 20px;
+            width: var(--container-width);
+            max-width: var(--max-container-width);
+            margin: auto;
+            padding: 15px;
+            background: #2b3b42;
             border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
-        input, select {
-            background-color: #ffffff;
-            color: black;
-            border-radius: 5px;
-        }
-        .btn-copy {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-        }
-        .btn-add {
-            background-color: #28a745;
-            color: white;
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            border: none;
+            margin-bottom: 6px;
         }
+
+        .input-group label {
+            align-self: flex-start;
+            font-size: var(--label-size);
+            margin-bottom: 3px;
+        }
+
+        .input-box, select {
+            width: calc(100% - 20px);
+            padding: var(--input-padding);
+            border: none;
+            border-radius: 5px;
+            background: white;
+            color: black;
+            font-size: var(--input-size);
+        }
+
+        .button {
+            width: 50%;
+            padding: var(--button-padding);
+            background: #4caf50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: var(--button-size);
+            margin-top: 3px;
+        }
+
+        .button:hover {
+            background: #45a049;
+        }
+
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+		}
+		
+			.centered-label  {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+			flex-direction: column;  /* Stacks label above input */
+            width: 100%;
+        }
+        .spawndistancebackground-box {
+            background: #3a4b52;
+            padding: 7px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 3px;
+        }
+		
+		.background-box {
+            background: #3a4b52;
+            padding: 0px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 3px;
+        }
+		
+		.saddle-box {
+            background: #3a4b52;
+            padding: 0px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 3px;
+			width: 100%; 
+			min-height: 60px;
+
+        }
+
+        .border-box {
+            padding: 10px;
+            background: transparent;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+		
+		.dropdown-results {
+		position: absolute;
+		background: white;
+		color: black;
+		width: calc(100% - 40px);
+		max-height: 150px;
+		overflow-y: auto;
+		border-radius: 5px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		z-index: 10;
+		display: none;
+		}
+
+		.dropdown-results div {
+		padding: 8px;
+		cursor: pointer;
+		border-bottom: 1px solid #ddd;
+		}
+
+		.dropdown-results div:hover {
+		background: #f0f0f0;
+	}
+
+
+        .left-box {
+            justify-content: flex-start;
+        }
+
+        .center-box {
+            justify-content: center;
+        }
+		.label-left {
+		text-align: left;  /* Aligns text to the left */
+		display: block;  /* Makes sure it stays on its own line */
+		width: 22%;  /* Ensures it extends full width */
+		margin-left: 0;  /* Pushes it fully to the left */
+        }
+		
+		.label2-left {
+		text-align: CENTER;  /* Aligns text to the left */
+		display: block;  /* Makes sure it stays on its own line */
+		width: 100%;  /* Ensures it extends full width */
+		margin-left: 0;  /* Pushes it fully to the left */
+}
+		
     </style>
 </head>
 <body>
     <div class="container">
-        <h5>Search for Creatures</h5>
-        <input type="text" class="form-control" placeholder="Type to search...">
+        <div class="input-group">
+            <label for="searchBox">Search for Creatures</label>
+            <input type="text" id="searchBox" class="input-box" placeholder="Type to search..." oninput="searchCreatures()">
+			<div id="searchResults" class="dropdown-results"></div>
+        </div>
         
-        <label class="mt-2">Creature Code</label>
-        <div class="d-flex">
-            <input type="text" class="form-control" id="creatureCode">
-            <button class="btn-copy ms-2" onclick="copyToClipboard('creatureCode')">Copy</button>
+        <div class="input-group">
+            <label for="creatureCode">Creature Code</label>
+            <div class="flex-row">
+                <input type="text" id="creatureCode" class="input-box">
+                <button class="button">Copy</button>
+            </div>
         </div>
 
-        <label class="mt-2">Saddle Code</label>
-        <div class="d-flex">
-            <input type="text" class="form-control" id="saddleCode">
-            <button class="btn-copy ms-2" onclick="copyToClipboard('saddleCode')">Copy</button>
+        <div class="input-group">
+            <label for="saddleCode">Saddle Code</label>
+            <div class="flex-row">
+                <input type="text" id="saddleCode" class="input-box">
+                <button class="button">Copy</button>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label for="creatureWithSaddle">Creature Code With Saddle</label>
+            <div class="flex-row">
+                <input type="text" id="creatureWithSaddle" class="input-box">
+                <button class="button">Copy</button>
+            </div>
+        </div>
+        
+        <!-- Background box containing checkboxes -->
+        <div class="background-box">
+            <div class="border-box left-box">
+                <label for="cryopod">Add Cryopod:</label>
+                <input type="checkbox" id="cryopod" style="margin-left: -5px">
+            </div>
+            <div class="border-box center-box">
+                <label for="tamed">Tamed:</label>
+                <input type="checkbox" id="tamed" style="margin-left: -5px">
+            </div>
+            <div class="border-box right-box">
+                <label for="MaxLevel">Max Level:</label>
+                <input type="checkbox" id="MaxLevel" style="margin-left: -5px">
+                <label for="level">Level:</label>
+                <input type="number" id="level" class="input-box" placeholder="300" style="max-width: 50px; margin-left: -4px">
+            </div>
         </div>
 
-        <label class="mt-2">Creature Code With Saddle</label>
-        <div class="d-flex">
-            <input type="text" class="form-control" id="creatureWithSaddle">
-            <button class="btn-copy ms-2" onclick="copyToClipboard('creatureWithSaddle')">Copy</button>
+        <div class="spawndistancebackground-box" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="flex-row" style="justify-content: center;">
+                <label class="label-left">Spawn Distance:</label>
+				<label>X:</label>
+				<input type="number" id="xCoord" class="input-box" placeholder="500" style="max-width: 50px;">
+				<label>Y:</label>
+				<input type="number" id="yCoord" class="input-box" placeholder="0" style="max-width: 50px;">
+				<label>Z:</label>
+				<input type="number" id="zCoord" class="input-box" placeholder="0" style="max-width: 50px;">
+
+            </div>
+        </div>
+        
+        <div class="saddle-box">
+            <div class="flex-row" style="justify-content: space-between; align-items: flex-start;">
+                <div style="display: flex; flex-direction: column;">
+                    <label class="label2-left">Saddle</label>
+                    <select class="input-box" style="max-width: 200px; width: 200px; margin-left: 20px;">
+                        <option>None</option>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <label class="label2-left"style="margin-left: 0px; margin-right: 20px;">Quantity</label>
+                    <input type="number" class="input-box" style="max-width: 120px; margin-left: -20px;">
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <label class="label2-left" style="margin-left: -20px; margin-right: 20px;">Quality (0-100)</label>
+                    <input type="number" class="input-box" style="max-width: 120px; margin-left: -20px; margin-right: 20px;">
+                </div>
+            </div>
         </div>
 
-        <div class="d-flex align-items-center mt-3">
-            <input type="checkbox" id="cryopod"> <label class="ms-2">Add Cryopod</label>
-            <input type="checkbox" id="tamed" class="ms-4"> <label class="ms-2">Tamed</label>
-            <input type="checkbox" id="maxLevel" class="ms-4"> <label class="ms-2">Max Level</label>
-            <input type="number" id="level" class="form-control ms-2" style="width: 80px;" value="300">
-        </div>
-
-        <label class="mt-2">Spawn Distance:</label>
-        <div class="d-flex">
-            <input type="number" class="form-control" id="spawnX" value="500" style="width: 80px;">
-            <input type="number" class="form-control ms-2" id="spawnY" value="0" style="width: 80px;">
-            <input type="number" class="form-control ms-2" id="spawnZ" value="0" style="width: 80px;">
-        </div>
-
-        <div class="d-flex mt-3">
-            <select class="form-select" id="saddle">
-                <option>None</option>
-                <option>Saddle A</option>
-                <option>Saddle B</option>
-            </select>
-            <input type="number" class="form-control ms-2" id="quantity" placeholder="Quantity">
-            <input type="number" class="form-control ms-2" id="quality" placeholder="Quality (0-100)">
-        </div>
-
-        <button class="btn-add mt-3">Add To Order</button>
+        <button class="button">Add To Order</button>
     </div>
+	
+	<script>
+// Load creatures from JSON file
+async function loadCreatures() {
+    try {
+        const response = await fetch("Creature.json");
+        const data = await response.json();
+        creatures = data.creatures;
+    } catch (error) {
+        console.error("Error loading Creature.json:", error);
+    }
+}
 
-    <script>
-        function copyToClipboard(id) {
-            var copyText = document.getElementById(id);
-            copyText.select();
-            document.execCommand("copy");
-            alert("Copied: " + copyText.value);
+// Search function for creatures
+function searchCreatures() {
+    const input = document.getElementById("searchBox").value.toLowerCase();
+    const resultsContainer = document.getElementById("searchResults");
+
+    resultsContainer.innerHTML = "";
+    resultsContainer.style.display = "none";
+
+    if (!input) return;
+
+    const filteredCreatures = creatures.filter(creature => 
+        creature.name.toLowerCase().includes(input)
+    );
+
+    if (filteredCreatures.length === 0) return;
+
+    resultsContainer.style.display = "block";
+    filteredCreatures.forEach(creature => {
+        const div = document.createElement("div");
+        div.textContent = creature.name;
+        div.onclick = () => selectCreature(creature);
+        resultsContainer.appendChild(div);
+    });
+}
+
+// Update creature code based on selections
+function updateCreatureCode(creature) {
+    const tamedChecked = document.getElementById("tamed").checked;
+    const xInput = document.getElementById("xCoord");
+    const yInput = document.getElementById("yCoord");
+    const zInput = document.getElementById("zCoord");
+    const levelInput = document.getElementById("level"); // Get the level input
+    const cryopodChecked = document.getElementById("cryopod").checked; // Get the cryopod checkbox
+
+    let spawnCommand = tamedChecked ? creature.tameSummon : creature.wildSummon;
+    
+    // Apply coordinates only if it's wild (not tamed)
+    if (!tamedChecked) {
+        spawnCommand += ` ${xInput.value || 500} ${yInput.value || 0} ${zInput.value || 0}`;
+    }
+
+    // Include level if provided
+    const level = levelInput.value || 300;  // Default to 300 if no level is entered
+    spawnCommand += ` ${level}`;
+
+    // Add cryopod if checked
+    if (cryopodChecked) {
+        spawnCommand += "|cheat gfi cryopod_mod 1 0 0";
+    }
+
+    document.getElementById("creatureCode").value = spawnCommand;
+
+    // Disable & Gray out X, Y, Z when Tamed is checked
+    [xInput, yInput, zInput].forEach(input => {
+        input.disabled = tamedChecked;
+        input.style.backgroundColor = tamedChecked ? "#555" : "white";
+        input.style.color = tamedChecked ? "#aaa" : "black";
+    });
+}
+
+
+// Function to select creature and update values
+function selectCreature(creature) {
+    document.getElementById("searchBox").value = creature.name;
+    document.getElementById("searchResults").style.display = "none";
+
+    document.getElementById("saddleCode").value = creature.saddle !== "NA" ? creature.saddle : "No Saddle";
+
+    updateCreatureCode(creature);
+
+    document.getElementById("searchBox").dataset.selectedCreature = JSON.stringify(creature);
+}
+
+// ✅ Set up event listeners when DOM loads
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("tamed").checked = true; // Default checked
+
+    const xInput = document.getElementById("xCoord");
+    const yInput = document.getElementById("yCoord");
+    const zInput = document.getElementById("zCoord");
+    const tamedCheckbox = document.getElementById("tamed");
+    const maxLevelCheckbox = document.getElementById("MaxLevel");
+    const levelInput = document.getElementById("level");
+
+    // Function to enable/disable and gray out X, Y, Z
+    function toggleCoordinates() {
+        const isTamed = tamedCheckbox.checked;
+        
+        [xInput, yInput, zInput].forEach(input => {
+            input.disabled = isTamed;
+            input.style.backgroundColor = isTamed ? "#555" : "white";
+            input.style.color = isTamed ? "#aaa" : "black";
+        });
+
+        // Update the creature code when toggling "Tamed"
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+    }
+
+    // Function to handle max level selection
+    function toggleMaxLevel() {
+        const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+        if (maxLevelCheckbox.checked && storedCreature) {
+            const creature = JSON.parse(storedCreature);
+            levelInput.value = creature.maxLevel; // Set level to max
+            levelInput.disabled = true; // Disable input
+            levelInput.style.backgroundColor = "#555"; // Gray out
+            levelInput.style.color = "#aaa";
+        } else {
+            levelInput.disabled = false; // Enable input
+            levelInput.style.backgroundColor = "white"; // Restore color
+            levelInput.style.color = "black";
         }
-    </script>
+
+        if (storedCreature) {
+            updateCreatureCode(JSON.parse(storedCreature));
+        }
+    }
+	
+levelInput.addEventListener("input", () => {
+    if (levelInput.value === "" || isNaN(levelInput.value) || parseInt(levelInput.value) < 1) {
+        levelInput.value = 1; // Prevents negative values, empty input, or zero
+    }
+
+    // Dynamically update creature code while typing
+    const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+    if (storedCreature) {
+        updateCreatureCode(JSON.parse(storedCreature));
+    }
+});
+    // Run function on load to apply default state
+    toggleCoordinates();
+
+    // Add event listeners
+    tamedCheckbox.addEventListener("change", toggleCoordinates);
+    maxLevelCheckbox.addEventListener("change", toggleMaxLevel); // Max level toggle
+
+    ["xCoord", "yCoord", "zCoord"].forEach(id => {
+        document.getElementById(id).addEventListener("input", () => {
+            const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
+            if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
+        });
+    });
+
+    loadCreatures();
+});
+
+</script>
+
+
 </body>
 </html>
