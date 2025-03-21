@@ -422,14 +422,7 @@ levelInput.addEventListener("input", () => {
             const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
             if (storedCreature) updateCreatureCode(JSON.parse(storedCreature));
         });
-    });
-// ✅ Add event listener for Cryopod checkbox to update instantly
-document.getElementById("cryopod").addEventListener("change", () => {
-    const storedCreature = document.getElementById("searchBox").dataset.selectedCreature;
-    if (storedCreature) {
-        updateCreatureCode(JSON.parse(storedCreature));
-    }
-});
+ });
 
 // Load creature data
 loadCreatures();
