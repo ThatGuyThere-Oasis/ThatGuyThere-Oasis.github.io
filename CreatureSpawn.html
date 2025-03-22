@@ -23,12 +23,15 @@
             color: white;
             border: 1px solid #555;
         }
+        .input-group-text {
+            background-color: #3b4d5f;
+            color: white;
+            border: 1px solid #555;
+        }
         .btn-copy {
-            background-color: #28a745; /* Green */
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
             cursor: pointer;
         }
         .btn-copy:hover {
@@ -41,15 +44,6 @@
         .small-check input {
             transform: scale(0.85);
             margin-right: 3px;
-        }
-        @media (max-width: 576px) {
-            .input-group-text, .btn {
-                font-size: 0.9rem;
-                padding: 8px;
-            }
-            .form-control {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -65,23 +59,7 @@
                 <div class="input-group-text btn-copy" onclick="copyText('creatureCode')">Copy</div>
             </div>
         </div>
-        
-        <div class="mb-3">
-            <label>Saddle Code</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="saddleCode">
-                <div class="input-group-text btn-copy" onclick="copyText('saddleCode')">Copy</div>
-            </div>
-        </div>
-        
-        <div class="mb-3">
-            <label>Creature Code With Saddle</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="creatureSaddleCode">
-                <div class="input-group-text btn-copy" onclick="copyText('creatureSaddleCode')">Copy</div>
-            </div>
-        </div>
-        
+
         <div class="mb-3">
             <label>Creature Level</label>
             <div class="input-group">
@@ -100,36 +78,29 @@
                 </div>
             </div>
         </div>
-        
+
         <h6>Spawn Distance:</h6>
         <div class="row mb-3">
             <div class="col-4">
-                <input type="number" class="form-control" placeholder="X" value="500">
+                <div class="input-group">
+                    <span class="input-group-text">X:</span>
+                    <input type="number" class="form-control" placeholder="500" value="500">
+                </div>
             </div>
             <div class="col-4">
-                <input type="number" class="form-control" placeholder="Y" value="0">
+                <div class="input-group">
+                    <span class="input-group-text">Y:</span>
+                    <input type="number" class="form-control" placeholder="0" value="0">
+                </div>
             </div>
             <div class="col-4">
-                <input type="number" class="form-control" placeholder="Z" value="0">
+                <div class="input-group">
+                    <span class="input-group-text">Z:</span>
+                    <input type="number" class="form-control" placeholder="0" value="0">
+                </div>
             </div>
         </div>
-        
-        <div class="mb-3">
-            <label>Saddle</label>
-            <select class="form-select">
-                <option>None</option>
-            </select>
-        </div>
-        
-        <div class="row mb-3">
-            <div class="col-6">
-                <input type="number" class="form-control" placeholder="Quantity">
-            </div>
-            <div class="col-6">
-                <input type="number" class="form-control" placeholder="Quality (0-100)">
-            </div>
-        </div>
-        
+
         <button class="btn btn-success btn-add">Add To Order</button>
     </div>
 
