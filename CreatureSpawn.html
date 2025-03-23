@@ -50,7 +50,8 @@
 <body>
     <div class="container">
         <label>Search for Creatures</label>
-        <input type="text" class="form-control mb-3" placeholder="Type to search...">
+        <input type="text" class="form-control mb-3" id="creatureSearch" placeholder="Type to search...">
+        <div id="searchResults" class="list-group mb-3"></div>
         
         <div class="mb-3">
             <label>Creature Code</label>
@@ -81,15 +82,15 @@
             <div class="input-group">
                 <input type="number" class="form-control" id="creatureLevel" value="300">
                 <div class="input-group-text small-check">
-                    <input class="form-check-input mt-0" type="checkbox" id="maxLevel">
+                    <input class="form-check-input mt-0" type="checkbox" id="maxLevel" checked>
                     <label class="form-check-label" for="maxLevel">Max Level</label>
                 </div>
                 <div class="input-group-text small-check">
-                    <input class="form-check-input mt-0" type="checkbox" id="tamed">
+                    <input class="form-check-input mt-0" type="checkbox" id="tamed" checked>
                     <label class="form-check-label" for="tamed">Tamed</label>
                 </div>
                 <div class="input-group-text small-check">
-                    <input class="form-check-input mt-0" type="checkbox" id="cryopod">
+                    <input class="form-check-input mt-0" type="checkbox" id="cryopod" checked>
                     <label class="form-check-label" for="cryopod">Cryopod</label>
                 </div>
             </div>
@@ -100,48 +101,40 @@
             <div class="col-4">
                 <div class="input-group">
                     <span class="input-group-text">X:</span>
-                    <input type="number" class="form-control" placeholder="500" value="500">
+                    <input type="number" class="form-control" id="spawnX" value="500">
                 </div>
             </div>
             <div class="col-4">
                 <div class="input-group">
                     <span class="input-group-text">Y:</span>
-                    <input type="number" class="form-control" placeholder="0" value="0">
+                    <input type="number" class="form-control" id="spawnY" value="0">
                 </div>
             </div>
             <div class="col-4">
                 <div class="input-group">
                     <span class="input-group-text">Z:</span>
-                    <input type="number" class="form-control" placeholder="0" value="0">
+                    <input type="number" class="form-control" id="spawnZ" value="0">
                 </div>
             </div>
         </div>
 
         <div class="mb-3">
             <label>Saddle</label>
-            <select class="form-select">
+            <select class="form-select" id="saddleDropdown">
                 <option>None</option>
             </select>
         </div>
 
         <div class="row mb-3">
             <div class="col-6">
-                <input type="number" class="form-control" placeholder="Quantity">
+                <input type="number" class="form-control" id="saddleQuantity" placeholder="Quantity" min="1" value="1">
             </div>
             <div class="col-6">
-                <input type="number" class="form-control" placeholder="Quality (0-100)">
+                <input type="number" class="form-control" id="saddleQuality" placeholder="Quality (0-100)" min="0" max="100" value="0">
             </div>
         </div>
-        
-        <button class="btn btn-success btn-add">Add To Order</button>
     </div>
-    <script>
-        function copyText(id) {
-            var copyText = document.getElementById(id);
-            copyText.select();
-            document.execCommand("copy");
-        }
-    </script>
-     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
