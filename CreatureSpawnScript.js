@@ -140,4 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
             generateCreatureCode(selectedCreature); // Update creature code when level changes
         }
     });
+
+    // Ensure maxLevel checkbox behavior is correct on page load
+    if (maxLevelCheckbox.checked) {
+        creatureLevelBox.disabled = true;
+        updateMaxLevel(); // Disable the level box and set it to maxLevel from Creature.json
+    }
 });
