@@ -19,7 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
     
     fetch("creature.json")
         .then(response => response.json())
-        .then(data => creatures = data);
+        .then(data => {
+            if (!Array.isArray(data) || data.length === 0) {
+                console.error("Error: creature.json is empty or not an array");
+                return;
+            }
+            creatures = data;
+        })
+        .catch(error => console.error("Error loading creature.json:", error));
 
     searchInput.addEventListener("input", function () {
         const query = this.value.toLowerCase();
@@ -41,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateCreatureCode(creature) {
+        if (!creature) return;
         let code = tamed.checked ? creature.tameSummon : creature.wildSummon;
         code += ` ${levelInput.value}`;
         if (!tamed.checked) {
@@ -54,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateSaddleCode(creature) {
+        if (!creature || !creature.saddles) {
+            saddleCode.value = "";
+            return;
+        }
         const selectedSaddle = saddleDropdown.value;
         if (selectedSaddle !== "None" && creature.saddles[selectedSaddle]) {
             let code = creature.saddles[selectedSaddle];
@@ -68,13 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     maxLevel.addEventListener("change", function () {
         levelInput.disabled = this.checked;
         if (this.checked) {
-            fetch("creature.json")
-                .then(response => response.json())
-                .then(data => {
-                    const creature = data.find(c => c.name === searchInput.value);
-                    if (creature) levelInput.value = creature.maxLevel;
-                    updateCreatureCode(creature);
-                });
+            const creature = creatures.find(c => c.name === searchInput.value);
+            if (creature) {
+                levelInput.value = creature.maxLevel;
+                updateCreatureCode(creature);
+            }
         }
     });
 
