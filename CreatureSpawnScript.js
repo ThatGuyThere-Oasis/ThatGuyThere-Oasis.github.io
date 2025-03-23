@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tamedCheckbox.checked) {
             creatureCode = creature.tameSummon + ` ${level}`;
             if (cryopodCheckbox.checked) {
-                creatureCode += ' |cheat gfi cryopod_mod 1 0 0';
+                creatureCode += `|cheat gfi cryopod_mod 1 0 0`; // Removed space before "|"
             }
         } else {
             const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
@@ -118,13 +118,26 @@ document.addEventListener("DOMContentLoaded", () => {
         spawnXBox.disabled = isTamed;
         spawnYBox.disabled = isTamed;
         spawnZBox.disabled = isTamed;
-        cryopodCheckbox.disabled = isTamed; // Cryopod should be disabled when Tamed is unchecked
+
+        if (isTamed) {
+            cryopodCheckbox.disabled = false; // Enable Cryopod when Tamed is checked
+        } else {
+            cryopodCheckbox.checked = false; // Uncheck Cryopod if Tamed is unchecked
+            cryopodCheckbox.disabled = true; // Disable Cryopod when Tamed is unchecked
+        }
     });
 
     // Hide search results when clicking outside
     document.addEventListener('click', (event) => {
         if (!searchResults.contains(event.target) && event.target !== searchBox) {
             searchResults.innerHTML = ''; // Hide suggestions if clicked outside
+        }
+    });
+
+    // Dynamic level update
+    creatureLevelBox.addEventListener('input', () => {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature); // Update creature code when level changes
         }
     });
 });
