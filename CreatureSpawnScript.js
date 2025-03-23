@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const spawnZBox = document.getElementById('spawnZ');
     
     let creatureData = [];
+    let selectedCreature = null;
 
     // Fetch the creature data from the JSON file
     fetch('Creature.json')
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 suggestionItem.onclick = () => {
                     searchBox.value = creature.name;  // Autofill the search box with the selected name
                     searchResults.innerHTML = '';     // Clear suggestions after selection
+                    selectedCreature = creature;     // Store the selected creature data
+                    updateMaxLevel();                 // Update the level box based on maxLevel from the selected creature
                     generateCreatureCode(creature);  // Generate creature code
                 };
                 searchResults.appendChild(suggestionItem);
@@ -80,11 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
         creatureCodeBox.value = creatureCode;
     }
 
+    // Function to update the level box based on selected creature's maxLevel
+    function updateMaxLevel() {
+        if (selectedCreature) {
+            const maxLevel = selectedCreature.maxLevel;
+            creatureLevelBox.value = maxLevel;
+        }
+    }
+
     // Handle checkbox changes (Max Level, Tamed, Cryopod)
     function handleCheckboxChanges() {
         if (maxLevelCheckbox.checked) {
             creatureLevelBox.disabled = true;
-            creatureLevelBox.value = 300; // Use the maxLevel from creature data
+            updateMaxLevel(); // Set the level box to the maxLevel of the selected creature
         } else {
             creatureLevelBox.disabled = false;
         }
@@ -92,8 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generateCreatureCodeBasedOnChecks() {
-        const selectedCreatureName = searchBox.value;
-        const selectedCreature = creatureData.find(creature => creature.name === selectedCreatureName);
         if (selectedCreature) {
             generateCreatureCode(selectedCreature);
         }
