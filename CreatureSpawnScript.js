@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let creatures = [];
     
-    fetch("creature.json")
+    fetch("Creature.json")
         .then(response => response.json())
         .then(data => {
             if (!Array.isArray(data) || data.length === 0) {
-                console.error("Error: creature.json is empty or not an array");
+                console.error("Error: Creature.json is empty or not an array");
                 return;
             }
             creatures = data;
         })
-        .catch(error => console.error("Error loading creature.json:", error));
+        .catch(error => console.error("Error loading Creature.json:", error));
 
     searchInput.addEventListener("input", function () {
         const query = this.value.toLowerCase();
