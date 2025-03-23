@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 suggestionItem.onclick = () => {
                     searchBox.value = creature.name;  // Autofill the search box with the selected name
                     searchResults.innerHTML = '';     // Clear suggestions after selection
+                    generateCreatureCode(creature);  // Generate creature code
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -51,6 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
             searchResults.innerHTML = ''; // Hide suggestions if input is empty
         }
     });
+
+    // Function to generate creature code based on input options
+    function generateCreatureCode(creature) {
+        const creatureCodeBox = document.getElementById('creatureCode');
+        creatureCodeBox.value = creature.wildSummon; // Default to wildSummon code for now
+    }
 
     // Hide search results when clicking outside
     document.addEventListener('click', (event) => {
