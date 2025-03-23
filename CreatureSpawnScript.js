@@ -17,14 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let creatures = [];
     
-    fetch("Creature.json")
-        .then(response => response.json())
-        .then(data => {
-            if (!Array.isArray(data) || data.length === 0) {
-                console.error("Error: Creature.json is empty or not an array");
-                return;
-            }
-            creatures = data;
+   async function loadCreatures() {
+    try {
+        const response = await fetch("Creature.json");
+        const data = await response.json();
+        creatures = data.creatures;
+    } catch (error) {
+        console.error("Error loading Creature.json:", error);
+    }
+}
         })
         .catch(error => console.error("Error loading Creature.json:", error));
 
