@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("creatureSearch");
     const searchResults = document.getElementById("searchResults");
     const creatureCode = document.getElementById("creatureCode");
@@ -19,14 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     fetch("Creature.json")
         .then(response => response.json())
-        .then(data => {
-            if (!Array.isArray(data) || data.length === 0) {
-                console.error("Error: Creature.json is empty or not an array");
-                return;
-            }
-            creatures = data;
-        })
-        .catch(error => console.error("Error loading Creature.json:", error));
+        .then(data => creatures = data);
 
     searchInput.addEventListener("input", function () {
         const query = this.value.toLowerCase();
@@ -48,11 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateCreatureCode(creature) {
-        if (!creature) return;
         let code = tamed.checked ? creature.tameSummon : creature.wildSummon;
-        code += ` ${levelInput.value}`;
+        code +=  ${levelInput.value};
         if (!tamed.checked) {
-            code += ` ${spawnX.value} ${spawnY.value} ${spawnZ.value}`;
+            code +=  ${spawnX.value} ${spawnY.value} ${spawnZ.value};
         }
         if (cryopod.checked && tamed.checked) {
             code += " |cheat gfi cryopod_mod 1 0 0";
@@ -62,29 +54,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateSaddleCode(creature) {
-        if (!creature || !creature.saddles) {
-            saddleCode.value = "";
-            return;
-        }
         const selectedSaddle = saddleDropdown.value;
         if (selectedSaddle !== "None" && creature.saddles[selectedSaddle]) {
             let code = creature.saddles[selectedSaddle];
-            code += ` ${saddleQuantity.value} ${saddleQuality.value}`;
+            code +=  ${saddleQuantity.value} ${saddleQuality.value};
             saddleCode.value = code;
         } else {
             saddleCode.value = "";
         }
-        creatureSaddleCode.value = creatureCode.value + (saddleCode.value ? ` | ${saddleCode.value}` : "");
+        creatureSaddleCode.value = creatureCode.value + (saddleCode.value ?  | ${saddleCode.value} : "");
     }
     
     maxLevel.addEventListener("change", function () {
         levelInput.disabled = this.checked;
         if (this.checked) {
-            const creature = creatures.find(c => c.name === searchInput.value);
-            if (creature) {
-                levelInput.value = creature.maxLevel;
-                updateCreatureCode(creature);
-            }
+            fetch("Creature.json")
+                .then(response => response.json())
+                .then(data => {
+                    const creature = data.find(c => c.name === searchInput.value);
+                    if (creature) levelInput.value = creature.maxLevel;
+                    updateCreatureCode(creature);
+                });
         }
     });
 
@@ -116,3 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.execCommand("copy");
     }
 });
+
+</body>
+</html>
