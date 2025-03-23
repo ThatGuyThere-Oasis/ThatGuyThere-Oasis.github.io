@@ -1,4 +1,5 @@
- document.addEventListener("DOMContentLoaded", function () {
+	<script>
+document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("creatureSearch");
     const searchResults = document.getElementById("searchResults");
     const creatureCode = document.getElementById("creatureCode");
@@ -106,6 +107,8 @@
         document.execCommand("copy");
     }
 });
+
+	<script>
 
 </body>
 </html>
