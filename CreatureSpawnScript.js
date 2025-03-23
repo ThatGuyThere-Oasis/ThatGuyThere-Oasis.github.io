@@ -1,114 +1,61 @@
-	<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("creatureSearch");
-    const searchResults = document.getElementById("searchResults");
-    const creatureCode = document.getElementById("creatureCode");
-    const saddleCode = document.getElementById("saddleCode");
-    const creatureSaddleCode = document.getElementById("creatureSaddleCode");
-    const levelInput = document.getElementById("creatureLevel");
-    const maxLevel = document.getElementById("maxLevel");
-    const tamed = document.getElementById("tamed");
-    const cryopod = document.getElementById("cryopod");
-    const spawnX = document.getElementById("spawnX");
-    const spawnY = document.getElementById("spawnY");
-    const spawnZ = document.getElementById("spawnZ");
-    const saddleDropdown = document.getElementById("saddleDropdown");
-    const saddleQuantity = document.getElementById("saddleQuantity");
-    const saddleQuality = document.getElementById("saddleQuality");
-    
-    let creatures = [];
-    
-    fetch("Creature.json")
+document.addEventListener("DOMContentLoaded", () => {
+    const searchBox = document.getElementById('creatureSearch');
+    const searchResults = document.getElementById('searchResults');
+    let creatureData = [];
+
+    // Fetch the creature data from the JSON file
+    fetch('Creature.json')
         .then(response => response.json())
-        .then(data => creatures = data);
+        .then(data => {
+            creatureData = data.creatures; // Assuming the JSON has a 'creatures' array
+        })
+        .catch(error => console.error('Error loading creature data:', error));
 
-    searchInput.addEventListener("input", function () {
-        const query = this.value.toLowerCase();
-        searchResults.innerHTML = "";
-        if (query.length > 0) {
-            creatures.filter(creature => creature.name.toLowerCase().includes(query))
-                .forEach(creature => {
-                    const item = document.createElement("div");
-                    item.classList.add("list-group-item", "list-group-item-action");
-                    item.textContent = creature.name;
-                    item.addEventListener("click", function () {
-                        searchInput.value = creature.name;
-                        updateCreatureCode(creature);
-                        searchResults.innerHTML = "";
-                    });
-                    searchResults.appendChild(item);
-                });
-        }
-    });
-
-    function updateCreatureCode(creature) {
-        let code = tamed.checked ? creature.tameSummon : creature.wildSummon;
-        code +=  ${levelInput.value};
-        if (!tamed.checked) {
-            code +=  ${spawnX.value} ${spawnY.value} ${spawnZ.value};
-        }
-        if (cryopod.checked && tamed.checked) {
-            code += " |cheat gfi cryopod_mod 1 0 0";
-        }
-        creatureCode.value = code;
-        updateSaddleCode(creature);
+    // Function to filter creatures based on the input query
+    function filterCreatures(query) {
+        const filtered = creatureData.filter(creature => 
+            creature.name.toLowerCase().includes(query.toLowerCase())
+        );
+        return filtered;
     }
 
-    function updateSaddleCode(creature) {
-        const selectedSaddle = saddleDropdown.value;
-        if (selectedSaddle !== "None" && creature.saddles[selectedSaddle]) {
-            let code = creature.saddles[selectedSaddle];
-            code +=  ${saddleQuantity.value} ${saddleQuality.value};
-            saddleCode.value = code;
+    // Function to display suggestions below the search box
+    function displaySuggestions(suggestions) {
+        searchResults.innerHTML = ''; // Clear previous results
+        if (suggestions.length > 0) {
+            suggestions.forEach(creature => {
+                const suggestionItem = document.createElement('button');
+                suggestionItem.classList.add('list-group-item', 'list-group-item-action');
+                suggestionItem.textContent = creature.name;
+                suggestionItem.onclick = () => {
+                    searchBox.value = creature.name;  // Autofill the search box with the selected name
+                    searchResults.innerHTML = '';     // Clear suggestions after selection
+                };
+                searchResults.appendChild(suggestionItem);
+            });
         } else {
-            saddleCode.value = "";
+            const noResultsItem = document.createElement('button');
+            noResultsItem.classList.add('list-group-item', 'list-group-item-action');
+            noResultsItem.textContent = 'No results found';
+            searchResults.appendChild(noResultsItem);
         }
-        creatureSaddleCode.value = creatureCode.value + (saddleCode.value ?  | ${saddleCode.value} : "");
     }
-    
-    maxLevel.addEventListener("change", function () {
-        levelInput.disabled = this.checked;
-        if (this.checked) {
-            fetch("Creature.json")
-                .then(response => response.json())
-                .then(data => {
-                    const creature = data.find(c => c.name === searchInput.value);
-                    if (creature) levelInput.value = creature.maxLevel;
-                    updateCreatureCode(creature);
-                });
+
+    // Event listener to handle input and filter the creatures
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value;
+        if (query.length > 0) {
+            const suggestions = filterCreatures(query);
+            displaySuggestions(suggestions);
+        } else {
+            searchResults.innerHTML = ''; // Hide suggestions if input is empty
         }
     });
 
-    tamed.addEventListener("change", function () {
-        cryopod.disabled = !this.checked;
-        spawnX.disabled = spawnY.disabled = spawnZ.disabled = this.checked;
-        const creature = creatures.find(c => c.name === searchInput.value);
-        if (creature) updateCreatureCode(creature);
+    // Hide search results when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!searchResults.contains(event.target) && event.target !== searchBox) {
+            searchResults.innerHTML = ''; // Hide suggestions if clicked outside
+        }
     });
-    
-    saddleDropdown.addEventListener("change", function () {
-        const creature = creatures.find(c => c.name === searchInput.value);
-        if (creature) updateSaddleCode(creature);
-    });
-    
-    saddleQuantity.addEventListener("input", function () {
-        const creature = creatures.find(c => c.name === searchInput.value);
-        if (creature) updateSaddleCode(creature);
-    });
-    
-    saddleQuality.addEventListener("input", function () {
-        const creature = creatures.find(c => c.name === searchInput.value);
-        if (creature) updateSaddleCode(creature);
-    });
-
-    function copyText(id) {
-        const copyText = document.getElementById(id);
-        copyText.select();
-        document.execCommand("copy");
-    }
 });
-
-	<script>
-
-</body>
-</html>
