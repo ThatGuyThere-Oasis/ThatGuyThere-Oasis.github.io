@@ -1,167 +1,146 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("searchCreature");
-    const resultsContainer = document.getElementById("results");
-    const levelInput = document.getElementById("level");
-    const maxLevelCheckbox = document.getElementById("maxLevel");
-    const tamedCheckbox = document.getElementById("tamed");
-    const cryopodCheckbox = document.getElementById("cryopod");
-    const spawnX = document.getElementById("spawnX");
-    const spawnY = document.getElementById("spawnY");
-    const spawnZ = document.getElementById("spawnZ");
-    const creatureCodeBox = document.getElementById("creatureCode");
-    const saddleDropdown = document.getElementById("saddleDropdown");
-    const saddleCodeBox = document.getElementById("saddleCode");
-    const creatureCodeWithSaddleBox = document.getElementById("creatureCodeWithSaddle");
-
+document.addEventListener("DOMContentLoaded", () => {
+    const searchBox = document.getElementById('creatureSearch');
+    const searchResults = document.getElementById('searchResults');
+    const creatureCodeBox = document.getElementById('creatureCode');
+    const creatureLevelBox = document.getElementById('creatureLevel');
+    const maxLevelCheckbox = document.getElementById('maxLevel');
+    const tamedCheckbox = document.getElementById('tamed');
+    const cryopodCheckbox = document.getElementById('cryopod');
+    const spawnXBox = document.getElementById('spawnX');
+    const spawnYBox = document.getElementById('spawnY');
+    const spawnZBox = document.getElementById('spawnZ');
+    
     let creatureData = [];
+    let selectedCreature = null;
 
-    // Load Creature.json
-    fetch("Creature.json")
+    fetch('Creature.json')
         .then(response => response.json())
         .then(data => {
             creatureData = data.creatures;
-        });
+        })
+        .catch(error => console.error('Error loading creature data:', error));
 
-    // Search for creatures
-    searchInput.addEventListener("input", function () {
-        const searchValue = searchInput.value.toLowerCase();
-        resultsContainer.innerHTML = "";
+    function filterCreatures(query) {
+        return creatureData.filter(creature => 
+            creature.name.toLowerCase().includes(query.toLowerCase())
+        );
+    }
 
-        if (searchValue) {
-            const filteredCreatures = creatureData.filter(creature => creature.name.toLowerCase().includes(searchValue));
-
-            filteredCreatures.forEach(creature => {
-                const div = document.createElement("div");
-                div.textContent = creature.name;
-                div.classList.add("search-result");
-                div.addEventListener("click", function () {
-                    searchInput.value = creature.name;
-                    resultsContainer.innerHTML = "";
-                    selectCreature(creature);
-                });
-                resultsContainer.appendChild(div);
+    function displaySuggestions(suggestions) {
+        searchResults.innerHTML = ''; 
+        if (suggestions.length > 0) {
+            suggestions.forEach(creature => {
+                const suggestionItem = document.createElement('button');
+                suggestionItem.classList.add('list-group-item', 'list-group-item-action');
+                suggestionItem.textContent = creature.name;
+                suggestionItem.onclick = () => {
+                    searchBox.value = creature.name;
+                    searchResults.innerHTML = ''; 
+                    selectedCreature = creature;
+                    updateMaxLevel();
+                    handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
+                    generateCreatureCode(creature);
+                };
+                searchResults.appendChild(suggestionItem);
             });
+        } else {
+            const noResultsItem = document.createElement('button');
+            noResultsItem.classList.add('list-group-item', 'list-group-item-action');
+            noResultsItem.textContent = 'No results found';
+            searchResults.appendChild(noResultsItem);
+        }
+    }
+
+    searchBox.addEventListener('input', () => {
+        const query = searchBox.value;
+        if (query.length > 0) {
+            displaySuggestions(filterCreatures(query));
+        } else {
+            searchResults.innerHTML = ''; 
         }
     });
 
-    // Select creature and update relevant fields
-    function selectCreature(creature) {
-        if (!creature) return;
-
-        // Set max level if checked
-        if (maxLevelCheckbox.checked) {
-            levelInput.value = creature.maxLevel;
-            levelInput.disabled = true;
-        } else {
-            levelInput.disabled = false;
-        }
-
-        updateSaddleDropdown(creature);
-        updateCreatureCode();
-    }
-
-    // Update Saddle Dropdown dynamically
-    function updateSaddleDropdown(creature) {
-        saddleDropdown.innerHTML = "";
-
-        // Always include "None"
-        const noneOption = document.createElement("option");
-        noneOption.value = "None";
-        noneOption.textContent = "None";
-        saddleDropdown.appendChild(noneOption);
-
-        const saddleTypes = ["saddle", "platformSaddle", "tekSaddle"];
-        saddleTypes.forEach(type => {
-            if (creature[type] && creature[type] !== "NA") {
-                const option = document.createElement("option");
-                option.value = creature[type];
-                option.textContent = type.replace("Saddle", " Saddle");
-                saddleDropdown.appendChild(option);
-            }
-        });
-
-        saddleDropdown.value = "None";
-        updateSaddleCode();
-    }
-
-    // Update Creature Code dynamically
-    function updateCreatureCode() {
-        const selectedCreature = creatureData.find(creature => creature.name === searchInput.value);
-        if (!selectedCreature) return;
-
-        let creatureCode = "";
+    function generateCreatureCode(creature) {
+        let creatureCode = '';
+        let level = parseInt(creatureLevelBox.value) || 300;
 
         if (tamedCheckbox.checked) {
-            creatureCode = selectedCreature.tameSummon + levelInput.value;
-            cryopodCheckbox.disabled = false; // Allow toggling Cryopod when tamed
+            creatureCode = creature.tameSummon + `${level}`;
+            if (cryopodCheckbox.checked) {
+                creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
+            }
         } else {
-            creatureCode = `${selectedCreature.wildSummon} ${spawnX.value} ${spawnY.value} ${spawnZ.value} ${levelInput.value}`;
-            cryopodCheckbox.checked = false;
-            cryopodCheckbox.disabled = true; // Disable Cryopod when not tamed
-        }
-
-        if (tamedCheckbox.checked && cryopodCheckbox.checked) {
-            creatureCode += "|cheat gfi cryopod_mod 1 0 0";
+            const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
+            creatureCode = creature.wildSummon + ` ${spawnCoords} ${level}`;
         }
 
         creatureCodeBox.value = creatureCode;
-        updateCreatureCodeWithSaddle();
     }
 
-    // Update Saddle Code dynamically
-    function updateSaddleCode() {
-        if (saddleDropdown.value === "None") {
-            saddleCodeBox.value = "";
-        } else {
-            saddleCodeBox.value = saddleDropdown.value;
+    function updateMaxLevel() {
+        if (selectedCreature) {
+            creatureLevelBox.value = selectedCreature.maxLevel;
         }
-
-        updateCreatureCodeWithSaddle();
     }
 
-    // Update combined Creature Code With Saddle
-    function updateCreatureCodeWithSaddle() {
-        const creatureCode = creatureCodeBox.value;
-        const saddleCode = saddleCodeBox.value;
-        creatureCodeWithSaddleBox.value = saddleCode ? `${creatureCode}|${saddleCode}` : creatureCode;
-    }
-
-    // Event Listeners for dynamic updates
-    maxLevelCheckbox.addEventListener("change", function () {
-        const selectedCreature = creatureData.find(creature => creature.name === searchInput.value);
-        if (!selectedCreature) return;
-
+    function handleCheckboxChanges() {
         if (maxLevelCheckbox.checked) {
-            levelInput.value = selectedCreature.maxLevel;
-            levelInput.disabled = true;
+            creatureLevelBox.disabled = true;
+            updateMaxLevel();
         } else {
-            levelInput.disabled = false;
+            creatureLevelBox.disabled = false;
         }
-        updateCreatureCode();
+        generateCreatureCodeBasedOnChecks();
+    }
+
+    function generateCreatureCodeBasedOnChecks() {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature);
+        }
+    }
+
+    maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
+    tamedCheckbox.addEventListener('change', handleTamedState);
+    cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
+
+    function handleTamedState() {
+        const isTamed = tamedCheckbox.checked;
+
+        spawnXBox.disabled = isTamed;
+        spawnYBox.disabled = isTamed;
+        spawnZBox.disabled = isTamed;
+
+        if (isTamed) {
+            cryopodCheckbox.disabled = false; 
+        } else {
+            cryopodCheckbox.checked = false; 
+            cryopodCheckbox.disabled = true; 
+        }
+
+        generateCreatureCodeBasedOnChecks();
+    }
+
+    document.addEventListener('click', (event) => {
+        if (!searchResults.contains(event.target) && event.target !== searchBox) {
+            searchResults.innerHTML = ''; 
+        }
     });
 
-    levelInput.addEventListener("input", updateCreatureCode);
-    spawnX.addEventListener("input", updateCreatureCode);
-    spawnY.addEventListener("input", updateCreatureCode);
-    spawnZ.addEventListener("input", updateCreatureCode);
-    tamedCheckbox.addEventListener("change", function () {
-        if (tamedCheckbox.checked) {
-            spawnX.disabled = spawnY.disabled = spawnZ.disabled = true;
-            cryopodCheckbox.disabled = false;
-        } else {
-            spawnX.disabled = spawnY.disabled = spawnZ.disabled = false;
-            cryopodCheckbox.checked = false;
-            cryopodCheckbox.disabled = true;
+    creatureLevelBox.addEventListener('input', () => {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature);
         }
-        updateCreatureCode();
     });
-    cryopodCheckbox.addEventListener("change", updateCreatureCode);
-    saddleDropdown.addEventListener("change", updateSaddleCode);
+
+    if (maxLevelCheckbox.checked) {
+        creatureLevelBox.disabled = true;
+        updateMaxLevel();
+    }
+
+    if (!tamedCheckbox.checked) {
+        cryopodCheckbox.checked = false;
+        cryopodCheckbox.disabled = true;
+    }
+
+    handleTamedState(); // Fix: Apply correct behavior on page load
 });
-
-// Copy buttons
-function copyToClipboard(elementId) {
-    const copyText = document.getElementById(elementId);
-    copyText.select();
-    document.execCommand("copy");
-}
