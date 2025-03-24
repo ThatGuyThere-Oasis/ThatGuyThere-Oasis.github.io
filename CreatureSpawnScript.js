@@ -65,78 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function generateCreatureCode(creature) {
-        let creatureCode = '';
-        let level = parseInt(creatureLevelBox.value) || 300;
-
-        if (tamedCheckbox.checked) {
-            creatureCode = creature.tameSummon + `${level}`;
-            if (cryopodCheckbox.checked) {
-                creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
-            }
-        } else {
-            const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
-            creatureCode = creature.wildSummon + ` ${spawnCoords} ${level}`;
-        }
-
-        creatureCodeBox.value = creatureCode;
-    }
-
-    function updateMaxLevel() {
-        if (selectedCreature) {
-            creatureLevelBox.value = selectedCreature.maxLevel;
-        }
-    }
-
-    function handleCheckboxChanges() {
-        if (maxLevelCheckbox.checked) {
-            creatureLevelBox.disabled = true;
-            updateMaxLevel();
-        } else {
-            creatureLevelBox.disabled = false;
-        }
-        generateCreatureCodeBasedOnChecks();
-    }
-
-    function generateCreatureCodeBasedOnChecks() {
-        if (selectedCreature) {
-            generateCreatureCode(selectedCreature);
-        }
-    }
-
-    maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
-    tamedCheckbox.addEventListener('change', handleTamedState);
-    cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
-
-    function handleTamedState() {
-        const isTamed = tamedCheckbox.checked;
-
-        spawnXBox.disabled = isTamed;
-        spawnYBox.disabled = isTamed;
-        spawnZBox.disabled = isTamed;
-
-        if (isTamed) {
-            cryopodCheckbox.disabled = false; 
-        } else {
-            cryopodCheckbox.checked = false; 
-            cryopodCheckbox.disabled = true; 
-        }
-
-        generateCreatureCodeBasedOnChecks();
-    }
-
-    document.addEventListener('click', (event) => {
-        if (!searchResults.contains(event.target) && event.target !== searchBox) {
-            searchResults.innerHTML = ''; 
-        }
-    });
-
-    creatureLevelBox.addEventListener('input', () => {
-        if (selectedCreature) {
-            generateCreatureCode(selectedCreature);
-        }
-    });
-
     function populateSaddleDropdown() {
         saddleDropdown.innerHTML = '<option value="none">None</option>';
 
@@ -144,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ['saddle', 'platformSaddle', 'tekSaddle'].forEach(type => {
                 if (selectedCreature[type] && selectedCreature[type] !== "NA") {
                     const option = document.createElement('option');
-                    option.value = type;
+                    option.value = selectedCreature[type]; // Store actual saddle code
                     option.textContent = type.replace("Saddle", " Saddle");
                     saddleDropdown.appendChild(option);
                 }
@@ -153,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     saddleDropdown.addEventListener('change', () => {
-        const selectedType = saddleDropdown.value;
-        if (selectedType !== "none" && selectedCreature) {
-            const saddleCode = selectedCreature[selectedType];
+        const selectedSaddle = saddleDropdown.value;
+        console.log("Selected Saddle:", selectedSaddle); // Debug log
+        if (selectedSaddle !== "none") {
             const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
             const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-            saddleCodeBox.value = `${saddleCode} ${quantity} ${quality}`;
+            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
         } else {
             saddleCodeBox.value = '';
         }
