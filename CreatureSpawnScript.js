@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const spawnXBox = document.getElementById('spawnX');
     const spawnYBox = document.getElementById('spawnY');
     const spawnZBox = document.getElementById('spawnZ');
+    const saddleDropdown = document.getElementById('saddleDropdown');
+    const saddleCodeBox = document.getElementById('saddleCode');
+    const quantityBox = document.getElementById('quantityBox');
+    const qualityBox = document.getElementById('qualityBox');
     
     let creatureData = [];
     let selectedCreature = null;
@@ -17,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             creatureData = data.creatures;
+            populateSaddleDropdown();  // Populate the saddle dropdown after data is loaded
         })
         .catch(error => console.error('Error loading creature data:', error));
 
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateMaxLevel();
                     handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
                     generateCreatureCode(creature);
+                    populateSaddleDropdown();  // Repopulate the saddle dropdown when a creature is selected
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -143,4 +149,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     handleTamedState(); // Fix: Apply correct behavior on page load
+
+    // Saddle Dropdown Population (Updated)
+    function populateSaddleDropdown() {
+        saddleDropdown.innerHTML = '<option value="none">None</option>';  // Start with "None" as default option
+
+        if (selectedCreature) {
+            // Check each saddle field and add them to the dropdown if they're not "NA"
+            if (selectedCreature.saddle && selectedCreature.saddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.saddle;
+                option.textContent = 'Saddle';
+                saddleDropdown.appendChild(option);
+            }
+
+            if (selectedCreature.platformSaddle && selectedCreature.platformSaddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.platformSaddle;
+                option.textContent = 'Platform Saddle';
+                saddleDropdown.appendChild(option);
+            }
+
+            if (selectedCreature.tekSaddle && selectedCreature.tekSaddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.tekSaddle;
+                option.textContent = 'Tek Saddle';
+                saddleDropdown.appendChild(option);
+            }
+        }
+    }
+
+    // Handle Saddle Selection
+    saddleDropdown.addEventListener('change', () => {
+        const selectedSaddle = saddleDropdown.value;
+        if (selectedSaddle !== "none") {
+            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);  // Default to 1 if quantity is invalid
+            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
+            const saddleCode = `${selectedSaddle} ${quantity} ${quality}`;
+            saddleCodeBox.value = saddleCode;
+        } else {
+            saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
+        }
+    });
+
+    // Validate quantity and quality input fields
+    quantityBox.addEventListener('input', () => {
+        const value = Math.max(1, parseInt(quantityBox.value) || 1);
+        quantityBox.value = value;
+    });
+
+    qualityBox.addEventListener('input', () => {
+        const value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
+        qualityBox.value = value;
+    });
 });
