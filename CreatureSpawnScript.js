@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             creatureData = data.creatures;
-            populateSaddleDropdown();  // Populate the saddle dropdown after data is loaded
+            populateSaddleDropdown();
         })
         .catch(error => console.error('Error loading creature data:', error));
 
@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     searchResults.innerHTML = ''; 
                     selectedCreature = creature;
                     updateMaxLevel();
-                    handleTamedState();  
+                    handleTamedState();
                     generateCreatureCode(creature);
-                    populateSaddleDropdown();  // Repopulate the saddle dropdown when a creature is selected
+                    populateSaddleDropdown();
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -138,82 +138,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    if (maxLevelCheckbox.checked) {
-        creatureLevelBox.disabled = true;
-        updateMaxLevel();
-    }
-
-    if (!tamedCheckbox.checked) {
-        cryopodCheckbox.checked = false;
-        cryopodCheckbox.disabled = true;
-    }
-
-    handleTamedState(); // Fix: Apply correct behavior on page load
-
-    // Saddle Dropdown Population (Updated)
     function populateSaddleDropdown() {
-        saddleDropdown.innerHTML = '<option value="none">None</option>';  // Start with "None" as default option
+        saddleDropdown.innerHTML = '<option value="none">None</option>';
 
         if (selectedCreature) {
-            // Check each saddle field and add them to the dropdown if they're not "NA"
-            if (selectedCreature.saddle && selectedCreature.saddle !== "NA") {
-                const option = document.createElement('option');
-                option.value = selectedCreature.saddle;
-                option.textContent = 'Saddle';
-                saddleDropdown.appendChild(option);
-            }
-
-            if (selectedCreature.platformSaddle && selectedCreature.platformSaddle !== "NA") {
-                const option = document.createElement('option');
-                option.value = selectedCreature.platformSaddle;
-                option.textContent = 'Platform Saddle';
-                saddleDropdown.appendChild(option);
-            }
-
-            if (selectedCreature.tekSaddle && selectedCreature.tekSaddle !== "NA") {
-                const option = document.createElement('option');
-                option.value = selectedCreature.tekSaddle;
-                option.textContent = 'Tek Saddle';
-                saddleDropdown.appendChild(option);
-            }
+            ['saddle', 'platformSaddle', 'tekSaddle'].forEach(type => {
+                if (selectedCreature[type] && selectedCreature[type] !== "NA") {
+                    const option = document.createElement('option');
+                    option.value = selectedCreature[type];
+                    option.textContent = type.replace("Saddle", " Saddle");
+                    saddleDropdown.appendChild(option);
+                }
+            });
         }
     }
 
-    // Handle Saddle Selection
     saddleDropdown.addEventListener('change', () => {
         const selectedSaddle = saddleDropdown.value;
-        let saddleCode = '';
-
         if (selectedSaddle !== "none") {
-            // Check if the selected saddle matches the creature's saddle code
-            if (selectedSaddle === selectedCreature.saddle) {
-                saddleCode = selectedCreature.saddle;
-            } else if (selectedSaddle === selectedCreature.platformSaddle) {
-                saddleCode = selectedCreature.platformSaddle;
-            } else if (selectedSaddle === selectedCreature.tekSaddle) {
-                saddleCode = selectedCreature.tekSaddle;
-            }
-
-            // Append the quantity and quality to the saddle code
-            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);  // Default to 1 if quantity is invalid
-            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
-            saddleCode += ` ${quantity} ${quality}`;
-
-            // Set the saddle code in the read-only box (just like creature code)
-            saddleCodeBox.value = saddleCode;
+            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
+            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
+            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
         } else {
-            saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
+            saddleCodeBox.value = '';
         }
     });
 
-    // Validate quantity and quality input fields
     quantityBox.addEventListener('input', () => {
-        const value = Math.max(1, parseInt(quantityBox.value) || 1);
-        quantityBox.value = value;
+        quantityBox.value = Math.max(1, parseInt(quantityBox.value) || 1);
     });
 
     qualityBox.addEventListener('input', () => {
-        const value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-        qualityBox.value = value;
+        qualityBox.value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
     });
 });
