@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
             saddleCode += ` ${quantity} ${quality}`;
 
-            // Set the saddle code in the read-only box
+            // Set the saddle code in the read-only box (just like creature code)
             saddleCodeBox.value = saddleCode;
         } else {
             saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
