@@ -146,4 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
         creatureLevelBox.disabled = true;
         updateMaxLevel(); // Disable the level box and set it to maxLevel from Creature.json
     }
+
+    // Reset Cryopod checkbox and spawn distance when page loads or Tamed is unchecked
+    if (!tamedCheckbox.checked) {
+        cryopodCheckbox.checked = false;
+        cryopodCheckbox.disabled = true;
+    }
 });
