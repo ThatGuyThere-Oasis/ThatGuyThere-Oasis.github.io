@@ -71,13 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let level = parseInt(creatureLevelBox.value) || 300;
 
         if (tamedCheckbox.checked) {
-            creatureCode = creature.tameSummon + ${level};
+            creatureCode = creature.tameSummon + `${level}`;
             if (cryopodCheckbox.checked) {
-                creatureCode += |cheat gfi cryopod_mod 1 0 0;
+                creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
             }
         } else {
-            const spawnCoords = ${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value};
-            creatureCode = creature.wildSummon +  ${spawnCoords} ${level};
+            const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
+            creatureCode = creature.wildSummon + ` ${spawnCoords} ${level}`;
         }
 
         creatureCodeBox.value = creatureCode;
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedSaddle !== "none") {
             const quantity = Math.max(1, parseInt(quantityBox.value) || 1);  // Default to 1 if quantity is invalid
             const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
-            const saddleCode = ${selectedSaddle} ${quantity} ${quality};
+            const saddleCode = `${selectedSaddle} ${quantity} ${quality}`;
             saddleCodeBox.value = saddleCode;
         } else {
             saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
