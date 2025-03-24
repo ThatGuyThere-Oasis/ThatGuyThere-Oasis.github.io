@@ -182,10 +182,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle Saddle Selection
     saddleDropdown.addEventListener('change', () => {
         const selectedSaddle = saddleDropdown.value;
+        let saddleCode = '';
+
         if (selectedSaddle !== "none") {
+            // Determine the saddle code based on the selected saddle
+            if (selectedSaddle === selectedCreature.saddle) {
+                saddleCode = selectedCreature.saddle;
+            } else if (selectedSaddle === selectedCreature.platformSaddle) {
+                saddleCode = selectedCreature.platformSaddle;
+            } else if (selectedSaddle === selectedCreature.tekSaddle) {
+                saddleCode = selectedCreature.tekSaddle;
+            }
+
+            // Append the quantity and quality to the saddle code
             const quantity = Math.max(1, parseInt(quantityBox.value) || 1);  // Default to 1 if quantity is invalid
             const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
-            const saddleCode = `${selectedSaddle} ${quantity} ${quality}`;
+            saddleCode += ` ${quantity} ${quality}`;
+
+            // Set the saddle code in the read-only box
             saddleCodeBox.value = saddleCode;
         } else {
             saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
