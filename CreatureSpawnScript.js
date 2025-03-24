@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             creatureData = data.creatures;
-            populateSaddleDropdown();
         })
         .catch(error => console.error('Error loading creature data:', error));
 
@@ -145,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ['saddle', 'platformSaddle', 'tekSaddle'].forEach(type => {
                 if (selectedCreature[type] && selectedCreature[type] !== "NA") {
                     const option = document.createElement('option');
-                    option.value = selectedCreature[type];
+                    option.value = type;
                     option.textContent = type.replace("Saddle", " Saddle");
                     saddleDropdown.appendChild(option);
                 }
@@ -154,11 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     saddleDropdown.addEventListener('change', () => {
-        const selectedSaddle = saddleDropdown.value;
-        if (selectedSaddle !== "none") {
+        const selectedType = saddleDropdown.value;
+        if (selectedType !== "none" && selectedCreature) {
+            const saddleCode = selectedCreature[selectedType];
             const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
             const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
+            saddleCodeBox.value = `${saddleCode} ${quantity} ${quality}`;
         } else {
             saddleCodeBox.value = '';
         }
@@ -166,9 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     quantityBox.addEventListener('input', () => {
         quantityBox.value = Math.max(1, parseInt(quantityBox.value) || 1);
+        saddleDropdown.dispatchEvent(new Event('change'));
     });
 
     qualityBox.addEventListener('input', () => {
         qualityBox.value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
+        saddleDropdown.dispatchEvent(new Event('change'));
     });
 });
