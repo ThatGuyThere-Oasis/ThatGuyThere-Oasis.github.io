@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             creatureData = data.creatures;
+            populateSaddleDropdown();  // Populate the saddle dropdown after data is loaded
         })
         .catch(error => console.error('Error loading creature data:', error));
 
@@ -42,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     searchResults.innerHTML = ''; 
                     selectedCreature = creature;
                     updateMaxLevel();
-                    handleTamedState();
+                    handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
                     generateCreatureCode(creature);
-                    populateSaddleDropdown();
+                    populateSaddleDropdown();  // Repopulate the saddle dropdown when a creature is selected
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -65,40 +66,140 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function populateSaddleDropdown() {
-        saddleDropdown.innerHTML = '<option value="none">None</option>';
+    function generateCreatureCode(creature) {
+        let creatureCode = '';
+        let level = parseInt(creatureLevelBox.value) || 300;
 
+        if (tamedCheckbox.checked) {
+            creatureCode = creature.tameSummon + ${level};
+            if (cryopodCheckbox.checked) {
+                creatureCode += |cheat gfi cryopod_mod 1 0 0;
+            }
+        } else {
+            const spawnCoords = ${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value};
+            creatureCode = creature.wildSummon +  ${spawnCoords} ${level};
+        }
+
+        creatureCodeBox.value = creatureCode;
+    }
+
+    function updateMaxLevel() {
         if (selectedCreature) {
-            ['saddle', 'platformSaddle', 'tekSaddle'].forEach(type => {
-                if (selectedCreature[type] && selectedCreature[type] !== "NA") {
-                    const option = document.createElement('option');
-                    option.value = selectedCreature[type]; // Store actual saddle code
-                    option.textContent = type.replace("Saddle", " Saddle");
-                    saddleDropdown.appendChild(option);
-                }
-            });
+            creatureLevelBox.value = selectedCreature.maxLevel;
         }
     }
 
-    saddleDropdown.addEventListener('change', () => {
-        const selectedSaddle = saddleDropdown.value;
-        console.log("Selected Saddle:", selectedSaddle); // Debug log
-        if (selectedSaddle !== "none") {
-            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
-            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
+    function handleCheckboxChanges() {
+        if (maxLevelCheckbox.checked) {
+            creatureLevelBox.disabled = true;
+            updateMaxLevel();
         } else {
-            saddleCodeBox.value = '';
+            creatureLevelBox.disabled = false;
+        }
+        generateCreatureCodeBasedOnChecks();
+    }
+
+    function generateCreatureCodeBasedOnChecks() {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature);
+        }
+    }
+
+    maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
+    tamedCheckbox.addEventListener('change', handleTamedState);
+    cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
+
+    function handleTamedState() {
+        const isTamed = tamedCheckbox.checked;
+
+        spawnXBox.disabled = isTamed;
+        spawnYBox.disabled = isTamed;
+        spawnZBox.disabled = isTamed;
+
+        if (isTamed) {
+            cryopodCheckbox.disabled = false; 
+        } else {
+            cryopodCheckbox.checked = false; 
+            cryopodCheckbox.disabled = true; 
+        }
+
+        generateCreatureCodeBasedOnChecks();
+    }
+
+    document.addEventListener('click', (event) => {
+        if (!searchResults.contains(event.target) && event.target !== searchBox) {
+            searchResults.innerHTML = ''; 
         }
     });
 
+    creatureLevelBox.addEventListener('input', () => {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature);
+        }
+    });
+
+    if (maxLevelCheckbox.checked) {
+        creatureLevelBox.disabled = true;
+        updateMaxLevel();
+    }
+
+    if (!tamedCheckbox.checked) {
+        cryopodCheckbox.checked = false;
+        cryopodCheckbox.disabled = true;
+    }
+
+    handleTamedState(); // Fix: Apply correct behavior on page load
+
+    // Saddle Dropdown Population (Updated)
+    function populateSaddleDropdown() {
+        saddleDropdown.innerHTML = '<option value="none">None</option>';  // Start with "None" as default option
+
+        if (selectedCreature) {
+            // Check each saddle field and add them to the dropdown if they're not "NA"
+            if (selectedCreature.saddle && selectedCreature.saddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.saddle;
+                option.textContent = 'Saddle';
+                saddleDropdown.appendChild(option);
+            }
+
+            if (selectedCreature.platformSaddle && selectedCreature.platformSaddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.platformSaddle;
+                option.textContent = 'Platform Saddle';
+                saddleDropdown.appendChild(option);
+            }
+
+            if (selectedCreature.tekSaddle && selectedCreature.tekSaddle !== "NA") {
+                const option = document.createElement('option');
+                option.value = selectedCreature.tekSaddle;
+                option.textContent = 'Tek Saddle';
+                saddleDropdown.appendChild(option);
+            }
+        }
+    }
+
+    // Handle Saddle Selection
+    saddleDropdown.addEventListener('change', () => {
+        const selectedSaddle = saddleDropdown.value;
+        if (selectedSaddle !== "none") {
+            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);  // Default to 1 if quantity is invalid
+            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));  // Validate quality between 0 and 100
+            const saddleCode = ${selectedSaddle} ${quantity} ${quality};
+            saddleCodeBox.value = saddleCode;
+        } else {
+            saddleCodeBox.value = '';  // Clear the saddle code if "None" is selected
+        }
+    });
+
+    // Validate quantity and quality input fields
     quantityBox.addEventListener('input', () => {
-        quantityBox.value = Math.max(1, parseInt(quantityBox.value) || 1);
-        saddleDropdown.dispatchEvent(new Event('change'));
+        const value = Math.max(1, parseInt(quantityBox.value) || 1);
+        quantityBox.value = value;
     });
 
     qualityBox.addEventListener('input', () => {
-        qualityBox.value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-        saddleDropdown.dispatchEvent(new Event('change'));
+        const value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
+        qualityBox.value = value;
     });
 });
