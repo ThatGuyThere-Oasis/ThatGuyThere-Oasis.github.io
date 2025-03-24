@@ -9,7 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const spawnXBox = document.getElementById('spawnX');
     const spawnYBox = document.getElementById('spawnY');
     const spawnZBox = document.getElementById('spawnZ');
-    
+    const saddleDropdown = document.getElementById('saddleDropdown');
+    const saddleCodeBox = document.getElementById('saddleCode');
+    const quantityBox = document.getElementById('quantity');
+    const qualityBox = document.getElementById('quality');
+    const creatureCodeWithSaddleBox = document.getElementById('creatureCodeWithSaddle');
+
     let creatureData = [];
     let selectedCreature = null;
 
@@ -38,8 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     searchResults.innerHTML = ''; 
                     selectedCreature = creature;
                     updateMaxLevel();
-                    handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
-                    generateCreatureCode(creature);
+                    handleTamedState();
+                    generateCreatureCode();
+                    updateSaddleDropdown(); // NEW: Update Saddle dropdown on creature select
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -60,21 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function generateCreatureCode(creature) {
+    function generateCreatureCode() {
+        if (!selectedCreature) return;
+
         let creatureCode = '';
-        let level = parseInt(creatureLevelBox.value) || 300;
+        let level = parseInt(creatureLevelBox.value) || selectedCreature.maxLevel;
 
         if (tamedCheckbox.checked) {
-            creatureCode = creature.tameSummon + `${level}`;
+            creatureCode = selectedCreature.tameSummon + `${level}`;
             if (cryopodCheckbox.checked) {
                 creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
             }
         } else {
             const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
-            creatureCode = creature.wildSummon + ` ${spawnCoords} ${level}`;
+            creatureCode = selectedCreature.wildSummon + ` ${spawnCoords} ${level}`;
         }
 
         creatureCodeBox.value = creatureCode;
+        generateCreatureCodeWithSaddle(); // NEW: Update full command
     }
 
     function updateMaxLevel() {
@@ -90,18 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             creatureLevelBox.disabled = false;
         }
-        generateCreatureCodeBasedOnChecks();
+        generateCreatureCode();
     }
-
-    function generateCreatureCodeBasedOnChecks() {
-        if (selectedCreature) {
-            generateCreatureCode(selectedCreature);
-        }
-    }
-
-    maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
-    tamedCheckbox.addEventListener('change', handleTamedState);
-    cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
 
     function handleTamedState() {
         const isTamed = tamedCheckbox.checked;
@@ -117,30 +116,68 @@ document.addEventListener("DOMContentLoaded", () => {
             cryopodCheckbox.disabled = true; 
         }
 
-        generateCreatureCodeBasedOnChecks();
+        generateCreatureCode();
     }
 
-    document.addEventListener('click', (event) => {
-        if (!searchResults.contains(event.target) && event.target !== searchBox) {
-            searchResults.innerHTML = ''; 
-        }
-    });
+    function updateSaddleDropdown() {
+        if (!selectedCreature) return;
 
-    creatureLevelBox.addEventListener('input', () => {
-        if (selectedCreature) {
-            generateCreatureCode(selectedCreature);
+        saddleDropdown.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = 'None';
+        defaultOption.textContent = 'None';
+        saddleDropdown.appendChild(defaultOption);
+
+        ['saddle', 'platformSaddle', 'tekSaddle'].forEach(saddleType => {
+            if (selectedCreature[saddleType] && selectedCreature[saddleType] !== 'NA') {
+                const option = document.createElement('option');
+                option.value = saddleType;
+                option.textContent = saddleType.replace('Saddle', ' Saddle');
+                saddleDropdown.appendChild(option);
+            }
+        });
+
+        saddleDropdown.value = 'None';
+        saddleCodeBox.value = '';
+        generateCreatureCodeWithSaddle();
+    }
+
+    function generateSaddleCode() {
+        if (!selectedCreature) return '';
+
+        let saddleType = saddleDropdown.value;
+        if (saddleType === 'None') return '';
+
+        let quantity = Math.max(1, parseInt(quantityBox.value) || 1);
+        let quality = Math.min(100, Math.max(0, parseInt(qualityBox.value) || 0));
+
+        return `${selectedCreature[saddleType]} ${quantity} ${quality} 0`;
+    }
+
+    function generateCreatureCodeWithSaddle() {
+        let creatureCode = creatureCodeBox.value;
+        let saddleCode = generateSaddleCode();
+
+        if (saddleCode) {
+            creatureCode += `|${saddleCode}`;
         }
-    });
+
+        creatureCodeWithSaddleBox.value = creatureCode;
+    }
+
+    maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
+    tamedCheckbox.addEventListener('change', handleTamedState);
+    cryopodCheckbox.addEventListener('change', generateCreatureCode);
+    creatureLevelBox.addEventListener('input', generateCreatureCode);
+    saddleDropdown.addEventListener('change', generateCreatureCodeWithSaddle);
+    quantityBox.addEventListener('input', generateCreatureCodeWithSaddle);
+    qualityBox.addEventListener('input', generateCreatureCodeWithSaddle);
 
     if (maxLevelCheckbox.checked) {
         creatureLevelBox.disabled = true;
         updateMaxLevel();
     }
 
-    if (!tamedCheckbox.checked) {
-        cryopodCheckbox.checked = false;
-        cryopodCheckbox.disabled = true;
-    }
-
-    handleTamedState(); // Fix: Apply correct behavior on page load
+    handleTamedState();
 });
