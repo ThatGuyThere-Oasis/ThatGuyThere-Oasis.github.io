@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let creatureData = [];
     let selectedCreature = null;
 
-    // Fetch the creature data from the JSON file
     fetch('Creature.json')
         .then(response => response.json())
         .then(data => {
@@ -21,28 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error loading creature data:', error));
 
-    // Function to filter creatures based on the input query
     function filterCreatures(query) {
-        const filtered = creatureData.filter(creature => 
+        return creatureData.filter(creature => 
             creature.name.toLowerCase().includes(query.toLowerCase())
         );
-        return filtered;
     }
 
-    // Function to display suggestions below the search box
     function displaySuggestions(suggestions) {
-        searchResults.innerHTML = ''; // Clear previous results
+        searchResults.innerHTML = ''; 
         if (suggestions.length > 0) {
             suggestions.forEach(creature => {
                 const suggestionItem = document.createElement('button');
                 suggestionItem.classList.add('list-group-item', 'list-group-item-action');
                 suggestionItem.textContent = creature.name;
                 suggestionItem.onclick = () => {
-                    searchBox.value = creature.name;  // Autofill the search box with the selected name
-                    searchResults.innerHTML = '';     // Clear suggestions after selection
-                    selectedCreature = creature;     // Store the selected creature data
-                    updateMaxLevel();                 // Update the level box based on maxLevel from the selected creature
-                    generateCreatureCode(creature);  // Generate creature code
+                    searchBox.value = creature.name;
+                    searchResults.innerHTML = ''; 
+                    selectedCreature = creature;
+                    updateMaxLevel();
+                    handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
+                    generateCreatureCode(creature);
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -54,26 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listener to handle input and filter the creatures
     searchBox.addEventListener('input', () => {
         const query = searchBox.value;
         if (query.length > 0) {
-            const suggestions = filterCreatures(query);
-            displaySuggestions(suggestions);
+            displaySuggestions(filterCreatures(query));
         } else {
-            searchResults.innerHTML = ''; // Hide suggestions if input is empty
+            searchResults.innerHTML = ''; 
         }
     });
 
-    // Function to generate creature code based on input options
     function generateCreatureCode(creature) {
         let creatureCode = '';
         let level = parseInt(creatureLevelBox.value) || 300;
 
         if (tamedCheckbox.checked) {
-            creatureCode = creature.tameSummon + ` ${level}`;
+            creatureCode = creature.tameSummon + `${level}`;
             if (cryopodCheckbox.checked) {
-                creatureCode += `|cheat gfi cryopod_mod 1 0 0`; // Removed space before "|"
+                creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
             }
         } else {
             const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
@@ -83,19 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
         creatureCodeBox.value = creatureCode;
     }
 
-    // Function to update the level box based on selected creature's maxLevel
     function updateMaxLevel() {
         if (selectedCreature) {
-            const maxLevel = selectedCreature.maxLevel;
-            creatureLevelBox.value = maxLevel;
+            creatureLevelBox.value = selectedCreature.maxLevel;
         }
     }
 
-    // Handle checkbox changes (Max Level, Tamed, Cryopod)
     function handleCheckboxChanges() {
         if (maxLevelCheckbox.checked) {
             creatureLevelBox.disabled = true;
-            updateMaxLevel(); // Set the level box to the maxLevel of the selected creature
+            updateMaxLevel();
         } else {
             creatureLevelBox.disabled = false;
         }
@@ -109,47 +100,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     maxLevelCheckbox.addEventListener('change', handleCheckboxChanges);
-    tamedCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
+    tamedCheckbox.addEventListener('change', handleTamedState);
     cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
 
-    // Disable spawn distance when Tamed is checked
-    tamedCheckbox.addEventListener('change', () => {
+    function handleTamedState() {
         const isTamed = tamedCheckbox.checked;
+
         spawnXBox.disabled = isTamed;
         spawnYBox.disabled = isTamed;
         spawnZBox.disabled = isTamed;
 
         if (isTamed) {
-            cryopodCheckbox.disabled = false; // Enable Cryopod when Tamed is checked
+            cryopodCheckbox.disabled = false; 
         } else {
-            cryopodCheckbox.checked = false; // Uncheck Cryopod if Tamed is unchecked
-            cryopodCheckbox.disabled = true; // Disable Cryopod when Tamed is unchecked
+            cryopodCheckbox.checked = false; 
+            cryopodCheckbox.disabled = true; 
         }
-    });
 
-    // Hide search results when clicking outside
-    document.addEventListener('click', (event) => {
-        if (!searchResults.contains(event.target) && event.target !== searchBox) {
-            searchResults.innerHTML = ''; // Hide suggestions if clicked outside
-        }
-    });
-
-    // Dynamic level update
-    creatureLevelBox.addEventListener('input', () => {
-        if (selectedCreature) {
-            generateCreatureCode(selectedCreature); // Update creature code when level changes
-        }
-    });
-
-    // Ensure maxLevel checkbox behavior is correct on page load
-    if (maxLevelCheckbox.checked) {
-        creatureLevelBox.disabled = true;
-        updateMaxLevel(); // Disable the level box and set it to maxLevel from Creature.json
+        generateCreatureCodeBasedOnChecks();
     }
 
-    // Reset Cryopod checkbox and spawn distance when page loads or Tamed is unchecked
+    document.addEventListener('click', (event) => {
+        if (!searchResults.contains(event.target) && event.target !== searchBox) {
+            searchResults.innerHTML = ''; 
+        }
+    });
+
+    creatureLevelBox.addEventListener('input', () => {
+        if (selectedCreature) {
+            generateCreatureCode(selectedCreature);
+        }
+    });
+
+    if (maxLevelCheckbox.checked) {
+        creatureLevelBox.disabled = true;
+        updateMaxLevel();
+    }
+
     if (!tamedCheckbox.checked) {
         cryopodCheckbox.checked = false;
         cryopodCheckbox.disabled = true;
     }
+
+    handleTamedState(); // Fix: Apply correct behavior on page load
 });
