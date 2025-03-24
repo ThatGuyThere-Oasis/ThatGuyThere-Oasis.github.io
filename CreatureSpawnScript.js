@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     searchResults.innerHTML = ''; 
                     selectedCreature = creature;
                     updateMaxLevel();
-                    handleTamedState();  // Fix: Apply correct spawn distance behavior when a creature is picked
+                    handleTamedState();  
                     generateCreatureCode(creature);
                     populateSaddleDropdown();  // Repopulate the saddle dropdown when a creature is selected
                 };
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let saddleCode = '';
 
         if (selectedSaddle !== "none") {
-            // Determine the saddle code based on the selected saddle
+            // Check if the selected saddle matches the creature's saddle code
             if (selectedSaddle === selectedCreature.saddle) {
                 saddleCode = selectedCreature.saddle;
             } else if (selectedSaddle === selectedCreature.platformSaddle) {
