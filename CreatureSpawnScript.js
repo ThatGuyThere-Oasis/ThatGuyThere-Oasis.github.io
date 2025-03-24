@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ['saddle', 'platformSaddle', 'tekSaddle'].forEach(type => {
                 if (selectedCreature[type] && selectedCreature[type] !== "NA") {
                     const option = document.createElement('option');
-                    option.value = selectedCreature[type]; // Store actual saddle code
+                    option.value = type;
                     option.textContent = type.replace("Saddle", " Saddle");
                     saddleDropdown.appendChild(option);
                 }
@@ -81,24 +81,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     saddleDropdown.addEventListener('change', () => {
-        const selectedSaddle = saddleDropdown.value;
-        console.log("Selected Saddle:", selectedSaddle); // Debug log
-        if (selectedSaddle !== "none") {
-            const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
-            const quality = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
+        const selectedType = saddleDropdown.value;
+        if (selectedType !== "none" && selectedCreature) {
+            const saddleCode = selectedCreature[selectedType]; // Fetch saddle code from Creature.json
+            saddleCodeBox.value = saddleCode; // Place saddle code into the Saddle Code Box
         } else {
-            saddleCodeBox.value = '';
+            saddleCodeBox.value = ''; // Clear if "None" is selected
         }
     });
 
     quantityBox.addEventListener('input', () => {
         quantityBox.value = Math.max(1, parseInt(quantityBox.value) || 1);
-        saddleDropdown.dispatchEvent(new Event('change'));
     });
 
     qualityBox.addEventListener('input', () => {
         qualityBox.value = Math.max(0, Math.min(100, parseInt(qualityBox.value) || 0));
-        saddleDropdown.dispatchEvent(new Event('change'));
     });
 });
