@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const spawnXBox = document.getElementById('spawnX');
     const spawnYBox = document.getElementById('spawnY');
     const spawnZBox = document.getElementById('spawnZ');
-    
+    const saddleCodeBox = document.getElementById('saddleCode'); // New: Saddle Code Box
+
     let creatureData = [];
     let selectedCreature = null;
 
@@ -23,10 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to filter creatures based on the input query
     function filterCreatures(query) {
-        const filtered = creatureData.filter(creature => 
+        return creatureData.filter(creature => 
             creature.name.toLowerCase().includes(query.toLowerCase())
         );
-        return filtered;
     }
 
     // Function to display suggestions below the search box
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     selectedCreature = creature;     // Store the selected creature data
                     updateMaxLevel();                 // Update the level box based on maxLevel from the selected creature
                     generateCreatureCode(creature);  // Generate creature code
+                    updateSaddleCode(creature);      // New: Update Saddle Code
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -53,17 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             searchResults.appendChild(noResultsItem);
         }
     }
-
-    // Event listener to handle input and filter the creatures
-    searchBox.addEventListener('input', () => {
-        const query = searchBox.value;
-        if (query.length > 0) {
-            const suggestions = filterCreatures(query);
-            displaySuggestions(suggestions);
-        } else {
-            searchResults.innerHTML = ''; // Hide suggestions if input is empty
-        }
-    });
 
     // Function to generate creature code based on input options
     function generateCreatureCode(creature) {
@@ -83,22 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
         creatureCodeBox.value = creatureCode;
     }
 
+    // New: Function to update the saddle code box
+    function updateSaddleCode(creature) {
+        if (creature.saddle) {
+            saddleCodeBox.value = creature.saddle; // Insert saddle code
+        } else {
+            saddleCodeBox.value = "No saddle available"; // Fallback text if no saddle exists
+        }
+    }
+
     // Function to update the level box based on selected creature's maxLevel
     function updateMaxLevel() {
         if (selectedCreature) {
-            const maxLevel = selectedCreature.maxLevel;
-            creatureLevelBox.value = maxLevel;
+            creatureLevelBox.value = selectedCreature.maxLevel;
         }
     }
 
     // Handle checkbox changes (Max Level, Tamed, Cryopod)
     function handleCheckboxChanges() {
-        if (maxLevelCheckbox.checked) {
-            creatureLevelBox.disabled = true;
-            updateMaxLevel(); // Set the level box to the maxLevel of the selected creature
-        } else {
-            creatureLevelBox.disabled = false;
-        }
+        creatureLevelBox.disabled = maxLevelCheckbox.checked;
+        if (maxLevelCheckbox.checked) updateMaxLevel();
         generateCreatureCodeBasedOnChecks();
     }
 
@@ -144,6 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ensure maxLevel checkbox behavior is correct on page load
     if (maxLevelCheckbox.checked) {
         creatureLevelBox.disabled = true;
-        updateMaxLevel(); // Disable the level box and set it to maxLevel from Creature.json
+        updateMaxLevel();
     }
 });
