@@ -9,11 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const spawnXBox = document.getElementById('spawnX');
     const spawnYBox = document.getElementById('spawnY');
     const spawnZBox = document.getElementById('spawnZ');
+    const saddleDropdown = document.getElementById("saddleDropdown");
+    const saddleCodeBox = document.getElementById("saddleCode");
+    const quantityBox = document.getElementById("quantity");
+    const qualityBox = document.getElementById("quality");
     
     let creatureData = [];
     let selectedCreature = null;
 
-    // Fetch the creature data from the JSON file
     fetch('Creature.json')
         .then(response => response.json())
         .then(data => {
@@ -21,28 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error loading creature data:', error));
 
-    // Function to filter creatures based on the input query
     function filterCreatures(query) {
-        const filtered = creatureData.filter(creature => 
+        return creatureData.filter(creature => 
             creature.name.toLowerCase().includes(query.toLowerCase())
         );
-        return filtered;
     }
 
-    // Function to display suggestions below the search box
     function displaySuggestions(suggestions) {
-        searchResults.innerHTML = ''; // Clear previous results
+        searchResults.innerHTML = '';
         if (suggestions.length > 0) {
             suggestions.forEach(creature => {
                 const suggestionItem = document.createElement('button');
                 suggestionItem.classList.add('list-group-item', 'list-group-item-action');
                 suggestionItem.textContent = creature.name;
                 suggestionItem.onclick = () => {
-                    searchBox.value = creature.name;  // Autofill the search box with the selected name
-                    searchResults.innerHTML = '';     // Clear suggestions after selection
-                    selectedCreature = creature;     // Store the selected creature data
-                    updateMaxLevel();                 // Update the level box based on maxLevel from the selected creature
-                    generateCreatureCode(creature);  // Generate creature code
+                    searchBox.value = creature.name;
+                    searchResults.innerHTML = '';
+                    selectedCreature = creature;
+                    updateMaxLevel();
+                    generateCreatureCode(creature);
+                    updateSaddleOptions(creature);
                 };
                 searchResults.appendChild(suggestionItem);
             });
@@ -54,18 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Event listener to handle input and filter the creatures
     searchBox.addEventListener('input', () => {
         const query = searchBox.value;
         if (query.length > 0) {
             const suggestions = filterCreatures(query);
             displaySuggestions(suggestions);
         } else {
-            searchResults.innerHTML = ''; // Hide suggestions if input is empty
+            searchResults.innerHTML = '';
         }
     });
 
-    // Function to generate creature code based on input options
     function generateCreatureCode(creature) {
         let creatureCode = '';
         let level = parseInt(creatureLevelBox.value) || 300;
@@ -73,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tamedCheckbox.checked) {
             creatureCode = creature.tameSummon + ` ${level}`;
             if (cryopodCheckbox.checked) {
-                creatureCode += `|cheat gfi cryopod_mod 1 0 0`; // Removed space before "|"
+                creatureCode += `|cheat gfi cryopod_mod 1 0 0`;
             }
         } else {
             const spawnCoords = `${spawnXBox.value} ${spawnYBox.value} ${spawnZBox.value}`;
@@ -83,19 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
         creatureCodeBox.value = creatureCode;
     }
 
-    // Function to update the level box based on selected creature's maxLevel
     function updateMaxLevel() {
         if (selectedCreature) {
-            const maxLevel = selectedCreature.maxLevel;
-            creatureLevelBox.value = maxLevel;
+            creatureLevelBox.value = selectedCreature.maxLevel;
         }
     }
 
-    // Handle checkbox changes (Max Level, Tamed, Cryopod)
     function handleCheckboxChanges() {
         if (maxLevelCheckbox.checked) {
             creatureLevelBox.disabled = true;
-            updateMaxLevel(); // Set the level box to the maxLevel of the selected creature
+            updateMaxLevel();
         } else {
             creatureLevelBox.disabled = false;
         }
@@ -112,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     tamedCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
     cryopodCheckbox.addEventListener('change', generateCreatureCodeBasedOnChecks);
 
-    // Disable spawn distance when Tamed is checked
     tamedCheckbox.addEventListener('change', () => {
         const isTamed = tamedCheckbox.checked;
         spawnXBox.disabled = isTamed;
@@ -120,30 +115,69 @@ document.addEventListener("DOMContentLoaded", () => {
         spawnZBox.disabled = isTamed;
 
         if (isTamed) {
-            cryopodCheckbox.disabled = false; // Enable Cryopod when Tamed is checked
+            cryopodCheckbox.disabled = false;
         } else {
-            cryopodCheckbox.checked = false; // Uncheck Cryopod if Tamed is unchecked
-            cryopodCheckbox.disabled = true; // Disable Cryopod when Tamed is unchecked
+            cryopodCheckbox.checked = false;
+            cryopodCheckbox.disabled = true;
         }
     });
 
-    // Hide search results when clicking outside
     document.addEventListener('click', (event) => {
         if (!searchResults.contains(event.target) && event.target !== searchBox) {
-            searchResults.innerHTML = ''; // Hide suggestions if clicked outside
+            searchResults.innerHTML = '';
         }
     });
 
-    // Dynamic level update
     creatureLevelBox.addEventListener('input', () => {
         if (selectedCreature) {
-            generateCreatureCode(selectedCreature); // Update creature code when level changes
+            generateCreatureCode(selectedCreature);
         }
     });
 
-    // Ensure maxLevel checkbox behavior is correct on page load
     if (maxLevelCheckbox.checked) {
         creatureLevelBox.disabled = true;
-        updateMaxLevel(); // Disable the level box and set it to maxLevel from Creature.json
+        updateMaxLevel();
+    }
+
+    function updateSaddleOptions(creature) {
+        saddleDropdown.innerHTML = "";
+        saddleDropdown.disabled = false;
+        
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "None";
+        defaultOption.textContent = "None";
+        saddleDropdown.appendChild(defaultOption);
+
+        creature.saddles.forEach(saddle => {
+            if (saddle.code !== "NA") {
+                const option = document.createElement("option");
+                option.value = saddle.code;
+                option.textContent = saddle.name;
+                saddleDropdown.appendChild(option);
+            }
+        });
+    }
+    
+    saddleDropdown.addEventListener("change", updateSaddleCode);
+    quantityBox.addEventListener("input", validateFields);
+    qualityBox.addEventListener("input", validateFields);
+
+    function updateSaddleCode() {
+        const selectedSaddle = saddleDropdown.value;
+        const quantity = Math.max(1, parseInt(quantityBox.value) || 1);
+        const quality = Math.min(100, Math.max(0, parseInt(qualityBox.value) || 0));
+        
+        if (selectedSaddle !== "None") {
+            saddleCodeBox.value = `${selectedSaddle} ${quantity} ${quality}`;
+        } else {
+            saddleCodeBox.value = "";
+        }
+    }
+
+    function validateFields() {
+        if (quantityBox.value < 1) quantityBox.value = 1;
+        if (qualityBox.value < 0) qualityBox.value = 0;
+        if (qualityBox.value > 100) qualityBox.value = 100;
+        updateSaddleCode();
     }
 });
